@@ -1,0 +1,86 @@
+$headingFontSize: 2rem;
+$headingFontWeight: 500;
+
+$labelFontSize: 1rem;
+$labelFontWeight: 500;
+$labelSpaceUnder: 1em;
+
+$inputSpaceUnder: 1em;
+
+
+$errorMsgFontSize: 0.9rem;
+$errorFontWeight: 500;
+
+$borderColour: black;
+
+.createAccount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .createAccount-form {
+        width: min-content;
+        text-align: center;
+        padding-bottom: 3em;
+    }
+
+    h4 {
+        font-size: $headingFontSize;
+        font-weight: $headingFontWeight;
+        margin-bottom: 1.5em;
+    }
+
+    label {
+        display: block;
+        text-align: start;
+        font-size: $labelFontSize;
+        font-weight: $labelFontWeight;
+        margin-bottom: $labelSpaceUnder;
+    }
+
+    input {
+        outline: none;
+        text-decoration: none;
+        padding: .8em 0em;
+        margin-bottom: $inputSpaceUnder;
+        border: 1px solid $borderColour;
+
+    }
+
+    input:focus {
+        border-bottom: 3px solid $borderColour;
+    }
+
+    .createAccountBtn {
+
+        margin-top: 3em;
+        background-color: black;
+        color: white;
+        padding: 2em 0em;
+        width: 100%;
+        // border-radius: 30px;
+        font-weight: 700;
+        border-style: none;
+        //align-self: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .createAccountBtn:hover {
+        background-color: rgb(51, 51, 51)
+    }
+
+    p {
+        margin: 0;
+        padding: 0%;
+    }
+
+    .errorMsg {
+        font-size: $errorMsgFontSize;
+        font-weight: $errorFontWeight;
+        padding: 0.5em 0;
+        text-align: start;
+        color: red;
+    }
+}

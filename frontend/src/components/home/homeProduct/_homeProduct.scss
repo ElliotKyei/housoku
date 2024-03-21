@@ -1,0 +1,42 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.3em; //changed from 1.8 to balance heading images on home page
+}
+
+.productImage {
+    background: url(../../../images/productTest.jpg) no-repeat;
+    background-size: cover;
+    background-position-y: bottom;
+    overflow: hidden;
+    // border-radius: 0;
+    border-radius: 10px;
+    //margin-bottom: 1.5em; instead os placing margin at bottom, increasing click region - used margin-top for product info instead
+}
+
+@mixin productInfoSpacing ($spacing: 0) {
+    margin-top: $spacing;
+}
+
+.productInfo {
+    margin-top: 1.5em;
+    font-size: 1.4em;
+
+    p {
+        margin: 0;
+        margin-bottom: .3em;
+    }
+}
+
+.productName {
+    font-weight: 500;
+}
+
+.productDesc {
+    color: gray
+}
+
+.productPrice {
+    font-weight: 400;
+    font-size: 1.2rem;
+}

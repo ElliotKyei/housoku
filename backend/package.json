@@ -1,0 +1,20 @@
+{
+  "name": "housoku",
+  "version": "1.0.0",
+  "description": "Web Application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build-css": "sass --no-source-map --watch scss:public/css"
+  },
+  "author": "Elliot Kyei",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

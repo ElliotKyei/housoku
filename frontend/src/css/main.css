@@ -1,0 +1,57 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: Verdana, sans-serif;
+  color: white;
+  background-color: black;
+  padding: 2.3em;
+  overflow: hidden;
+}
+nav #brand {
+  margin-left: 3em;
+}
+nav .navbar-list {
+  display: flex;
+  margin-left: 25em;
+  margin: 0;
+  padding: 0;
+  margin-right: 5em;
+  width: 100%;
+  height: 100%;
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+nav li {
+  display: inline;
+}
+nav a,
+nav a:visited {
+  display: inline-block;
+  margin-left: 5em;
+  padding: 0;
+  text-decoration: none;
+  color: white;
+}
+nav .searchbar {
+  text-wrap: nowrap;
+  color: black;
+  position: relative;
+  text-align: center;
+  background-color: white;
+  padding: 0.5em 4em;
+  border-radius: 2px;
+}
+nav #shoppingCart {
+  float: right;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

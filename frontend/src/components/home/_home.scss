@@ -1,0 +1,103 @@
+$textColour: white;
+$heroTextSize: 2em;
+
+.homePage {
+    .heroImage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        //height: 635px;
+        height: 685px;
+        overflow: hidden;
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),
+            url(../../images/hero-1.jpg) no-repeat;
+        background-size: cover;
+        background-position-y: center;
+        margin-bottom: 5.4em;
+    }
+
+    .heroContainer {
+        color: $textColour;
+        font-size: $heroTextSize;
+        text-align: center;
+        margin-top: -1.3em;
+    }
+
+    @mixin heroTextFormat($spacing: 0) {
+        color: $textColour;
+        position: relative;
+        top: $spacing;
+    }
+
+    .heroTitle {
+        font-size: 2.5rem;
+        @include heroTextFormat(-12%);
+    }
+
+    .heroSubTitle {
+        font-size: 1.65rem;
+        @include heroTextFormat(-11%);
+    }
+
+    .heroBtn {
+        @include heroTextFormat(-70%);
+        background-color: black;
+        color: $textColour;
+        padding: 1.5em;
+        padding-left: 3.5em;
+        padding-right: 3.5em;
+        border-radius: 15px;
+        font-weight: 700;
+        border-style: none;
+        cursor: pointer;
+    }
+
+    @mixin sectionSpacing($spacing: 0) {
+        padding-top: $spacing;
+    }
+
+    .featured {
+        margin: 0em 5.3em;
+        margin-right: 4.5em;
+        margin-bottom: 5em;
+    }
+
+    .title {
+        font-size: 1.7em;
+    }
+
+    .productContainerRow {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .heading {
+        @extend .featured;
+        margin-top: -1.8em;
+        padding-top: 0;
+        overflow: hidden
+    }
+
+    .productContainerCol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.25em
+    }
+
+    .largeProduct {
+
+        height: 40em;
+
+    }
+
+    .smallProduct {
+        flex-grow: 1;
+        flex-shrink: .5;
+
+    }
+
+}
