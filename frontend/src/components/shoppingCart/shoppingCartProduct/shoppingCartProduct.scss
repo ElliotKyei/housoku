@@ -1,0 +1,76 @@
+.shoppingCartProduct {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    height: min-content;
+    padding: 0;
+
+    .productImage {
+        background: url(../../../../public/housoku-images/productTest.jpg) no-repeat;
+        background-size: cover;
+        background-position-y: bottom;
+        border-radius: 0;
+        //border-radius: 10px;
+        overflow: hidden;
+        height: 158px;
+        width: 180px;
+        padding: 0%;
+        margin: 0;
+
+    }
+
+    .productDetails {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        gap: 0;
+        height: 20%;
+
+        p {
+            margin: 0;
+            padding: 0;
+
+        }
+
+
+        .productName {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .productCategory {
+            color: gray;
+        }
+
+        .productColour {
+            font-size: 1rem;
+            padding: 0%;
+        }
+
+        .productSize {
+            font-weight: 400;
+            font-size: 1rem;
+            padding: 0;
+        }
+
+        .productQuantity {
+            font-weight: 400;
+            font-size: 1rem;
+            color: gray;
+        }
+
+    }
+
+    .productPrice {
+        font-weight: 500;
+    }
+
+}
+
+.shoppingCartDivider {
+    margin: 2em 0;
+    border-color: gray;
+    opacity: 0.1;
+}

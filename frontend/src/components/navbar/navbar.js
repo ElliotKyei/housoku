@@ -1,6 +1,6 @@
 import './_navbar.scss'
-import shoppingCart from '../../images/shopping-bag.png'
-import userProfile from '../../images/user-profile.png'
+const shoppingCart = '/housoku-images/shopping-bag.png'
+const userProfile = '/housoku-images/user-profile.png'
 
 export default function Navbar() {
     return (
@@ -44,7 +44,7 @@ export default function Navbar() {
                 {/* 5th element in flexbox row: shopping cart  */}
 
                 <div id='shoppingCart'>
-                    <a href=''><img src={shoppingCart} alt='Flaticon' height='30px' /></a>
+                    <a href='/cart'><img src={shoppingCart} alt='Flaticon' height='30px' /></a>
                 </div>
             </nav>
 

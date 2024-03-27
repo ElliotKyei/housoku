@@ -9,7 +9,7 @@ export default function HomeProduct(props) {
         First inner div (productImage) is the product image
         Second inner div (productInfo) is the product information  */
 
-        <div className='product'>
+        <div className='homeProduct'>
             <a href='/product-page'><div className='productImage' style={{ height: props.height + 'px', width: props.width + 'px' }}></div></a>
             <div className='productInfo'>
                 <p className='productName'>Product</p>

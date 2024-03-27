@@ -11,11 +11,11 @@ export default function SignIn() {
                     <form method='POST' target=''>
 
                         <label for='email'>Email</label>
-                        <input type='text' name='email' id='email' size='60' maxLength='12' />
+                        <input type='text' name='email' id='email' size='50' maxLength='260' />
                         <div className='errorMsg' id='emailErrors' hidden>The email field cannot be blank.</div>
 
                         <label for='password'>Password</label>
-                        <input type='password' name='password' id='password' size='60' maxLength='12' />
+                        <input type='password' name='password' id='password' size='50' maxLength='128' />
                         <div className='errorMsg' id='emailErrors' hidden>The password field cannot be blank.</div>
 
                         <button type='submit' className='signInBtn'>Sign In</button><br /><br />

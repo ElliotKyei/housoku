@@ -1,11 +1,11 @@
 import './_productPage.scss'
-import Product from './product/product.js'
+import ProductDetails from './productDetails/productDetails.js'
 
 export default function ProductPage() {
     return (
         <>
             <div className='productPage'>
-                <Product width={600} height={620} />
+                <ProductDetails width={600} height={620} />
             </div>
         </>
     )

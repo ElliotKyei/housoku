@@ -32,8 +32,8 @@ export default function Home() {
                 {/*Featured Section*/}
 
                 <div className='featured'>
-                    <div className='title'>
-                        <h2>Featured</h2>
+                    <div >
+                        <h4 className='title'>Featured</h4>
                     </div>
 
                     {/* Featured Images *
@@ -55,8 +55,8 @@ export default function Home() {
 
                 <div className='heading'>
 
-                    <div className='title'>
-                        <h2>Heading</h2>
+                    <div >
+                        <h4 className='title'>Heading</h4>
                     </div>
 
                     {/* Heading Images *

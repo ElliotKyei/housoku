@@ -1,0 +1,29 @@
+.browseProducts {
+    margin: 2em 5.3em;
+
+    .wallBreadCrumbs {
+        padding: 0%;
+        margin: 0%;
+    }
+
+
+    .wallHeader {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 2em;
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
+
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5em
+    }
+
+    .products:last-child {
+        justify-self: start;
+    }
+
+}

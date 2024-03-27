@@ -1,8 +1,8 @@
 import './_footer.scss'
-import facebookIcon from '../../images/facebook.png'
-import linkedinIcon from '../../images/linkedin.png'
-import youtubeIcon from '../../images/youtube.png'
-import instagramIcon from '../../images/instagram.png'
+const facebookIcon = '/housoku-images/facebook.png'
+const linkedinIcon = '/housoku-images/linkedin.png'
+const youtubeIcon = '/housoku-images/youtube.png'
+const instagramIcon = '/housoku-images/instagram.png'
 
 export default function Footer() {
     return (
@@ -11,7 +11,7 @@ export default function Footer() {
             {/* footer div that stretches across bottom of viewport  */}
 
             <footer>
-                <hr className='footerBorder'></hr>
+                <hr className='footerBorder' />
 
                 {/* footerContainer is a flexbox (row direction)  */}
 

@@ -1,0 +1,31 @@
+.productContainer {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.3em; //changed from 1.8 to balance heading images on home page
+
+
+    @mixin productInfoSpacing ($spacing: 0) {
+        margin-top: $spacing;
+    }
+
+    .productInfo {
+        margin-top: 0.5em;
+        font-size: 1.4em;
+
+        p {
+            margin: 0;
+            margin-bottom: .3em;
+        }
+    }
+
+    .productName {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .productPrice {
+        font-weight: 400;
+        font-size: 1rem;
+    }
+
+}

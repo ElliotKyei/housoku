@@ -6,6 +6,7 @@ import CreateAccount from './components/createAccount/createAccount.js';
 import SignIn from './components/signIn/signIn.js';
 import ProductPage from './components/productPage/productPage.js';
 import BrowseProducts from './components/browseProducts/browseProducts.js';
+import ShoppingCart from './components/shoppingCart/shoppingCart.js';
 
 import Footer from './components/footer/footer.js'
 
@@ -20,6 +21,7 @@ function App() {
           <Route path='/signin' Component={SignIn} />
           <Route path='/create-account' Component={CreateAccount} />
           <Route path='/apparel/browse-products' Component={BrowseProducts} />
+          <Route path='/cart' Component={ShoppingCart} />
         </Routes>
       </BrowserRouter>
       <Footer />

@@ -36,7 +36,6 @@ client.connect((err) => {
 })
 
 // Set up static folder for express to use
-
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 /* app.get('/', (req, res) => {
