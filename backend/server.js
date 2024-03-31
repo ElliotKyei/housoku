@@ -1,47 +1,36 @@
+require('dotenv').config()
 const express = require('express');
 const path = require('path');
 const app = express();
-const { Client, Pool } = require('pg')
+const cors = require('cors');
+const bodyParser = require('body-parser')
+const userRoutes = require('./api/routes/userRoutes.js')
+const session = require('express-session')
+const pgSessions = require('connect-pg-simple')
 const HTTP_PORT = process.env.PORT || 8080;
-
-// Configurations for database connection (Postgres)
-const client = new Client({
-    user: 'ElliotKyei',
-    password: 'abc123',
-    host: 'localhost',
-    port: 5432,
-    database: 'Housoku'
-})
-
-// Connect to database
-
-client.connect((err) => {
-
-    if (err) {
-        console.error("Error connecting to the database");
-        return;
-    }
-    else {
-        console.log("Database connection established")
-
-        let dbQuery = client.query("SELECT * FROM PRODUCTS", (err, res) => {
-            if (err)
-                console.error(err.message)
-            else
-                console.log(res.rows)
-
-            client.end();
-        })
-    }
-})
 
 // Set up static folder for express to use
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
-/* app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/Home.html'));
-})
- */
+// Configuring express session middleware
+
+app.use(session({
+    store: {
+
+    },
+    secret: process.env.SESSION_SECRET,
+    resave: 'false',
+    saveUninitialize: 'false',
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
+
+}))
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use('/api', userRoutes.routes)
+
 app.listen(HTTP_PORT, () => console.log(`Server listening on: ${HTTP_PORT}`));
 
 

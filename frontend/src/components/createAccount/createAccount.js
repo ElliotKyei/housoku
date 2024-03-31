@@ -1,10 +1,13 @@
+import axios from 'axios';
 import './createAccount.scss';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
+
+
 
 export default function CreateAccount() {
-
     // State variable to dynamically change the input style when there is an error
-
+    const navigate = useNavigate();
     const [inputClassName, setInputClassName] = useState({
         emailClass: "",
         firstNameClass: "",
@@ -19,7 +22,12 @@ export default function CreateAccount() {
 
     // State variable to store form errors
 
-    const [formErrors, setFormErrors] = useState({});
+    const [formErrors, setFormErrors] = useState({
+        email: "",
+        firstName: "",
+        lastName: "",
+        password: "",
+    });
 
     // State variable to store user input
 
@@ -35,7 +43,11 @@ export default function CreateAccount() {
 
     useEffect(() => {
         clearRequiredErrorWhenInput(inputSelected)
-
+        if (formErrors.other) {
+            const newFormErrors = { ...formErrors };
+            delete newFormErrors.other
+            setFormErrors(newFormErrors);
+        }
     }, [values])
 
     // handleChange stores the the value from the input into a state variable
@@ -84,6 +96,7 @@ export default function CreateAccount() {
                 errorMsg = "Required"
             }
 
+
             else {
 
                 // Validate input depending on what name is passed to function
@@ -125,10 +138,12 @@ export default function CreateAccount() {
 
             // Set error message to formErrors useState. (Overriding the error message for the current input)
 
+
             setFormErrors(prevErrors => ({
                 ...prevErrors,
                 [name]: errorMsg
             }));
+
 
             // If there are errors, change the className of the input to error styling
 
@@ -160,7 +175,8 @@ export default function CreateAccount() {
     // This function will run when the form is submitted.
     // Validate each input one by one. If there are no errors in formErrors useState, form is valid.
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         for (const input in values) {
@@ -170,10 +186,39 @@ export default function CreateAccount() {
         if (Object.keys(formErrors).length !== 0) {
             return false
         }
-        else {
-            return true
-        }
 
+        else {
+
+            // Will implement HTTPS at a later date. HTTP for now ;(
+
+            try {
+                const response = await axios.post('http://localhost:8080/api/createAccount', values, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Cache-Control': 'no-cache'
+                    }
+                })
+
+                console.log("User successfully created!")
+                navigate('/')
+
+            }
+
+            catch (error) {
+                let errorMsg = error.message
+                if (error.response) {
+                    if (error.response.data.alreadyExists) {
+                        errorMsg = error.response.data.alreadyExists
+                    }
+                }
+
+                setFormErrors((prevErrors) => ({
+                    ...prevErrors,
+                    other: errorMsg
+                }));
+
+            }
+        }
     }
 
     return (
@@ -250,6 +295,7 @@ export default function CreateAccount() {
                             required
                         />
                         {formErrors.password && <div className='errorMsg' id='passwordErrors'>{formErrors.password}</div>}
+                        {formErrors.other && <div className='errorMsg' id='passwordErrors'>{formErrors.other}</div>}
 
                         <p style={{ 'padding-top': '1em' }}>By creating an account, you agree to our <span style={{ 'text-decoration': 'underline' }}>Privacy Policy</span> and <span style={{ 'text-decoration': 'underline' }}>Terms & Conditions</span>.</p>
 

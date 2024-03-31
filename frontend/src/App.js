@@ -7,14 +7,15 @@ import SignIn from './components/signIn/signIn.js';
 import ProductPage from './components/productPage/productPage.js';
 import BrowseProducts from './components/browseProducts/browseProducts.js';
 import ShoppingCart from './components/shoppingCart/shoppingCart.js';
-
 import Footer from './components/footer/footer.js'
+import ScrollToTop from './components/scrollToTop/scrollToTop.js';
 
 function App() {
   return (
     <>
       <Navbar />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route exact path='/' Component={Home} />
           <Route path='/product-page' Component={ProductPage} />
