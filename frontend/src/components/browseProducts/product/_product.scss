@@ -1,7 +1,7 @@
 .productContainer {
     display: flex;
     flex-direction: column;
-    padding-bottom: 1.3em; //changed from 1.8 to balance heading images on home page
+    padding-bottom: 4em; //changed from 1.8 to balance heading images on home page
 
 
     @mixin productInfoSpacing ($spacing: 0) {

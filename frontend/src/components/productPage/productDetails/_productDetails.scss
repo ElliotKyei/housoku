@@ -4,7 +4,7 @@
         flex-direction: row;
         justify-content: center;
         padding-bottom: 1.8em;
-        gap: 8em;
+        gap: 6em;
 
 
         .productImage {
@@ -29,7 +29,7 @@
             padding: 0;
 
             font-size: 1.4em;
-            width: 20em;
+            width: 19em;
 
             p {
                 margin: 0;
@@ -38,17 +38,17 @@
         }
 
         .productName {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 500;
         }
 
         .productCategory {
-
+            font-size: 1.2rem;
             padding-bottom: .8em;
         }
 
         .productDesc {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: gray;
             padding-bottom: 1em;
         }
@@ -58,6 +58,7 @@
             font-weight: 400;
             font-size: 1.2rem;
             padding-bottom: 1em;
+
         }
 
         .productColour {
@@ -87,18 +88,17 @@
         }
 
         .sizeBtn {
-            @extend .colourBtn;
             display: inline;
             background-color: white;
             border: 2px solid gray;
-            border-color: rgba($color: Gray, $alpha: 0.5);
+            border-radius: 3px;
+            border-color: rgba($color: Gray, $alpha: 0.3);
             text-align: center;
-            width: 3em;
-            padding: 1.5em 0;
-            margin: 0 0.5em;
-
-
-
+            font-weight: 500;
+            width: 6em;
+            height: 4em;
+            margin: 0.3em 0.3em;
+            cursor: pointer;
         }
 
         .sizeBtn:focus,
@@ -111,7 +111,7 @@
 
         .checkoutBtn {
 
-            margin-top: 3em;
+            margin-top: 1em;
             background-color: black;
             color: white;
             padding: 2em 0em;

@@ -1,7 +1,87 @@
 import Product from './homeProduct/homeProduct.js';
 import './_home.scss';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function Home() {
+
+    const [featuredProducts, setFeaturedProducts] = useState(null);
+    const [headingProducts, setHeadingProducts] = useState(null);
+
+    useEffect(() => {
+
+        const getHomeProducts = async () => {
+            try {
+                const products = await axios.get('http://localhost:8080/api/getAllFeaturedProducts')
+
+                if (products.status === 200) {
+                    console.log("Home Products: ", products.data)
+
+                    let featuredProd = products.data.filter(p => p.featured_section === "Featured")
+
+                    setFeaturedProducts(prev => ([
+                        ...(products.data.filter(p => p.featured_section === "Featured"))
+                    ]))
+
+                    setHeadingProducts(prev => ([
+                        ...(products.data.filter(p => p.featured_section === "Heading"))
+                    ]))
+                }
+            }
+            catch (error) {
+                console.log(error)
+                setFeaturedProducts(prev => null)
+                setHeadingProducts(prev => null)
+            }
+        }
+
+        getHomeProducts()
+
+    }, [])
+
+    let featuredProductsList = <>
+        <div className='item'><Product /></div>
+        <div className='item'><Product /></div>
+        <div className='item'><Product /></div>
+        <div className='item'><Product /></div>
+        <div className='item'><Product /></div>
+        <div className='item'><Product /></div>
+    </>
+
+    if (featuredProducts) {
+        featuredProductsList = featuredProducts.map(p => {
+            return <div className='item'><Product product={p} key={p.product_id} /></div>
+        })
+    }
+
+    let headingProductsList = <>
+        <div className='largeProduct'>
+            <Product width={780} height={682} />
+        </div>
+        <div className='smallProduct'>
+            <Product width={541} height={261} />
+            <Product width={541} height={261} />
+
+        </div>
+    </>
+    if (headingProducts) {
+        console.log("Heading is: ", headingProducts)
+        headingProductsList = <>
+            <div className='largeProduct'>
+                <Product width={780} height={682} product={headingProducts[0]} key={headingProducts[0].product_id} />
+            </div>
+            <div className='smallProduct'>
+                {
+                    headingProductsList = headingProducts.slice(1).map(p => {
+                        return <Product width={541} height={261} product={p} key={p.product_id} />
+                    })
+                }
+            </div>
+        </>
+    }
+
+
+
     return (
         <>
 
@@ -41,13 +121,7 @@ export default function Home() {
                    the items (products)*/ }
 
                     <div className="productContainerRow">
-                        <div className='item'><Product /></div>
-                        <div className='item'><Product /></div>
-                        <div className='item'><Product /></div>
-                        <div className='item'><Product /></div>
-                        <div className='item'><Product /></div>
-                        <div className='item'><Product /></div>
-
+                        {featuredProductsList}
                     </div>
                 </div>
 
@@ -68,14 +142,7 @@ export default function Home() {
                    This will place the products on top of each other in the second row of the flexbox */}
 
                     <div className="productContainerCol">
-                        <div className='largeProduct'>
-                            <Product width={780} height={682} />
-                        </div>
-                        <div className='smallProduct'>
-                            <Product width={541} height={261} />
-                            <Product width={541} height={261} />
-
-                        </div>
+                        {headingProductsList}
                     </div>
                 </div>
             </div>

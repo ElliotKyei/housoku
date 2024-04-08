@@ -32,7 +32,9 @@ const sendWelcomeEmail = (email, name) => {
 
     request
         .then((result) => {
-            console.log(result.body)
+            // console.log(result.body)
+            console.log(this.toString(result.body))
+            console.log(result)
         })
         .catch((err) => {
             console.log(err.statusCode)

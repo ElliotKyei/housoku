@@ -1,8 +1,19 @@
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './_navbar.scss'
 const shoppingCart = '/housoku-images/shopping-bag.png'
 const userProfile = '/housoku-images/user-profile.png'
 
 export default function Navbar() {
+    /*     const [isAuthenticated, setIsAuthenticated] = useState(false)
+        const authStatus = useSelector(state => state.user.isAuthenticated);
+    
+        useEffect(() => {
+            setIsAuthenticated(authStatus);
+        }, [authStatus]); */
+
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+
     return (
         <>
 
@@ -22,9 +33,9 @@ export default function Navbar() {
 
                 <div className='navbar-list' >
                     <ul>
-                        <li><a className='link' href='/apparel/browse-products'>Tops</a></li>
-                        <li><a className='link' href='/apparel/browse-products'>Pants</a></li>
-                        <li><a className='link' href='/apparel/browse-products'>Shoes</a></li>
+                        <li><a className='link' href='/apparel/browse-products/tops'>Tops</a></li>
+                        <li><a className='link' href='/apparel/browse-products/pants'>Pants</a></li>
+                        <li><a className='link' href='/apparel/browse-products/shoes'>Shoes</a></li>
                     </ul>
                 </div>
 
@@ -37,14 +48,15 @@ export default function Navbar() {
 
                 {/* 4th element in flexbox row: searchbar  */}
 
+                {/*    {isAuthenticated && <p>Hello, User!</p>}
                 <div id='userProfile'>
-                    <a href='/signin'><img src={userProfile} alt='' height='25px' /></a>
-                </div>
+                    <a href='/sign-in'><img src={userProfile} alt='' height='25px' /></a>
+                </div> */}
 
                 {/* 5th element in flexbox row: shopping cart  */}
 
                 <div id='shoppingCart'>
-                    <a href='/cart'><img src={shoppingCart} alt='Flaticon' height='30px' /></a>
+                    <a href='/cart'><img src={shoppingCart} alt='Flaticon' height='28px' /></a>
                 </div>
             </nav>
 

@@ -6,8 +6,11 @@ import { useNavigate } from 'react-router-dom'
 
 
 export default function CreateAccount() {
-    // State variable to dynamically change the input style when there is an error
+
     const navigate = useNavigate();
+
+    // State variable to dynamically change the input style when there is an error
+
     const [inputClassName, setInputClassName] = useState({
         emailClass: "",
         firstNameClass: "",
@@ -50,19 +53,6 @@ export default function CreateAccount() {
         }
     }, [values])
 
-    // handleChange stores the the value from the input into a state variable
-    // <input /> onChange handler passes event to handleChange
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setValues((values) => ({
-            ...values,
-            [name]: value
-        }))
-
-    }
-
     // Clear "Required" error message if the user starts typing in the input
 
     const clearRequiredErrorWhenInput = (name) => {
@@ -76,12 +66,26 @@ export default function CreateAccount() {
                     [`${name}Class`]: ""
                 }))
 
-                const newFormErrors = { ...formErrors };
+                let newFormErrors = { ...formErrors };
                 delete newFormErrors[name]
                 setFormErrors(prev => newFormErrors)
             }
         }
     }
+
+    // handleChange stores the the value from the input into a state variable
+    // <input /> onChange handler passes event to handleChange
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setValues((values) => ({
+            ...values,
+            [name]: value
+        }))
+
+    }
+
 
     // This function will validate the specified input name property
     // 2 ways this function is called: When user clicks off input field (onBlur) and when submit button is pressed
@@ -131,7 +135,7 @@ export default function CreateAccount() {
                         break;
 
                     default:
-                        errorMsg = "An error has occurred. unexpected name "
+                        errorMsg = "An error has occurred."
                         break;
                 }
             }
@@ -139,7 +143,7 @@ export default function CreateAccount() {
             // Set error message to formErrors useState. (Overriding the error message for the current input)
 
 
-            setFormErrors(prevErrors => ({
+            setFormErrors((prevErrors) => ({
                 ...prevErrors,
                 [name]: errorMsg
             }));
@@ -192,15 +196,17 @@ export default function CreateAccount() {
             // Will implement HTTPS at a later date. HTTP for now ;(
 
             try {
-                const response = await axios.post('http://localhost:8080/api/createAccount', values, {
+                const response = await axios.post('http://localhost:8080/api/create-account', values, {
                     headers: {
                         "Content-Type": "application/json",
-                        'Cache-Control': 'no-cache'
-                    }
+                        'Cache-Control': 'no-cache',
+                    },
+                    withCredentials: true
                 })
 
-                console.log("User successfully created!")
-                navigate('/')
+                if (response.status === 201) {
+                    navigate('/')
+                }
 
             }
 
@@ -295,9 +301,9 @@ export default function CreateAccount() {
                             required
                         />
                         {formErrors.password && <div className='errorMsg' id='passwordErrors'>{formErrors.password}</div>}
-                        {formErrors.other && <div className='errorMsg' id='passwordErrors'>{formErrors.other}</div>}
+                        {formErrors.other && <div className='errorMsg' id='otherErrors'>{formErrors.other}</div>}
 
-                        <p style={{ 'padding-top': '1em' }}>By creating an account, you agree to our <span style={{ 'text-decoration': 'underline' }}>Privacy Policy</span> and <span style={{ 'text-decoration': 'underline' }}>Terms & Conditions</span>.</p>
+                        <p style={{ paddingTop: '1em' }}>By creating an account, you agree to our <span style={{ textDecoration: 'underline' }}>Privacy Policy</span> and <span style={{ textDecoration: 'underline' }}>Terms & Conditions</span>.</p>
 
                         <button type='submit' className='createAccountBtn'>Create Account</button>
                     </form>

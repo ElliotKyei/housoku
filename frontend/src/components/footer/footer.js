@@ -29,7 +29,7 @@ export default function Footer() {
                     <div className='footerLinks'>
                         <div className="column">
                             <ul>
-                                <li><h4>Tops</h4></li>
+                                <li><a href=''><h4>Tops</h4></a></li>
                                 <li><a href=''>T-Shirts</a></li>
                                 <li><a href=''>Long Sleeves</a></li>
                                 <li><a href=''>Sweaters</a></li>
@@ -37,7 +37,7 @@ export default function Footer() {
                         </div>
                         <div className="column">
                             <ul>
-                                <li><h4>Pants</h4></li>
+                                <li><a href=''><h4>Pants</h4></a></li>
                                 <li><a href=''>Sweats</a></li>
                                 <li><a href=''>Jeans</a></li>
                                 <li><a href=''>Cargo</a></li>
@@ -45,7 +45,7 @@ export default function Footer() {
                         </div>
                         <div className="column">
                             <ul>
-                                <li><h4>Shoes</h4></li>
+                                <li><a href=''><h4>Shoes</h4></a></li>
                                 <li><a href=''>Sneakers</a></li>
                                 <li><a href=''>Combat Boots</a></li>
                             </ul>

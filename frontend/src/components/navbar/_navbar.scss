@@ -1,10 +1,12 @@
-$font-stack: Verdana, sans-serif;
-$color: black;
-$background: white;
-$navFontSize: 1rem;
-$BrandFontSize: 1.3rem;
+.navbar {
 
-nav {
+    $font-stack: Verdana, sans-serif;
+    $color: black;
+    $background: white;
+    $navFontSize: 1rem;
+    $BrandFontSize: 1.3rem;
+
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -42,6 +44,7 @@ nav {
 
     li {
         display: inline;
+
     }
 
     a {
@@ -67,7 +70,7 @@ nav {
         position: relative;
         text-align: center;
         background-color: white;
-        padding: .7em 4em;
+        padding: .7em 5em;
         margin-right: 2em;
         //border: 1px solid rgba(0, 0%, 0, 0.05);
         background-color: rgba(195, 195, 195, 0.1);
@@ -76,8 +79,7 @@ nav {
 
     #shoppingCart,
     #userProfile {
-
-        margin-right: 1em;
+        margin-right: 2.5em;
         float: right;
     }
 

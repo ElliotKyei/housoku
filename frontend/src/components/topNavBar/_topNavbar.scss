@@ -1,0 +1,73 @@
+.topNavbar {
+
+    $font-stack: Verdana, sans-serif;
+    $color: black;
+    $background: rgb(248, 248, 248);
+    border-bottom: .5px solid rgba(211, 211, 211, 0.187);
+    $navFontSize: .75rem;
+    $BrandFontSize: 1rem;
+
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    font-family: $font-stack;
+    color: $color;
+    background-color: $background;
+    padding: .25em;
+    overflow: hidden;
+
+    .navbar-list {
+        flex-shrink: 0;
+        padding: 0%;
+        margin: 0;
+
+    }
+
+    ul {
+        padding: 0%;
+        margin: 0 3.2em;
+        list-style: none;
+
+    }
+
+    li {
+        padding: 0%;
+        margin: 0;
+        display: inline-block;
+
+    }
+
+    a {
+        padding: 0%;
+        margin: 0;
+        text-decoration: none;
+
+    }
+
+    .link,
+    .link:visited {
+        margin: 0 1em;
+        text-decoration: none;
+        color: $color;
+        font-size: $navFontSize;
+        font-weight: bolder;
+    }
+
+    #userProfile {
+        justify-self: start;
+        align-self: center;
+        width: 100%;
+        padding: 0%;
+        margin: 0;
+
+    }
+
+    #welcomeMsg {
+        margin-right: 3em;
+    }
+
+    #logout {}
+
+}
