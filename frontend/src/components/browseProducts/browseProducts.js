@@ -1,15 +1,21 @@
-import './browseProducts.scss'
+import './_browseProducts.scss'
 import Product from './product/product.js'
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import Filter from './filter/filter.js';
 
 export default function BrowseProducts() {
-    //const [currentCategory, setCurrentCategory] = useState("Tops")
+
     const [products, setProducts] = useState(null)
+    const [subcategoryFilter, setSubCategoryFilter] = useState("")
+    const [priceFilter, setPriceFilter] = useState(null)
+    const [loading, setLoading] = useState(true)
     const { category } = useParams()
 
     useEffect(() => {
+
+        // Fetch products depending on category 
 
         const fetchProducts = async () => {
             let getProducts = null
@@ -26,9 +32,10 @@ export default function BrowseProducts() {
                 }
 
                 if (getProducts) {
-
                     setProducts(prev => getProducts.data)
                 }
+
+                setLoading(false)
             }
 
             catch (error) {
@@ -38,29 +45,29 @@ export default function BrowseProducts() {
 
         fetchProducts();
 
+
     }, [])
 
 
     const imageHeight = 400;
     const imageWidth = 360;
-
-    /* Actual image dimensions when I implement side bar
-    const imageHeight = 390;
-    const imageWidth = 360;
-    */
-
     let renderProducts = <></>
-    {/* <>
-            <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product14.jpg' />
-            <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product12.jpg' />
-            <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product9.jpg' />
 
-            <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product10.jpg' />
-            <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product2.jpg' />
-            <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product11.jpg' />
+    // placeholder for products until fetch is completed
 
-            <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product7.jpg' />
-        </> */}
+    let productPlaceholders = <>
+        <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product14.jpg' />
+        <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product12.jpg' />
+        <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product9.jpg' />
+
+        <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product10.jpg' />
+        <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product2.jpg' />
+        <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product11.jpg' />
+
+        <Product height={imageHeight} width={imageWidth} imageURL='/housoku-images/product7.jpg' />
+    </>
+
+    // if products are available, render
 
     if (products) {
         let imagePos = 0
@@ -80,8 +87,16 @@ export default function BrowseProducts() {
                     <span className='wallBreadCrumbs'>Men's Apparel</span>
                     <h4 className='wallHeader'>Browse Products</h4>
                 </div>
-                <div className='products'>
-                    {renderProducts}
+
+                <div className='mainView'>
+                    <div className='filters'>
+                        {/*    {loading ? <> </> : <Filter filterSubcategories={subcategories} setFilter={getFilter} />} */}
+                    </div>
+                    <div className='products'>
+
+                        {loading ? productPlaceholders : renderProducts}
+
+                    </div>
                 </div>
             </div>
         </>

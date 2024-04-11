@@ -8,14 +8,14 @@ export default function Home() {
     const [featuredProducts, setFeaturedProducts] = useState(null);
     const [headingProducts, setHeadingProducts] = useState(null);
 
-    useEffect(() => {
+    // Fetch products from database listed as "Featured" or "Heading"
 
+    useEffect(() => {
         const getHomeProducts = async () => {
             try {
                 const products = await axios.get('http://localhost:8080/api/getAllFeaturedProducts')
 
                 if (products.status === 200) {
-                    console.log("Home Products: ", products.data)
 
                     let featuredProd = products.data.filter(p => p.featured_section === "Featured")
 
@@ -29,7 +29,7 @@ export default function Home() {
                 }
             }
             catch (error) {
-                console.log(error)
+
                 setFeaturedProducts(prev => null)
                 setHeadingProducts(prev => null)
             }
@@ -38,6 +38,8 @@ export default function Home() {
         getHomeProducts()
 
     }, [])
+
+    // placeholder until featured products in db are fetched
 
     let featuredProductsList = <>
         <div className='item'><Product /></div>
@@ -48,11 +50,15 @@ export default function Home() {
         <div className='item'><Product /></div>
     </>
 
+    // if featured products are finished fetching, render
+
     if (featuredProducts) {
         featuredProductsList = featuredProducts.map(p => {
             return <div className='item'><Product product={p} key={p.product_id} /></div>
         })
     }
+
+    // placeholder until heading products in db are fetched
 
     let headingProductsList = <>
         <div className='largeProduct'>
@@ -64,8 +70,10 @@ export default function Home() {
 
         </div>
     </>
+
+    // if heading products are finished fetching, render
     if (headingProducts) {
-        console.log("Heading is: ", headingProducts)
+
         headingProductsList = <>
             <div className='largeProduct'>
                 <Product width={780} height={682} product={headingProducts[0]} key={headingProducts[0].product_id} />
@@ -105,7 +113,7 @@ export default function Home() {
                         {/*        <a href='/'>
                             <button className="heroBtn">Button</button>
                         </a> */}
-                        <button className="heroBtn">Button</button>
+                        <a href='/apparel/browse-products/tops'><button className="heroBtn">Shop</button></a>
                     </div>
                 </div>
 

@@ -1,9 +1,23 @@
 import './_productDetails.scss';
 import PropTypes from 'prop-types'
+import axios from 'axios'
+import { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { dbAddProduct } from '../../../reducers/shoppingCart/shoppingCartSlice';
 
 
 export default function ProductDetails(props) {
+    const dispatch = useDispatch();
+    const submitBtn = useRef(null);
 
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated)
+    const [disableSubmit, setDisabledSubmit] = useState(false)
+    const [sizeSelected, setSizeSelected] = useState("")
+    const [sizeSelectedError, setSizeSelectedError] = useState(false)
+    const [sizeClassName, setSizeClassName] = useState(null)
+
+
+    let sizeClassNameTmp = {}
     const productName = props.product.product_name;
     const productDescription = props.product.description;
     const productId = props.product.product_id
@@ -15,12 +29,65 @@ export default function ProductDetails(props) {
     const productImageStyle = {
         height: props.height + 'px',
         width: props.width + 'px',
-        backgroundImage: `url(${imageURL})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPositionY: 'center',
         overflow: 'hidden'
     }
+
+    // handler function whenever a size is selected
+
+    const selectSize = (e) => {
+        setSizeSelected(prev => e.target.name)
+        setSizeClassName(prev => ({
+            ...sizeClassNameTmp,
+            [`${e.target.name}Class`]: 'sizeBtnSelected'
+        }))
+
+        setSizeSelectedError(prev => false)
+    }
+
+    // handler function whenever a size is selected
+
+    const addToBag = () => {
+
+        if (isAuthenticated && submitBtn.current) {
+
+            submitBtn.current.disabled = true
+            setDisabledSubmit(prev => true)
+
+            if (sizeSelected.trim().length === 0) {
+                setSizeSelectedError(prev => true)
+                submitBtn.current.disabled = false
+                setDisabledSubmit(prev => false)
+                return
+            }
+            else {
+
+                const product = {
+                    product_id: productId,
+                    product_name: productName,
+                    size: sizeSelected,
+                    image_url: imageURL,
+                    category_name: categoryName,
+                    quantity: 1
+                }
+                submitBtn.current.textContent = "Adding..."
+                submitBtn.current.className = "checkoutBtnDisabled"
+
+                if (!disableSubmit) {
+                    setTimeout(() => {
+                        dispatch(dbAddProduct(product))
+                        submitBtn.current.disabled = false
+                        setDisabledSubmit(prev => false)
+                        submitBtn.current.textContent = "Add to Bag"
+                        submitBtn.current.className = "checkoutBtn"
+                    }, 300)
+                }
+            }
+        }
+    }
+
 
     return (
 
@@ -36,15 +103,36 @@ export default function ProductDetails(props) {
                 <p className='productCategory'>{categoryName}</p>
                 <p className='productDesc'>{productDescription}</p>
                 <p className='productPrice'>${price} CAD</p>
+
                 {/*    <p className='productColour'>Colour </p>
                 <div className='btnSelect'><button className='colourBtn'></button></div><br /> */}
+
                 <p className='productSize'>Select size </p>
                 <div>
-                    {size.map(s => <button className='sizeBtn'>{s}</button>)}
+                    {
+
+
+                        size.map(s => {
+
+                            sizeClassNameTmp[`${s}Class`] = "sizeBtn"
+                            return <button
+                                className={sizeClassName ? sizeClassName[`${s}Class`] : 'sizeBtn'}
+                                name={s}
+                                onFocus={selectSize}
+                                value={sizeSelected}>
+                                {s}
+                            </button>
+                        })
+                    }
+
+                    {/*   <input type='radio' className='sizeRadio' id='size' name='size' value={sizeSelected} />
+                    <label className='customSizeRadio'>test</label> */}
+
                 </div>
                 <input type='hidden' value='/' />
                 {/*   <button className="quantityBtn">Quantity</button> */}
-                <button className="checkoutBtn">Add to Bag</button>
+                {sizeSelectedError && <div className='errorMsg' id='otherErrors'>Please select a size.</div>}
+                <button className="checkoutBtn" onClick={addToBag} ref={submitBtn}>Add to Bag</button>
 
             </div>
         </div>

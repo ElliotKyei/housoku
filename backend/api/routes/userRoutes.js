@@ -2,9 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 const {
-    addUser,
-    verifyLogin,
-    authenticateUser
+    createAccount,
+    signIn,
+    getAuth,
+    signOut,
+    getShoppingCart,
+    addProductToShoppingCart,
+    removeProductFromShoppingCart,
+    updateProductQuantityInShoppingCart,
+    validateOrder,
+    checkout
 } = require('../controllers/userController')
 
 const session = require('express-session');
@@ -27,9 +34,15 @@ router.use(session({
 }))
 
 
-router.post('/create-account', addUser)
-router.post('/sign-in', verifyLogin)
-router.get('/auth', authenticateUser)
+router.post('/create-account', createAccount, signIn)
+router.post('/sign-in', signIn)
+router.get('/getAuth', getAuth)
+router.get('/sign-out', signOut)
+router.get('/getShoppingCart', getShoppingCart)
+router.post('/addProductToShoppingCart', addProductToShoppingCart)
+router.put('/updateProductQuantityInShoppingCart/:index/:quantity', updateProductQuantityInShoppingCart)
+router.delete('/removeProductFromShoppingCart/:index', removeProductFromShoppingCart)
+router.post('/check-out', validateOrder, checkout)
 
 module.exports = {
     routes: router

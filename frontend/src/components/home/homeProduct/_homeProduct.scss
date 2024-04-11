@@ -3,6 +3,10 @@
     flex-direction: column;
     padding-bottom: 1.3em; //changed from 1.8 to balance heading images on home page
 
+    a {
+        color: black;
+        text-decoration: none;
+    }
 
     .productImage {
         background: url(../../../../public/housoku-images/productTest.jpg) no-repeat;

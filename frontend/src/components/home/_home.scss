@@ -54,6 +54,11 @@ $heroTextSize: 2em;
         cursor: pointer;
     }
 
+    .heroBtn:hover {
+        background-color: rgb(48, 48, 48);
+        filter: brightness(100%)
+    }
+
     @mixin sectionSpacing($spacing: 0) {
         padding-top: $spacing;
     }

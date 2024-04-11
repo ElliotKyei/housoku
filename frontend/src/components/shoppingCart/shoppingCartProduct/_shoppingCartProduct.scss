@@ -5,19 +5,6 @@
     height: min-content;
     padding: 0;
 
-    .productImage {
-        background: url(../../../../public/housoku-images/productTest.jpg) no-repeat;
-        background-size: cover;
-        background-position-y: bottom;
-        border-radius: 0;
-        //border-radius: 10px;
-        overflow: hidden;
-        height: 158px;
-        width: 180px;
-        padding: 0%;
-        margin: 0;
-
-    }
 
     .productDetails {
         margin: 0;
@@ -42,12 +29,11 @@
 
         .productCategory {
             color: gray;
-        }
-
-        .productColour {
             font-size: 1rem;
             padding: 0%;
         }
+
+        .productColour {}
 
         .productSize {
             font-weight: 400;
@@ -58,7 +44,18 @@
         .productQuantity {
             font-weight: 400;
             font-size: 1rem;
+            margin-bottom: 2.3em;
             color: gray;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: black;
         }
 
     }
@@ -67,7 +64,13 @@
         font-weight: 500;
     }
 
+    #bin {
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+    }
 }
+
 
 .shoppingCartDivider {
     margin: 2em 0;

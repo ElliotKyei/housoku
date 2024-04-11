@@ -1,0 +1,48 @@
+.filter {
+
+    $headingFontSize: 1.2rem;
+    $headingFontWeight: 500;
+
+    $filterFontSize: 1.15rem;
+    $filterFontWeight: 400;
+
+    .subcategoryFilter p:hover {
+        cursor: pointer;
+    }
+
+    h4 {
+        margin: 0 0 1em 0;
+        padding: 0;
+        font-size: $headingFontSize;
+        font-weight: $headingFontWeight;
+    }
+
+    p {
+        margin: 0;
+        padding: 0 0 .25em 0;
+        font-size: $filterFontSize;
+        font-weight: $filterFontWeight;
+        color: black;
+    }
+
+    .filterBorder {
+        padding: 0;
+        margin: 1.3em 0 1.3em 0;
+        border-color: gray;
+        opacity: 0.1;
+    }
+
+    .priceCheckbox {
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+        background-color: black;
+    }
+
+    .priceCheckboxLabel {
+        font-size: $filterFontSize;
+        font-weight: $filterFontWeight;
+
+    }
+
+}

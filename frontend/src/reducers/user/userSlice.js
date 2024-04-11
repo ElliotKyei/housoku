@@ -1,46 +1,57 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
 
-function getAuthStatus() {
-    const item = localStorage.getItem('user')
+/* Singleton implementation using slices */
 
-    if (item !== null) {
-        const user = localStorage.getItem('user')
-        const { isSignedIn } = JSON.parse(user)
+// check if user is authenticated
 
-        if (!isSignedIn)
-            return false
-        else
-            return true
+export const getAuthStatus = () => async (dispatch) => {
+    try {
+        const isAuth = await axios.get('http://localhost:8080/api/getAuth', { withCredentials: true })
+
+        if (isAuth.data.isSignedIn) {
+            dispatch(getUserAuth(true))
+        }
+
+        else {
+            dispatch(getUserAuth(false))
+        }
     }
-    else {
-        return false
+    catch (error) {
+        dispatch(getUserAuth(false))
     }
-
 }
+
+
 
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        isAuthenticated: getAuthStatus(),
+        isAuthenticated: false,
         fullName: "",
         profileIcon: ""
     },
 
     reducers: {
+        getUserAuth: (state, action) => {
+            state.isAuthenticated = action.payload
+        },
+
         signOut: state => {
-            return { ...state, isAuthenticated: false };
+            state.isAuthenticated = false
         },
 
         signIn: state => {
-            return { ...state, isAuthenticated: true };
+            state.isAuthenticated = true
         },
 
         setFullName: (state, action) => {
-            return { ...state, isAuthenticated: false };
+            state.isAuthenticated = false
         }
     }
 
 })
 
-export const { signOut, signIn, setFullName } = userSlice.actions
+export const { getUserAuth, signOut, signIn, setFullName } = userSlice.actions
 export default userSlice.reducer

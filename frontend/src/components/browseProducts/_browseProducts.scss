@@ -19,11 +19,22 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: right;
-        gap: 1.5em
+        gap: 1.5em;
     }
 
     .products:last-child {
         justify-self: start;
+    }
+
+    .mainView {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .filters {
+        flex-basis: 30em;
+        flex-shrink: 1;
+        //width: 100%;
     }
 
 }

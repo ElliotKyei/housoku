@@ -1,12 +1,14 @@
 class User {
-    constructor(userId, firstName, lastName, email, password, shippingAddress, billingAddress) {
+    constructor({ user_d, first_name, last_name, email, password, shipping_address = null, billing_Address = null }) {
 
-        this.userId = userId,
-            this.firstName = firstName,
-            this.lastName = lastName,
+        this.user_d = user_d,
+            this.first_name = first_name,
+            this.last_name = last_name,
             this.email = email,
             this.password = password,
-            this.shippingAddress = shippingAddress,
-            this.billingAddress = billingAddress
+            this.shipping_address = shipping_address,
+            this.billing_Address = billing_Address
     }
 }
+
+module.exports = User

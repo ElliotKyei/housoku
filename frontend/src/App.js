@@ -11,15 +11,22 @@ import BrowseProducts from './components/browseProducts/browseProducts.js';
 import ShoppingCart from './components/shoppingCart/shoppingCart.js';
 import Footer from './components/footer/footer.js'
 import ScrollToTop from './components/scrollToTop/scrollToTop.js';
+import Auth from './components/auth/auth.js';
 
+/* Utilizing state pattern throughout almost all components:
+    Each component rerenders and performs different actions depending on the
+    the current state of the web application
+*/
 
 function App() {
+
   return (
     <>
-      <TopNavbar />
-      <Navbar />
       <BrowserRouter>
+        <Auth />
         <ScrollToTop />
+        <TopNavbar />
+        <Navbar />
         <Routes>
           <Route exact path='/' Component={Home} />
           <Route path='/apparel/browse-products/:category/:name/:id' Component={ProductPage} />

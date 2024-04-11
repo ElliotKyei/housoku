@@ -31,7 +31,6 @@ export default function Footer() {
                             <ul>
                                 <li><a href=''><h4>Tops</h4></a></li>
                                 <li><a href=''>T-Shirts</a></li>
-                                <li><a href=''>Long Sleeves</a></li>
                                 <li><a href=''>Sweaters</a></li>
                             </ul>
                         </div>

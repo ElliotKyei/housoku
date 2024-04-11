@@ -4,7 +4,7 @@ const Pool = require('pg-pool')
 
 const db = new Pool({
     user: 'ElliotKyei',
-    password: 'abc123',
+    password: process.env.PG_PASSWORD,
     host: 'localhost',
     port: 5432,
     database: 'Housoku'

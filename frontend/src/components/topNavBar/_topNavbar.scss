@@ -43,8 +43,17 @@
         padding: 0%;
         margin: 0;
         text-decoration: none;
+        color: black;
 
     }
+
+
+    a:hover {
+
+        text-decoration: underline;
+        text-underline-offset: .8em;
+    }
+
 
     .link,
     .link:visited {
@@ -65,9 +74,11 @@
     }
 
     #welcomeMsg {
-        margin-right: 3em;
+        @extend .link;
     }
 
-    #logout {}
+    #signOut {
+        @extend .link;
+    }
 
 }

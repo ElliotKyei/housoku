@@ -1,5 +1,5 @@
 import './_homeProduct.scss';
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import slugify from 'slugify'
 import PropTypes from 'prop-types'
 
@@ -32,12 +32,14 @@ export default function HomeProduct(props) {
         Second inner div (productInfo) is the product information  */
 
         <div className='homeProduct'>
-            <a href='/product-page'><img src={imageURL} style={productImageStyle}></img></a>
-            <div className='productInfo'>
-                <p className='productName'>{productName}</p>
-                <p className='productDesc'>{categoryName}</p>
-                <p className='productPrice'>${price}</p>
-            </div>
+            <a href={`/apparel/browse-products/${categoryName.toLowerCase()}/${slugifyProductName}/${productId}`}>
+                <img src={imageURL} style={productImageStyle} />
+                <div className='productInfo'>
+                    <p className='productName'>{productName}</p>
+                    <p className='productDesc'>{categoryName}</p>
+                    <p className='productPrice'>${price}</p>
+                </div>
+            </a>
         </div>
     )
 }

@@ -15,7 +15,6 @@ export default function Product(props) {
     const productImageStyle = {
         height: props.height + 'px',
         width: props.width + 'px',
-        backgroundImage: `url(${imageURL})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPositionY: 'center',

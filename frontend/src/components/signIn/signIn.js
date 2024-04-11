@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import './signIn.scss'
+import './_signIn.scss'
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../reducers/user/userSlice';
+import { signOut } from '../../reducers/user/userSlice';
 
 export default function SignIn() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // State variable to dynamically change the input style when there is an error
 
@@ -33,6 +35,23 @@ export default function SignIn() {
         email: "",
         password: ""
     })
+
+    useEffect(() => {
+        const endServerSession = async () => {
+            try {
+                const endSession = await axios.get("http://localhost:8080/api/sign-out", { withCredentials: true, headers: { 'Cache-Control': 'no-cache' } })
+                dispatch(signOut());
+
+
+            }
+            catch (error) {
+                dispatch(signOut());
+
+            }
+        }
+
+        endServerSession()
+    }, [])
 
 
     // Behaviour modeled after calvinklein.ca  create account validation
@@ -178,11 +197,11 @@ export default function SignIn() {
                     withCredentials: true
                 })
 
+                // Successful sign in.
+
                 if (response.status === 200) {
-                    const user = { isSignedIn: true }
-                    localStorage.setItem("user", JSON.stringify(user))
                     dispatch(signIn())
-                    redirect('/')
+                    navigate('/')
                 }
             }
             catch (error) {

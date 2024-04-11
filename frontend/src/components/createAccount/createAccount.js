@@ -1,5 +1,5 @@
 import axios from 'axios';
-import './createAccount.scss';
+import './_createAccount.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 
@@ -203,10 +203,10 @@ export default function CreateAccount() {
                     },
                     withCredentials: true
                 })
+                navigate('/')
 
-                if (response.status === 201) {
-                    navigate('/')
-                }
+                /*      if (response.status === 201) {
+                     } */
 
             }
 

@@ -1,5 +1,9 @@
     .productDetails {
 
+        $errorMsgFontSize: 0.93rem;
+        $errorFontWeight: 400;
+        $errorTextColour: rgb(219, 0, 0);
+
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -97,15 +101,72 @@
             font-weight: 500;
             width: 6em;
             height: 4em;
-            margin: 0.3em 0.3em;
+            margin: 0 0.3em 0.3em 0;
             cursor: pointer;
         }
 
-        .sizeBtn:focus,
         .sizeBtn:hover {
             border: 2px solid black;
 
         }
+
+        .sizeBtnSelected {
+            @extend .sizeBtn;
+            border: 2px solid black;
+
+        }
+
+        .errorMsg {
+            font-size: $errorMsgFontSize;
+            font-weight: $errorFontWeight;
+            padding-top: 2em;
+            margin-top: -1em;
+            text-align: start;
+            color: $errorTextColour;
+        }
+
+        /* 
+        input[type="radio"] {
+            display: none;
+        }
+
+        .customSizeRadio::before {
+            content: "";
+            position: absolute;
+            border: 1px solid red;
+            display: inline;
+            border-radius: 3px;
+            border-color: rgba($color: Gray, $alpha: 0.3);
+            text-align: center;
+            font-weight: 500;
+            width: 4.5em;
+            height: 3em;
+            margin: -.75em -1.4em;
+            cursor: pointer;
+        }
+
+        .customSizeRadio {
+            display: inline;
+            background-color: white;
+            // border: 2px solid gray;
+            border-radius: 3px;
+            border-color: rgba($color: Gray, $alpha: 0.3);
+            font-weight: 500;
+            margin: 0em 2em;
+
+            cursor: pointer;
+
+        }
+
+
+
+        input[type="radio"]:checked+.customSizeRadio {
+            // border: 2px solid black;
+     
+        }
+ */
+
+
 
 
 
@@ -122,6 +183,12 @@
             align-self: center;
             cursor: pointer;
 
+        }
+
+        .checkoutBtnDisabled {
+            @extend .checkoutBtn;
+            cursor: auto;
+            background-color: rgb(51, 51, 51)
         }
 
         .checkoutBtn:hover {

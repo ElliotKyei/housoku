@@ -1,48 +1,21 @@
-import { useState, useEffect } from "react";
-import axios from 'axios'
+import { useEffect } from "react";
+import { getAuthStatus } from "../../reducers/user/userSlice";
+import { dbGetShoppingCart, } from "../../reducers/shoppingCart/shoppingCartSlice";
+import { useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom';
 
-function Auth() {
-    /*     const [userData, setUserData] = useState({
-            isLoggedIn: false
-        })
-    
-        useEffect(() => {
-    
-            const authenticateUser = async () => {
-                try {
-                    const response = await axios.get('http://localhost:8080/api/auth', { withCredentials: true })
-    
-                    if (response.status === 200) {
-                        setUserData(prev => response.data)
-                    }
-    
-                    else {
-                        setUserData(null);
-                    }
-    
-    
-                }
-                catch (error) {
-                    setUserData(null)
-                }
-            }
-    
-            authenticateUser();
-    
-        }, [])
-    
-        return [userData, setUserData] 
+export default function Auth() {
+    const location = useLocation()
+    const dispatch = useDispatch();
 
-    // State variable to store login state
+    // When app renders or changes location, get authentication state and shopping cart
 
-    const [userData, setUserData] = useState({
-        isSignedIn: false
-    })
-        if (localStorage.getItem('user')) {
-            const user = JSON.parse(localStorage.getItem('user'))
-            console.log(user)
-            setUserData(prev => ({ ...user }))
-        }
+    useEffect(() => {
+        dispatch(getAuthStatus());
+        dispatch(dbGetShoppingCart());
+    }, [location]);
 
-        */
+
+
+    return null
 }
