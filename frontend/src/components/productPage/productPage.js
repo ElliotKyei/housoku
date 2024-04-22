@@ -3,7 +3,7 @@ import './_productPage.scss'
 import ProductDetails from './productDetails/productDetails.js'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import sanitizedProductId from '../../customHooks/sanitizeProductId.js';
+import sanitizedProductId from '../../customHooks/sanitizeProducts/sanitizeProductId.js';
 
 export default function ProductPage() {
     const navigate = useNavigate()
@@ -36,7 +36,7 @@ export default function ProductPage() {
 
             getProduct();
         }
-    }, [])
+    }, [category, id, navigate])
 
     // render product if valid
 

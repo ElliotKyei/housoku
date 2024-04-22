@@ -46,7 +46,7 @@ export default function BrowseProducts() {
         fetchProducts();
 
 
-    }, [])
+    }, [category])
 
 
     const imageHeight = 400;

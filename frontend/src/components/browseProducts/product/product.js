@@ -1,10 +1,9 @@
 import './_product.scss';
 import PropTypes from 'prop-types'
 import slugify from 'slugify'
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Product(props) {
-    const currentRoute = useLocation().pathname
     const slugifyProductName = slugify(props.product.product_name).toLowerCase();
     const productName = props.product.product_name;
     const productId = props.product.product_id
@@ -29,7 +28,7 @@ export default function Product(props) {
         <>
             <div className='productContainer'>
                 <Link to={`/apparel/browse-products/${categoryName}/${slugifyProductName}/${productId}`}>
-                    <img src={imageURL} style={productImageStyle}></img>
+                    <img src={imageURL} style={productImageStyle} alt="product" />
                 </Link>
                 <div className='productInfo'>
                     <p className='productName'>{productName}</p>

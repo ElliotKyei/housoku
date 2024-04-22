@@ -1,60 +1,1608 @@
-nav {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular,
+.navbar .nav .dropDownLink,
+.navbar .nav .dropDownLink a,
+.navbar .nav .dropDownLink a a,
+.navbar .nav .dropDownHeader,
+.navbar .nav .link,
+.navbar .nav .topNavbar #signOut,
+.topNavbar .navbar .nav #signOut,
+.navbar .nav .topNavbar #welcomeMsg,
+.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited,
+.homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium,
+.topNavbar .link,
+.topNavbar #signOut,
+.topNavbar #welcomeMsg,
+.topNavbar .link:visited,
+.navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.browseProducts {
+  margin: 3em 5.3em;
+}
+
+.browseProducts .wallBreadCrumbs {
+  padding: 0%;
+  margin: 0%;
+}
+
+.browseProducts .wallHeader {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 2em;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.browseProducts .products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  gap: 1.5em;
+}
+
+.browseProducts .products:last-child {
+  justify-self: start;
+}
+
+.browseProducts .mainView {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  font-family: Verdana, sans-serif;
-  color: white;
+}
+
+.browseProducts .filters {
+  flex-basis: 30em;
+  flex-shrink: 1;
+}
+
+.filter .subcategoryFilter p:hover {
+  cursor: pointer;
+}
+
+.filter h4 {
+  margin: 0 0 1em 0;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.filter p {
+  margin: 0;
+  padding: 0 0 0.25em 0;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: black;
+}
+
+.filter .filterBorder {
+  padding: 0;
+  margin: 1.3em 0 1.3em 0;
+  border-color: gray;
+  opacity: 0.1;
+}
+
+.filter .priceCheckbox {
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
   background-color: black;
-  padding: 2.3em;
+}
+
+.filter .priceCheckboxLabel {
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.productContainer {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4em;
+}
+
+.productContainer .productInfo {
+  margin-top: 0.5em;
+  font-size: 1.4em;
+}
+
+.productContainer .productInfo p {
+  margin: 0;
+  margin-bottom: 0.3em;
+}
+
+.productContainer .productName {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.productContainer .productPrice {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.createAccount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.createAccount .createAccount-form {
+  width: min-content;
+  text-align: center;
+  padding-bottom: 3em;
+}
+
+.createAccount h4 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1.5em;
+}
+
+.createAccount label {
+  display: block;
+  text-align: start;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+.createAccount input,
+.createAccount .inputError {
+  outline: none;
+  text-decoration: none;
+  padding: 0.6em 0em;
+  margin-bottom: 1em;
+  border: 0.5px solid black;
+  border-radius: 1px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.createAccount input:focus,
+.createAccount .inputError:focus {
+  border-bottom: 3px solid black;
+}
+
+.createAccount .inputError {
+  border: 1px solid rgb(219, 0, 0);
+}
+
+.createAccount .inputError:focus {
+  border-bottom: 3px solid rgb(219, 0, 0);
+}
+
+.createAccount .createAccountBtn {
+  margin-top: 3em;
+  background-color: black;
+  color: white;
+  padding: 2em 0em;
+  width: 100%;
+  font-weight: 700;
+  border-style: none;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.createAccount .createAccountBtn:hover {
+  background-color: rgb(51, 51, 51);
+}
+
+.createAccount p {
+  margin: 0;
+  padding: 0%;
+}
+
+.createAccount .errorMsg {
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0.5em 0;
+  margin-top: -1em;
+  text-align: start;
+  color: rgb(219, 0, 0);
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular,
+.navbar .nav .dropDownLink,
+.navbar .nav .dropDownLink a,
+.navbar .nav .dropDownLink a a,
+.navbar .nav .dropDownHeader,
+.navbar .nav .link,
+.navbar .nav .topNavbar #signOut,
+.topNavbar .navbar .nav #signOut,
+.navbar .nav .topNavbar #welcomeMsg,
+.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited,
+.homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium,
+.topNavbar .link,
+.topNavbar #signOut,
+.topNavbar #welcomeMsg,
+.topNavbar .link:visited,
+.navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+footer {
+  background-color: black;
+  overflow: hidden;
+  padding: 0em 5.3em;
+  margin: 3em 0 0 0;
+}
+
+footer img {
+  width: 30px;
+  height: 25px;
+}
+
+footer .footerBorder {
+  padding: 0;
+  margin: 0;
+  border-color: gray;
+  opacity: 0.1;
+}
+
+footer .footerContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3.3em 0;
+  margin-top: -0.5em;
+}
+
+footer .footerContainer .brandName {
+  color: white;
+  font-size: 1.5em;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+footer .footerContainer .footerLinks {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  column-gap: 5em;
+}
+
+footer .footerContainer .footerLinks ul,
+footer .footerContainer .footerLinks .socialMedia li,
+footer .footerContainer .socialMedia .footerLinks li {
+  list-style: none;
+}
+
+footer .footerContainer .footerLinks li {
+  margin-bottom: 1em;
+  font-weight: 600;
+}
+
+footer .footerContainer .footerLinks h4 {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+footer .footerContainer .footerLinks a,
+footer .footerContainer .footerLinks a:visited {
+  text-decoration: none;
+  color: gray;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+footer .footerContainer .socialMedia ul,
+footer .footerContainer .socialMedia li {
+  display: inline;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer .footerContainer .socialMedia a {
+  margin-right: 1em;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular,
+.navbar .nav .dropDownLink,
+.navbar .nav .dropDownLink a,
+.navbar .nav .dropDownLink a a,
+.navbar .nav .dropDownHeader,
+.navbar .nav .link,
+.navbar .nav .topNavbar #signOut,
+.topNavbar .navbar .nav #signOut,
+.navbar .nav .topNavbar #welcomeMsg,
+.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited,
+.homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium,
+.topNavbar .link,
+.topNavbar #signOut,
+.topNavbar #welcomeMsg,
+.topNavbar .link:visited,
+.navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.homePage {
   overflow: hidden;
 }
 
-nav #brand {
-  margin-left: 3em;
-}
-
-nav .navbar-list {
+.homePage .heroImage {
+  position: relative;
   display: flex;
-  margin-left: 25em;
-  margin: 0;
-  padding: 0;
-  margin-right: 5em;
-  width: 100%;
-  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 745px;
+  overflow: hidden;
+  background-size: cover;
+  background-position-y: top;
+  margin-bottom: 5em;
 }
 
-nav ul {
+.homePage .heroContainer {
+  color: white;
+  font-size: 2em;
+  text-align: center;
+  margin-top: -1.3em;
+}
+
+.homePage .heroTitle {
+  font-size: 2.5rem;
+  color: white;
+  position: relative;
+}
+
+.homePage .heroSubTitle {
+  font-size: 1.65rem;
+  color: white;
+  position: relative;
+}
+
+.homePage .heroBtn {
+  color: white;
+  position: relative;
+  background-color: black;
+  color: white;
+  padding: 1.5em;
+  padding-left: 3.5em;
+  padding-right: 3.5em;
+  border-radius: 15px;
+  font-weight: 700;
+  border-style: none;
+  cursor: pointer;
+}
+
+.homePage .heroBtn:hover {
+  background-color: rgb(48, 48, 48);
+  filter: brightness(100%);
+}
+
+.homePage .featured {
+  margin: 0em 3.3em;
+  margin-bottom: 4em;
+}
+
+.homePage .headerLayer {
+  padding: 0;
+  margin: 0 0 2em 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.homePage .title h4 {
+  padding: 0;
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.homePage .title p {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.homePage .scrollProducts {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-left: auto;
+}
+
+.homePage .leftScrollButton,
+.homePage .rightScrollButton {
+  background-color: rgb(231, 231, 231);
+  margin-left: 2em;
+  border: none;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  text-align: center;
+}
+
+.homePage .leftScrollButton:hover,
+.homePage .rightScrollButton:hover {
+  cursor: pointer;
+  background-color: rgb(207, 207, 207);
+}
+
+.homePage .productContainerRow,
+.homePage .productContainerCol {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 1em;
+  overflow: scroll;
+  overflow-y: hidden;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular,
+.navbar .nav .dropDownLink,
+.navbar .nav .dropDownLink a,
+.navbar .nav .dropDownLink a a,
+.navbar .nav .dropDownHeader,
+.navbar .nav .link,
+.navbar .nav .topNavbar #signOut,
+.topNavbar .navbar .nav #signOut,
+.navbar .nav .topNavbar #welcomeMsg,
+.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited,
+.homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium,
+.topNavbar .link,
+.topNavbar #signOut,
+.topNavbar #welcomeMsg,
+.topNavbar .link:visited,
+.navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.homeProduct {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1.3em;
+}
+
+.homeProduct a {
+  color: black;
+  text-decoration: none;
+}
+
+.homeProduct .productImage {
+  background-size: cover;
+  background-position-y: bottom;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.homeProduct .productInfo {
+  margin-top: 1.5em;
+  font-size: 1.4em;
+}
+
+.homeProduct .productInfo p {
+  margin: 0;
+  margin-bottom: 0.3em;
+}
+
+.homeProduct .productName {
+  font-size: 1.15rem;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.homeProduct .productDesc {
+  color: gray;
+  font-size: 1.25rem;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.homeProduct .productPrice {
+  font-weight: 400;
+  font-size: 1.1rem;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular,
+.navbar .nav .dropDownLink,
+.navbar .nav .dropDownLink a,
+.navbar .nav .dropDownLink a a,
+.navbar .nav .dropDownHeader,
+.navbar .nav .link,
+.navbar .nav .topNavbar #signOut,
+.topNavbar .navbar .nav #signOut,
+.navbar .nav .topNavbar #welcomeMsg,
+.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited,
+.homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium,
+.topNavbar .link,
+.topNavbar #signOut,
+.topNavbar #welcomeMsg,
+.topNavbar .link:visited,
+.navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.navbar {
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.navbar .navTrigger {
+  border: 1px solid rgba(255, 0, 0, 0);
+  left: 0;
+  right: 0;
+}
+
+.navbar .nav {
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: Verdana, sans-serif;
+  color: black;
+  background-color: white;
+  padding: 1em 3em;
+  overflow: hidden;
+}
+
+.navbar .nav .navbar-brand {
+  margin-right: auto;
+}
+
+.navbar .nav #brand {
+  color: black;
+  text-decoration: "none";
+  font-size: 1.3rem;
+}
+
+.navbar .nav #brand:hover {
+  color: grey;
+}
+
+.navbar .nav .navbar-list {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.navbar .nav ul,
+.navbar .nav footer .footerContainer .socialMedia li,
+footer .footerContainer .socialMedia .navbar .nav li {
   margin: 0;
   padding: 0;
   list-style: none;
   text-align: center;
 }
 
-nav li {
+.navbar .nav li {
   display: inline;
 }
 
-nav a,
-nav a:visited {
-  display: inline-block;
-  margin-left: 5em;
-  padding: 0;
+.navbar .nav a {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
-nav .searchbar {
-  text-wrap: nowrap;
+.navbar .nav .link,
+.navbar .nav .topNavbar #signOut,
+.topNavbar .navbar .nav #signOut,
+.navbar .nav .topNavbar #welcomeMsg,
+.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited {
+  position: relative;
+  display: inline-block;
+  padding: 0 1.75em;
+  text-decoration: none;
   color: black;
+  font-size: 1rem;
+  z-index: 3;
+}
+
+.navbar .nav .link:hover,
+.navbar .nav .topNavbar #signOut:hover,
+.topNavbar .navbar .nav #signOut:hover,
+.navbar .nav .topNavbar #welcomeMsg:hover,
+.topNavbar .navbar .nav #welcomeMsg:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.8em;
+}
+
+.navbar .nav .searchbar {
+  text-wrap: nowrap;
+  color: rgb(179, 179, 179);
   position: relative;
   text-align: center;
   background-color: white;
-  padding: 0.5em 4em;
-  border-radius: 2px;
+  padding: 0.7em 5em;
+  margin-right: 2em;
+  background-color: rgba(195, 195, 195, 0.1);
+  border-radius: 20px;
+  z-index: 3;
 }
 
-nav #shoppingCart {
+.navbar .nav #userProfile {
+  margin-right: 2.5em;
   float: right;
+}
+
+.navbar .nav #cartCount {
+  font-size: 0.9rem;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar .nav .dropDownMenu,
+.navbar .nav .navbar-list li:hover .dropDownMenu {
+  position: fixed;
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 4em 0em 5em 0em;
+  column-gap: 6em;
+  z-index: 2;
+}
+
+.navbar .nav .dropDownMenu li,
+.navbar .nav .navbar-list li:hover .dropDownMenu li {
+  display: block;
+  list-style: none;
+  text-align: left;
+}
+
+.navbar .nav .dropDownHeader {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+.navbar .nav .dropDownLink,
+.navbar .nav .dropDownLink a,
+.navbar .nav .dropDownLink a a {
+  font-size: 1rem;
+  text-align: left;
+  margin-bottom: 0.3em;
+}
+
+.navbar .nav .dropDownLink a,
+.navbar .nav .dropDownLink a a,
+.navbar .nav .dropDownLink a a a {
+  font-size: 1rem;
+  color: grey;
+}
+
+.navbar .nav .dropDownLink a:hover,
+.navbar .nav .dropDownLink a a:hover,
+.navbar .nav .dropDownLink a a a:hover {
+  color: black;
+}
+
+.navbar .nav .navbar-list li:hover .dropDownMenu,
+.navbar .nav .navbar-list li:hover .dropDownMenu {
+  display: flex;
+}
+
+.navbar .prespacer {
+  background-color: white;
+  left: 0;
+  right: 0;
+  height: 74.4px;
+}
+
+.productPage {
+  margin: 4em;
+  padding-left: 4em;
+  padding-bottom: 5em;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular,
+.homePage .heroSubTitle,
+.navbar .nav .link,
+.navbar .nav .topNavbar #signOut,
+.topNavbar .navbar .nav #signOut,
+.navbar .nav .topNavbar #welcomeMsg,
+.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited,
+.navbar .nav .dropDownHeader,
+.navbar .nav .dropDownLink,
+.navbar .nav .dropDownLink a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium,
+.topNavbar .link,
+.topNavbar #signOut,
+.topNavbar #welcomeMsg,
+.topNavbar .link:visited,
+.navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.productDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 1.8em;
+  gap: 6em;
+  /* 
+         input[type="radio"] {
+             display: none;
+         }
+
+         .customSizeRadio::before {
+             content: "";
+             position: absolute;
+             border: 1px solid red;
+             display: inline;
+             border-radius: 3px;
+             border-color: rgba($color: Gray, $alpha: 0.3);
+             text-align: center;
+             font-weight: 500;
+             width: 4.5em;
+             height: 3em;
+             margin: -.75em -1.4em;
+             cursor: pointer;
+         }
+
+         .customSizeRadio {
+             display: inline;
+             background-color: white;
+             // border: 2px solid gray;
+             border-radius: 3px;
+             border-color: rgba($color: Gray, $alpha: 0.3);
+             font-weight: 500;
+             margin: 0em 2em;
+
+             cursor: pointer;
+
+         }
+
+
+
+         input[type="radio"]:checked+.customSizeRadio {
+             // border: 2px solid black;
+
+         }
+  */
+  /* .quantityBtn {
+      @extend .checkoutBtn;
+      border-radius: 0;
+      margin: 0 1em 0 0;
+      padding: 2em;
+  } */
+}
+
+.productDetails .productImage {
+
+  background-size: cover;
+  background-position-y: bottom;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 1.5em;
+}
+
+.productDetails .productInfo {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  font-size: 1.4em;
+  width: 19em;
+}
+
+.productDetails .productInfo p {
+  margin: 0;
+}
+
+.productDetails .productName {
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.productDetails .productCategory {
+  font-size: 1.2rem;
+  padding-bottom: 0.8em;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.productDetails .productDesc {
+  font-size: 1.1rem;
+  color: gray;
+  padding-bottom: 1em;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.productDetails .productPrice {
+  font-weight: 400;
+  font-size: 1.2rem;
+  padding-bottom: 1em;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.productDetails .productColour {
+  color: gray;
+  font-size: 1.2rem;
+  padding-bottom: 1em;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.productDetails .colourBtn {
+  background-color: black;
+  border-radius: 100px;
+  border: 4px solid white;
+  width: 1em;
+  padding: 1em;
+  margin: 0 0.5em;
+  cursor: pointer;
+}
+
+.productDetails .colourBtn:focus {
+  outline: 2px solid gray;
+}
+
+.productDetails .productSize {
+  padding-bottom: 1em;
+  font-size: 1.1rem;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.productDetails .sizeBtn,
+.productDetails .sizeBtnSelected {
+  display: inline;
+  background-color: white;
+  border: 2px solid rgba(128, 128, 128, 0);
+  border-radius: 5px;
+  border-color: rgba(128, 128, 128, 0.3);
+  text-align: center;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  width: 6em;
+  height: 3.5em;
+  margin: 0 0.3em 0.3em 0;
+  cursor: pointer;
+}
+
+.productDetails .sizeBtn:hover,
+.productDetails .sizeBtnSelected:hover {
+  border: 2px solid black;
+}
+
+.productDetails .sizeBtnSelected {
+  border: 2px solid black;
+}
+
+.productDetails .errorMsg {
+  font-size: 0.93rem;
+  font-weight: 400;
+  padding-top: 2em;
+  margin-top: -1em;
+  text-align: start;
+  color: rgb(219, 0, 0);
+}
+
+.productDetails .checkoutBtn,
+.productDetails .checkoutBtnDisabled {
+  margin-top: 1em;
+  background-color: black;
+  color: white;
+  padding: 2em 0em;
+  width: 100%;
+  border-radius: 50px;
+  font-weight: 700;
+  border-style: none;
+  align-self: center;
+  cursor: pointer;
+}
+
+.productDetails .checkoutBtnDisabled {
+  cursor: auto;
+  background-color: rgb(51, 51, 51);
+}
+
+.productDetails .checkoutBtn:hover,
+.productDetails .checkoutBtnDisabled:hover {
+  background-color: rgb(51, 51, 51);
+}
+
+.shoppingCart {
+  margin: 3em 5.3em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.shoppingCart .shoppingCartDetails {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5em;
+}
+
+.shoppingCart .shoppingCartDetails .title {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 2em;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.shoppingCart .shoppingCartDetails .bagContainer {
+  flex-grow: 1;
+}
+
+.shoppingCart .shoppingCartDetails .summaryContainer {
+  flex-grow: 0.7;
+  display: flex;
+  flex-direction: column;
+}
+
+.shoppingCart .shoppingCartDetails .summaryContainer p {
+  font-size: 1rem;
+  font-weight: 500;
+  padding-bottom: 1em;
+}
+
+.shoppingCart .shoppingCartDetails .summaryDivider {
+  margin-bottom: 1em;
+  border-color: gray;
+  width: 100%;
+  opacity: 0.1;
+}
+
+.shoppingCart .shoppingCartDetails .checkoutBtn,
+.shoppingCart .shoppingCartDetails .productDetails .checkoutBtnDisabled,
+.productDetails .shoppingCart .shoppingCartDetails .checkoutBtnDisabled {
+  margin-top: 1em;
+  background-color: black;
+  color: white;
+  padding: 2em 0em;
+  width: 100%;
+  border-radius: 50px;
+  font-weight: 700;
+  border-style: none;
+  align-self: center;
+  cursor: pointer;
+}
+
+.shoppingCart .shoppingCartDetails .checkoutBtn:hover,
+.shoppingCart .shoppingCartDetails .productDetails .checkoutBtnDisabled:hover,
+.productDetails .shoppingCart .shoppingCartDetails .checkoutBtnDisabled:hover {
+  background-color: rgb(51, 51, 51);
+}
+
+.shoppingCartProduct {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  height: min-content;
+  padding: 0;
+}
+
+.shoppingCartProduct .productDetails {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0;
+  height: 20%;
+}
+
+.shoppingCartProduct .productDetails p {
+  margin: 0;
+  padding: 0;
+}
+
+.shoppingCartProduct .productDetails .productName {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.shoppingCartProduct .productDetails .productCategory {
+  color: gray;
+  font-size: 1rem;
+  padding: 0%;
+}
+
+.shoppingCartProduct .productDetails .productSize {
+  font-weight: 400;
+  font-size: 1rem;
+  padding: 0;
+}
+
+.shoppingCartProduct .productDetails .productQuantity {
+  font-weight: 400;
+  font-size: 1rem;
+  margin-bottom: 2.3em;
+  color: gray;
+}
+
+.shoppingCartProduct .productDetails a {
+  text-decoration: none;
+  color: black;
+}
+
+.shoppingCartProduct .productDetails a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.shoppingCartProduct .productPrice {
+  font-weight: 500;
+}
+
+.shoppingCartProduct #bin {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.shoppingCartDivider {
+  margin: 2em 0;
+  border-color: gray;
+  opacity: 0.1;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular,
+.homePage .heroSubTitle,
+.navbar .nav .link,
+.navbar .nav .topNavbar #signOut,
+.topNavbar .navbar .nav #signOut,
+.navbar .nav .topNavbar #welcomeMsg,
+.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited,
+.navbar .nav .dropDownHeader,
+.navbar .nav .dropDownLink,
+.navbar .nav .dropDownLink a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium,
+.topNavbar .link,
+.topNavbar #signOut,
+.topNavbar #welcomeMsg,
+.topNavbar .link:visited,
+.navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.signIn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signIn .signIn-form {
+  width: min-content;
+  text-align: center;
+  padding-bottom: 3em;
+}
+
+.signIn h4 {
+  font-size: 2rem;
+  margin-bottom: 1.5em;
+}
+
+.signIn label {
+  display: block;
+  text-align: start;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+.signIn input,
+.signIn .inputError {
+  outline: none;
+  text-decoration: none;
+  padding: 0.6em 0em;
+  border: 1px solid black;
+  border-radius: 1px;
+  margin-bottom: 1em;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.signIn input:focus,
+.signIn .inputError:focus {
+  border-bottom: 3px solid black;
+}
+
+.signIn .inputError {
+  border: 1px solid rgb(219, 0, 0);
+}
+
+.signIn .inputError:focus {
+  border-bottom: 3px solid rgb(219, 0, 0);
+}
+
+.signIn .signInBtn {
+  margin-top: 2em;
+  background-color: black;
+  color: white;
+  padding: 2em 0em;
+  width: 100%;
+  font-weight: 700;
+  border-style: none;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.signIn .signInBtn:hover {
+  background-color: rgb(51, 51, 51);
+}
+
+.signIn p {
+  margin: 0;
+  padding: 0%;
+}
+
+.signIn .errorMsg {
+  font-size: 0.93rem;
+  font-weight: 400;
+  padding: 0.5em 0;
+  margin-top: -1em;
+  text-align: start;
+  color: rgb(219, 0, 0);
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular,
+.homePage .heroSubTitle,
+.navbar .nav .link,
+.navbar .nav .topNavbar #signOut,
+.topNavbar .navbar .nav #signOut,
+.navbar .nav .topNavbar #welcomeMsg,
+.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited,
+.navbar .nav .dropDownHeader,
+.navbar .nav .dropDownLink,
+.navbar .nav .dropDownLink a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium,
+.topNavbar .link,
+.topNavbar #signOut,
+.topNavbar #welcomeMsg,
+.topNavbar .link:visited,
+.navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.topNavbar {
+  border-bottom: 0.5px solid rgba(211, 211, 211, 0.187);
+  position: relative;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  font-family: Verdana, sans-serif;
+  color: black;
+  background-color: rgb(248, 248, 248);
+  height: 100%;
+  padding: 0.25em;
+  overflow: hidden;
+}
+
+.topNavbar .navbar-list {
+  flex-shrink: 0;
+  padding: 0%;
+  margin: 0;
+}
+
+.topNavbar ul,
+.topNavbar footer .footerContainer .socialMedia li,
+footer .footerContainer .socialMedia .topNavbar li {
+  padding: 0%;
+  margin: 0 3.2em;
+  list-style: none;
+}
+
+.topNavbar li {
+  padding: 0%;
+  margin: 0;
+  display: inline-block;
+}
+
+.topNavbar a {
+  padding: 0%;
+  margin: 0;
+  text-decoration: none;
+  color: black;
+}
+
+.topNavbar a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.8em;
+}
+
+.topNavbar .link,
+.topNavbar #signOut,
+.topNavbar #welcomeMsg,
+.topNavbar .link:visited {
+  margin: 0 1em;
+  text-decoration: none;
+  color: black;
+  font-size: 0.85rem;
+}
+
+.topNavbar #userProfile {
+  justify-self: start;
+  align-self: center;
+  width: 100%;
+  padding: 0%;
+  margin: 0;
 }
 
 body {
@@ -63,7 +1611,4 @@ body {
   padding: 0;
 }
 
-p {
-  margin: 0;
-  padding: 0;
-}
+/*# sourceMappingURL=main.css.map */

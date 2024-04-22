@@ -39,7 +39,7 @@ export default function SignIn() {
     useEffect(() => {
         const endServerSession = async () => {
             try {
-                const endSession = await axios.get("http://localhost:8080/api/sign-out", { withCredentials: true, headers: { 'Cache-Control': 'no-cache' } })
+                await axios.get("http://localhost:8080/api/sign-out", { withCredentials: true, headers: { 'Cache-Control': 'no-cache' } })
                 dispatch(signOut());
 
 
@@ -51,7 +51,7 @@ export default function SignIn() {
         }
 
         endServerSession()
-    }, [])
+    }, [dispatch])
 
 
     // Behaviour modeled after calvinklein.ca  create account validation

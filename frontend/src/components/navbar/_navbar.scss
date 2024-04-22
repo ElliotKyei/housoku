@@ -1,104 +1,192 @@
-.navbar {
+@import '../../../scss/fonts';
 
+.navbar {
     $font-stack: Verdana, sans-serif;
     $color: black;
     $background: white;
     $navFontSize: 1rem;
     $BrandFontSize: 1.3rem;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-family: $font-stack;
-    color: $color;
-    background-color: $background;
-    padding: 1.5em;
-    //padding: 1.5em;
-    // padding: 2.3em;
-    overflow: hidden;
-
-    #brand {
-        color: $color;
-        margin-left: 3em;
-        font-size: $BrandFontSize;
-        text-decoration: 'none'
+    .navTrigger {
+        border: 1px solid rgba(255, 0, 0, 0);
+        left: 0;
+        right: 0;
     }
 
-    #brand:hover {
-        color: grey
-    }
-
-    .navbar-list {
+    .nav {
+        z-index: 1000;
+        left: 0;
+        right: 0;
+        position: absolute;
         display: flex;
-        margin-left: 25em;
-        margin: 0;
-        padding: 0;
-        margin-right: 5em;
-        width: 100%;
-        height: 100%;
-    }
-
-
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        text-align: center;
-    }
-
-    li {
-        display: inline;
-
-    }
-
-    a {
-        text-decoration: none;
-        color: black;
-    }
-
-
-
-    .link,
-    .link:visited {
-        display: inline-block;
-        margin-left: 5em;
-        padding: 0;
-        text-decoration: none;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-family: $font-stack;
         color: $color;
-        font-size: $navFontSize;
-        font-weight: 500;
+        background-color: $background;
+
+
+        padding: 1em 3em;
+        overflow: hidden;
+
+        #tops {
+            //  border: 2px solid blue
+        }
+
+        .navbar-brand {
+            margin-right: auto;
+        }
+
+        #brand {
+            color: $color;
+            text-decoration: 'none';
+            font-size: $BrandFontSize;
+            @extend .roboto-medium
+        }
+
+        #brand:hover {
+            color: grey
+        }
+
+        .navbar-list {
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        li {
+            display: inline;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+
+
+        .link,
+        .link:visited {
+            position: relative;
+            display: inline-block;
+            padding: 0 1.75em;
+            text-decoration: none;
+            color: $color;
+            font-size: $navFontSize;
+            @extend .roboto-regular;
+            z-index: 3;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+            text-underline-offset: .8em;
+        }
+
+        .searchbar {
+            text-wrap: nowrap;
+            color: rgb(179, 179, 179);
+            position: relative;
+            text-align: center;
+            background-color: white;
+            padding: .7em 5em;
+            margin-right: 2em;
+            //border: 1px solid rgba(0, 0%, 0, 0.05);
+            background-color: rgba(195, 195, 195, 0.1);
+            border-radius: 20px;
+            z-index: 3;
+        }
+
+        #userProfile {
+            margin-right: 2.5em;
+            float: right;
+        }
+
+
+        #shoppingCart {}
+
+        #cartCount {
+            font-size: 0.9rem;
+            padding: 0;
+            margin: 0;
+        }
+
+
+        // Drop down menu CSS
+
+        .dropDownMenu {
+            position: fixed;
+            display: none;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            left: 0;
+            right: 0;
+            background-color: white;
+            padding: 4em 0em 5em 0em;
+            column-gap: 6em;
+            z-index: 2;
+
+        }
+
+        .dropDownMenu li {
+            display: block;
+            list-style: none;
+            text-align: left;
+
+        }
+
+
+
+        .dropDownHeader {
+            font-size: $navFontSize;
+            @extend .roboto-regular;
+            margin-bottom: 1em;
+
+        }
+
+        .dropDownLink {
+            font-size: $navFontSize;
+            @extend .roboto-regular;
+            text-align: left;
+            margin-bottom: .3em;
+        }
+
+        .dropDownLink a {
+            @extend .dropDownLink;
+            font-size: 1rem;
+            color: grey;
+        }
+
+        .dropDownLink a:hover {
+            color: black;
+        }
+
+        .navbar-list li:hover .dropDownMenu {
+            @extend .dropDownMenu;
+            display: flex;
+
+        }
     }
 
-    .link:hover {
-        text-decoration: underline;
-        text-underline-offset: .8em;
-    }
-
-    .searchbar {
-        text-wrap: nowrap;
-        color: rgb(179, 179, 179);
-        position: relative;
-        text-align: center;
+    .prespacer {
         background-color: white;
-        padding: .7em 5em;
-        margin-right: 2em;
-        //border: 1px solid rgba(0, 0%, 0, 0.05);
-        background-color: rgba(195, 195, 195, 0.1);
-        border-radius: 20px
+        left: 0;
+        right: 0;
+        height: 74.4px;
     }
 
-    #userProfile {
-        margin-right: 2.5em;
-        float: right;
-    }
-
-
-    #shoppingCart {}
-
-    #cartCount {
-        font-size: 0.9rem;
-        padding: 0;
-        margin: 0;
-    }
 }

@@ -1,7 +1,6 @@
 import './_productDetails.scss';
 import PropTypes from 'prop-types'
-import axios from 'axios'
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { dbAddProduct } from '../../../reducers/shoppingCart/shoppingCartSlice';
 
@@ -97,7 +96,7 @@ export default function ProductDetails(props) {
        e product information  */
 
         <div className='productDetails'>
-            <img src={imageURL} style={productImageStyle}></img>
+            <img src={imageURL} style={productImageStyle} alt="product" />
             <div className='productInfo'>
                 <p className='productName'>{productName}</p>
                 <p className='productCategory'>{categoryName}</p>

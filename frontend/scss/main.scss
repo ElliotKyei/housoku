@@ -1,5 +1,52 @@
-body {
-    height: 100%;
+* {
     margin: 0;
     padding: 0;
 }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+// Fonts
+@import './fonts';
+
+// Browse Products
+@import '../src/components/browseProducts/browseProducts';
+@import '../src/components/browseProducts/filter/filter';
+@import '../src/components/browseProducts/product/product';
+
+// Create Account
+@import '../src/components/createAccount/createAccount';
+
+// Footer
+@import '../src/components/footer/footer';
+
+// Home
+@import '../src/components/home/home';
+@import '../src/components/home/homeProduct/homeProduct';
+
+// Navbar
+@import '../src/components/navbar/navbar';
+
+// productPage
+@import '../src/components/productPage/productPage';
+@import '../src/components/productPage/productDetails/productDetails';
+
+// shoppingCart
+@import '../src/components/shoppingCart/shoppingCart';
+@import '../src/components/shoppingCart/shoppingCartProduct/shoppingCartProduct';
+
+// signIn
+@import '../src/components/signIn/signIn';
+
+// topNavBar
+@import '../src/components/topNavBar/topNavbar';

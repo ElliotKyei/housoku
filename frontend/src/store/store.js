@@ -1,4 +1,4 @@
-import { configureStore, applyMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from './rootReducer'
 
 /* SINGLETON Utilizing a global state variable to store user data / session - See reducer folder for implementation */

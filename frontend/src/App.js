@@ -1,6 +1,5 @@
-import './css/App.css';
-import { useState } from 'react';
-import { BrowserRouter, Route, Routes, Switch } from 'react-router-dom'
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import TopNavbar from './components/topNavBar/topNavbar.js';
 import Navbar from './components/navbar/navbar.js'
 import Home from './components/home/home.js'
@@ -10,8 +9,9 @@ import ProductPage from './components/productPage/productPage.js';
 import BrowseProducts from './components/browseProducts/browseProducts.js';
 import ShoppingCart from './components/shoppingCart/shoppingCart.js';
 import Footer from './components/footer/footer.js'
-import ScrollToTop from './components/scrollToTop/scrollToTop.js';
-import Auth from './components/auth/auth.js';
+import ScrollToTop from './customHooks/scrollToTop/scrollToTop.js';
+import Auth from './customHooks/auth/auth.js';
+import Blur from './components/blur/blur.js';
 
 /* Utilizing state pattern throughout almost all components:
     Each component rerenders and performs different actions depending on the
@@ -27,6 +27,7 @@ function App() {
         <ScrollToTop />
         <TopNavbar />
         <Navbar />
+        <Blur />
         <Routes>
           <Route exact path='/' Component={Home} />
           <Route path='/apparel/browse-products/:category/:name/:id' Component={ProductPage} />

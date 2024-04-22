@@ -1,21 +1,26 @@
-$textColour: white;
-$heroTextSize: 2em;
+@import '../../../scss/fonts';
 
 .homePage {
+
+    $textColour: white;
+    $heroTextSize: 2em;
+    overflow: hidden;
+
     .heroImage {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: relative;
-        //height: 635px;
-        height: 685px;
+        height: 745px;
         overflow: hidden;
-        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),
-            url('../../../../backend/public/housoku-images/hero/home/tropical.jpg') no-repeat;
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.052)),
+            /* url('~/public/housoku-images/hero-image-2-copy.jpg')  */
+            url('http://localhost:8080/housoku-images/hero/home/graffiti-1.jpg') no-repeat;
         background-size: cover;
-        background-position-y: center;
-        margin-bottom: 5.4em;
+        background-position-y: top;
+        background-position-x: center;
+        margin-bottom: 5em;
     }
 
     .heroContainer {
@@ -33,16 +38,17 @@ $heroTextSize: 2em;
 
     .heroTitle {
         font-size: 2.5rem;
-        @include heroTextFormat(-12%);
+        margin-bottom: .5em;
     }
 
     .heroSubTitle {
         font-size: 1.65rem;
-        @include heroTextFormat(-11%);
+        @extend .roboto-regular;
+        margin-bottom: 1em;
+
     }
 
     .heroBtn {
-        @include heroTextFormat(-70%);
         background-color: black;
         color: $textColour;
         padding: 1.5em;
@@ -63,47 +69,98 @@ $heroTextSize: 2em;
         padding-top: $spacing;
     }
 
+
     .featured {
-        margin: 0em 5.3em;
-        margin-right: 4.5em;
-        margin-bottom: 5em;
+        margin: 0em 3.3em;
+        margin-bottom: 4em;
     }
 
-    .title {
-        font-size: 2rem;
-        font-weight: 500;
+    .headerLayer {
+        padding: 0;
+        margin: 0 0 2em 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+
+    .title h4 {
+        padding: 0;
+        margin: 0;
+        font-size: 1.6rem;
+        @include Heading(500)
+    }
+
+    .title p {
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+        @include Heading(500)
+    }
+
+    .scrollProducts {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        margin-left: auto;
+
+    }
+
+    .leftScrollButton {
+        background-color: rgb(231, 231, 231);
+        margin-left: 1em;
+        border: none;
+
+
+        text-align: center;
+        text-indent: 0;
+
+    }
+
+    .leftScrollButton:hover {
+        cursor: pointer;
+        background-color: rgb(207, 207, 207);
+    }
+
+    .leftScrollButton div {
+        height: 48px;
+        width: 48px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .leftScrollButton:hover~.productContainerRow {
+        background-color: rgb(255, 0, 0);
+    }
+
+
+    .rightScrollButton {
+        @extend .leftScrollButton
     }
 
     .productContainerRow {
+        position: relative;
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
         justify-content: space-between;
-    }
+        column-gap: 1em;
+        overflow: scroll;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scrollbar-color: rgb(0, 0, 0), rgb(0, 0, 0);
+        scrollbar-width: thin;
 
-    .heading {
-        @extend .featured;
-        margin-top: -1.8em;
-        padding-top: 0;
-        overflow: hidden
     }
 
     .productContainerCol {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2.25em
+        @extend .productContainerRow
     }
 
-    .largeProduct {
-
-        height: 40em;
-
-    }
-
-    .smallProduct {
-        flex-grow: 1;
-        flex-shrink: .5;
-
+    .item {
+        scroll-snap-align: center;
     }
 
 }

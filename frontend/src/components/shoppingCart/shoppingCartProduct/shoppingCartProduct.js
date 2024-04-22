@@ -6,7 +6,7 @@ import { dbRemoveProduct, dbUpdateProductQuantity } from '../../../reducers/shop
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import sanitizedProductId from '../../../customHooks/sanitizeProductId';
+import sanitizedProductId from '../../../customHooks/sanitizeProducts/sanitizeProductId';
 const bin = '/housoku-images/bin.png'
 
 
@@ -22,7 +22,6 @@ export default function ShoppingCartProduct(props) {
     const imageURL = props.product.image_url
     const categoryName = props.product.category_name
     const quantity = props.product.quantity
-    const price = props.product.quantity
     const itemKey = props.key
 
     const productImageStyle = {

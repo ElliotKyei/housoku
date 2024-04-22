@@ -1,5 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
-import { useDispatch } from 'react-redux'
+import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 /* Singleton implementation using slices */

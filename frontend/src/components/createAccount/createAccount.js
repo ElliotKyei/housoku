@@ -196,7 +196,7 @@ export default function CreateAccount() {
             // Will implement HTTPS at a later date. HTTP for now ;(
 
             try {
-                const response = await axios.post('http://localhost:8080/api/create-account', values, {
+                await axios.post('http://localhost:8080/api/create-account', values, {
                     headers: {
                         "Content-Type": "application/json",
                         'Cache-Control': 'no-cache',

@@ -1,11 +1,18 @@
+@import '../../../scss/fonts';
+
+
 .topNavbar {
 
     $font-stack: Verdana, sans-serif;
     $color: black;
     $background: rgb(248, 248, 248);
     border-bottom: .5px solid rgba(211, 211, 211, 0.187);
-    $navFontSize: .75rem;
+    $navFontSize: .85rem;
     $BrandFontSize: 1rem;
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 
 
     display: flex;
@@ -15,6 +22,7 @@
     font-family: $font-stack;
     color: $color;
     background-color: $background;
+    height: 100%;
     padding: .25em;
     overflow: hidden;
 
@@ -61,7 +69,7 @@
         text-decoration: none;
         color: $color;
         font-size: $navFontSize;
-        font-weight: bolder;
+        @extend .roboto-medium
     }
 
     #userProfile {

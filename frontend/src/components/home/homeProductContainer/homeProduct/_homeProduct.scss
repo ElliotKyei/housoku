@@ -1,3 +1,5 @@
+@import '../../../../../scss/fonts';
+
 .homeProduct {
     display: flex;
     flex-direction: column;
@@ -9,7 +11,7 @@
     }
 
     .productImage {
-        background: url(../../../../public/housoku-images/productTest.jpg) no-repeat;
+        background: url(../../../../../public/housoku-images/productTest.jpg) no-repeat;
         background-size: cover;
         background-position-y: bottom;
         overflow: hidden;
@@ -33,15 +35,19 @@
     }
 
     .productName {
-        font-weight: 500;
+        font-size: 1.15rem;
+        @include ProductFont(400)
     }
 
     .productDesc {
-        color: gray
+        color: gray;
+        font-size: 1.25rem;
+        @include ProductFont(300)
     }
 
     .productPrice {
         font-weight: 400;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        @include ProductFont(400)
     }
 }

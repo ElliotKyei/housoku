@@ -1,0 +1,8 @@
+.blurScreen {
+    position: fixed;
+    min-height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.151);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}

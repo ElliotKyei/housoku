@@ -25,7 +25,7 @@ export default function ShoppingCart() {
                 ...items,
                 subTotal: subTotal,
                 taxes: subTotal,
-                subTotal: subTotal,
+                total: total
             }
 
             const checkout = await axios.post('http://localhost:8080/api/check-out', finalOrder,

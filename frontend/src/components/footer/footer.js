@@ -11,7 +11,7 @@ export default function Footer() {
             {/* footer div that stretches across bottom of viewport  */}
 
             <footer>
-                <hr className='footerBorder' />
+                {/*      <hr className='footerBorder' /> */}
 
                 {/* footerContainer is a flexbox (row direction)  */}
 
@@ -29,24 +29,24 @@ export default function Footer() {
                     <div className='footerLinks'>
                         <div className="column">
                             <ul>
-                                <li><a href=''><h4>Tops</h4></a></li>
-                                <li><a href=''>T-Shirts</a></li>
-                                <li><a href=''>Sweaters</a></li>
+                                <li><a href='/'><h4>Tops</h4></a></li>
+                                <li><a href='/'>T-Shirts</a></li>
+                                <li><a href='/'>Sweaters</a></li>
                             </ul>
                         </div>
                         <div className="column">
                             <ul>
-                                <li><a href=''><h4>Pants</h4></a></li>
-                                <li><a href=''>Sweats</a></li>
-                                <li><a href=''>Jeans</a></li>
-                                <li><a href=''>Cargo</a></li>
+                                <li><a href='/'><h4>Pants</h4></a></li>
+                                <li><a href='/'>Sweats</a></li>
+                                <li><a href='/'>Jeans</a></li>
+                                <li><a href='/'>Cargo</a></li>
                             </ul>
                         </div>
                         <div className="column">
                             <ul>
-                                <li><a href=''><h4>Shoes</h4></a></li>
-                                <li><a href=''>Sneakers</a></li>
-                                <li><a href=''>Combat Boots</a></li>
+                                <li><a href='/'><h4>Shoes</h4></a></li>
+                                <li><a href='/'>Sneakers</a></li>
+                                <li><a href='/'>Combat Boots</a></li>
                             </ul>
                         </div>
                     </div>

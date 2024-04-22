@@ -1,12 +1,10 @@
 import './_homeProduct.scss';
-import { useLocation, Link } from 'react-router-dom'
 import slugify from 'slugify'
 import PropTypes from 'prop-types'
 
 
 export default function HomeProduct(props) {
 
-    const currentRoute = useLocation().pathname
     const slugifyProductName = slugify(props.product.product_name).toLowerCase();
     const productName = props.product.product_name;
     const productId = props.product.product_id
@@ -33,11 +31,11 @@ export default function HomeProduct(props) {
 
         <div className='homeProduct'>
             <a href={`/apparel/browse-products/${categoryName.toLowerCase()}/${slugifyProductName}/${productId}`}>
-                <img src={imageURL} style={productImageStyle} />
+                <img src={imageURL} style={productImageStyle} alt="product" />
                 <div className='productInfo'>
                     <p className='productName'>{productName}</p>
                     <p className='productDesc'>{categoryName}</p>
-                    <p className='productPrice'>${price}</p>
+                    <p className='productPrice'>CA${price}</p>
                 </div>
             </a>
         </div>
@@ -45,8 +43,8 @@ export default function HomeProduct(props) {
 }
 
 HomeProduct.defaultProps = {
-    height: 258,
-    width: 430,
+    height: 400,
+    width: 460,
     product: {
         product_id: "0",
         product_name: 'Product',
