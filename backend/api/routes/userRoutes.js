@@ -10,9 +10,12 @@ const {
     addProductToShoppingCart,
     removeProductFromShoppingCart,
     updateProductQuantityInShoppingCart,
+    updateProductSizeInShoppingCart,
     validateOrder,
     checkout
-} = require('../controllers/userController')
+} = require('../controllers/userController.js')
+
+const { sanitizedProductId } = require('../controllers/productController.js');
 
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session)
@@ -40,8 +43,9 @@ router.get('/getAuth', getAuth)
 router.get('/sign-out', signOut)
 router.get('/getShoppingCart', getShoppingCart)
 router.post('/addProductToShoppingCart', addProductToShoppingCart)
-router.put('/updateProductQuantityInShoppingCart/:index/:quantity', updateProductQuantityInShoppingCart)
-router.delete('/removeProductFromShoppingCart/:index', removeProductFromShoppingCart)
+router.post('/updateProductQuantityInShoppingCart', updateProductQuantityInShoppingCart)
+router.post('/updateProductSizeInShoppingCart', sanitizedProductId, updateProductSizeInShoppingCart)
+router.delete('/removeProductFromShoppingCart/:productIndex', removeProductFromShoppingCart)
 router.post('/check-out', validateOrder, checkout)
 
 module.exports = {

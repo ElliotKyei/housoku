@@ -19,7 +19,6 @@ export default function ProductPage() {
                 try {
                     const getProduct = await axios.get(`http://localhost:8080/api/getProductById/${id}`)
 
-
                     if (category !== getProduct.data.category_name.trim().toLowerCase()) {
                         navigate('/')
                     }
@@ -49,7 +48,9 @@ export default function ProductPage() {
     return (
         <>
             <div className='productPage'>
-                {renderProduct}
+                <div>
+                    {renderProduct}
+                </div>
             </div>
         </>
     )

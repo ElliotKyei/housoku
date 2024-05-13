@@ -1,4 +1,4 @@
-import './blur.scss'
+import './_blur.scss'
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 export default function Blur() {
@@ -8,12 +8,9 @@ export default function Blur() {
     useEffect(() => {
         if (blur === true) {
             setBlurClass(prev => "blurScreen")
-            console.log("blur background")
         }
         else {
             setBlurClass(prev => "")
-            console.log("Unblur background")
-
         }
 
     }, [blur])

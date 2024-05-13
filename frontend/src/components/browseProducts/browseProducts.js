@@ -2,56 +2,86 @@ import './_browseProducts.scss'
 import Product from './product/product.js'
 import axios from 'axios';
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Filter from './filter/filter.js';
+import sanitizeSearchParams from '../../customHooks/sanitizeSearchParams/sanitizeSearchParams.js';
 
 export default function BrowseProducts() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    let { category = "Tops", subcategory = null } = useParams()
+    category = category[0].toUpperCase() + category.slice(1).toLowerCase()
 
+    const defaultQueryParams = {
+        category: category,
+        subcategory: subcategory,
+        pmin: null,
+        pmax: null,
+        filterByColor: null,
+        filterBySize: null
+    }
+
+    const [queryParams, setQueryParams] = useState(defaultQueryParams)
     const [products, setProducts] = useState(null)
-    const [subcategoryFilter, setSubCategoryFilter] = useState("")
-    const [priceFilter, setPriceFilter] = useState(null)
+    const [subcategoryOptions, setSubCategoryOptions] = useState(null)
+    const [filterComponentEnabled, setFilterComponentEnabled] = useState(true)
     const [loading, setLoading] = useState(true)
-    const { category } = useParams()
+
+    useEffect(() => {
+        let params = {}
+        let searchParams = new URLSearchParams(location.search)
+        sanitizeSearchParams(searchParams)
+        for (const key of searchParams.keys()) {
+            params[key] = searchParams.getAll(key)
+        }
+        setQueryParams(prev => ({ ...defaultQueryParams, ...params, category: category, subcategory: subcategory }));
+    }, [location.search, category, subcategory])
 
     useEffect(() => {
 
         // Fetch products depending on category 
 
-        const fetchProducts = async () => {
-            let getProducts = null
+        let getProducts = null
+        let getSubcategories = null
 
+
+
+        const getFilteredProducts = async () => {
             try {
-                if (category === "tops") {
-                    getProducts = await axios.get("http://localhost:8080/api/getAllTops")
-                }
-                else if (category === "pants") {
-                    getProducts = await axios.get("http://localhost:8080/api/getAllPants")
-                }
-                else if (category === "shoes") {
-                    getProducts = await axios.get("http://localhost:8080/api/getAllShoes")
-                }
+                const filteredProducts = await axios.get(`http://localhost:8080/api/applyFilters/${JSON.stringify(queryParams)}`, { headers: { "Content-Type": 'application/json' } })
+                if (filteredProducts.status === 200) {
+                    getProducts = filteredProducts.data.allFilteredProducts
+                    getSubcategories = filteredProducts.data.allSubcategories.map((s) => s.subcategory[0].toUpperCase() + s.subcategory.slice(1))
+                    console.log("getProducts / length", getProducts, getProducts.length)
 
-                if (getProducts) {
-                    setProducts(prev => getProducts.data)
-                }
+                    if (getProducts.length === 0)
+                        setProducts(prev => null)
+                    else
+                        setProducts(prev => getProducts)
 
-                setLoading(false)
+                    if (getSubcategories.length === 0)
+                        setSubCategoryOptions(prev => null)
+                    else
+                        setSubCategoryOptions(prev => getSubcategories)
+
+
+                    setLoading(false)
+                }
             }
-
             catch (error) {
-                console.log(error)
+                console.log(error.message)
             }
         }
 
-        fetchProducts();
+        getFilteredProducts()
 
 
-    }, [category])
+    }, [queryParams])
 
 
     const imageHeight = 400;
     const imageWidth = 360;
-    let renderProducts = <></>
+    let productResults = <></>
 
     // placeholder for products until fetch is completed
 
@@ -70,35 +100,45 @@ export default function BrowseProducts() {
     // if products are available, render
 
     if (products) {
+        console.log(products)
         let imagePos = 0
-        renderProducts = products.map(prod => {
+        productResults = products.map(prod => {
             imagePos++;
             prod.price = parseFloat(prod.price)
             return <Product height={imageHeight} width={imageWidth} product={prod} key={prod.product_id} imagePosition={imagePos} />
-
         })
-
+    }
+    else {
+        productResults = <><p>No results found</p></>
     }
 
     return (
         <>
             <div className='browseProducts'>
-                <div>
-                    <span className='wallBreadCrumbs'>Men's Apparel</span>
-                    <h4 className='wallHeader'>Browse Products</h4>
+                <div className='topLayer'>
+                    <div className='subheading'><span className='wallBreadCrumbs'>Men's Apparel</span></div>
+                    <div className='wallHeaderContent'>
+                        <div className='heading'><h4 className='wallHeader'>Browse Products</h4></div>
+                        <div className='toggleHideFilter'>
+                            <button className='toggleHideFilterBtn'>
+                                <span>Hide Filters</span>
+                                <img id='filterIcon' src='http://localhost:8080/housoku-images/icons/filter.png' alt='filter image by Rahul Kaklotar (falticon)' />
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <div className='mainView'>
                     <div className='filters'>
-                        {/*    {loading ? <> </> : <Filter filterSubcategories={subcategories} setFilter={getFilter} />} */}
+                        {!loading && filterComponentEnabled ? <Filter filterCategory={category} filterSubcategories={subcategoryOptions} /> : <></>}
                     </div>
                     <div className='products'>
 
-                        {loading ? productPlaceholders : renderProducts}
+                        {loading ? productPlaceholders : productResults}
 
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     );
 }

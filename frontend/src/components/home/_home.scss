@@ -10,11 +10,14 @@
         position: relative;
         display: flex;
         flex-direction: column;
+        /*      justify-content: flex-end;
+        align-items: flex-start; */
         justify-content: center;
         align-items: center;
-        height: 745px;
+        // height: 745px;
+        height: 675px;
         overflow: hidden;
-        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.052)),
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.489)),
             /* url('~/public/housoku-images/hero-image-2-copy.jpg')  */
             url('http://localhost:8080/housoku-images/hero/home/graffiti-1.jpg') no-repeat;
         background-size: cover;
@@ -24,33 +27,33 @@
     }
 
     .heroContainer {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
         color: $textColour;
         font-size: $heroTextSize;
         text-align: center;
-        margin-top: -1.3em;
-    }
-
-    @mixin heroTextFormat($spacing: 0) {
-        color: $textColour;
-        position: relative;
-        top: $spacing;
+        row-gap: 0.5em;
+        padding: 1em 0 1em 0;
     }
 
     .heroTitle {
         font-size: 2.5rem;
-        margin-bottom: .5em;
     }
 
     .heroSubTitle {
         font-size: 1.65rem;
-        @extend .roboto-regular;
+        @extend .roboto-bold;
         margin-bottom: 1em;
-
+        color: white;
+        // text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
 
     .heroBtn {
-        background-color: black;
-        color: $textColour;
+        background-color: rgb(0, 0, 0);
+        color: white;
         padding: 1.5em;
         padding-left: 3.5em;
         padding-right: 3.5em;
@@ -61,106 +64,11 @@
     }
 
     .heroBtn:hover {
-        background-color: rgb(48, 48, 48);
-        filter: brightness(100%)
+        background-color: rgb(59, 59, 59);
     }
 
     @mixin sectionSpacing($spacing: 0) {
         padding-top: $spacing;
-    }
-
-
-    .featured {
-        margin: 0em 3.3em;
-        margin-bottom: 4em;
-    }
-
-    .headerLayer {
-        padding: 0;
-        margin: 0 0 2em 0;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-    }
-
-
-    .title h4 {
-        padding: 0;
-        margin: 0;
-        font-size: 1.6rem;
-        @include Heading(500)
-    }
-
-    .title p {
-        padding: 0;
-        margin: 0;
-        font-size: 1rem;
-        @include Heading(500)
-    }
-
-    .scrollProducts {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        margin-left: auto;
-
-    }
-
-    .leftScrollButton {
-        background-color: rgb(231, 231, 231);
-        margin-left: 1em;
-        border: none;
-
-
-        text-align: center;
-        text-indent: 0;
-
-    }
-
-    .leftScrollButton:hover {
-        cursor: pointer;
-        background-color: rgb(207, 207, 207);
-    }
-
-    .leftScrollButton div {
-        height: 48px;
-        width: 48px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .leftScrollButton:hover~.productContainerRow {
-        background-color: rgb(255, 0, 0);
-    }
-
-
-    .rightScrollButton {
-        @extend .leftScrollButton
-    }
-
-    .productContainerRow {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        column-gap: 1em;
-        overflow: scroll;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scrollbar-color: rgb(0, 0, 0), rgb(0, 0, 0);
-        scrollbar-width: thin;
-
-    }
-
-    .productContainerCol {
-        @extend .productContainerRow
-    }
-
-    .item {
-        scroll-snap-align: center;
     }
 
 }

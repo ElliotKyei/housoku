@@ -9,7 +9,7 @@ export default function Product(props) {
     const productId = props.product.product_id
     const price = props.product.price
     const imageURL = props.product.image_url
-    const categoryName = props.product.category_name.toLowerCase()
+    const categoryName = props.product.category_name
 
     const productImageStyle = {
         height: props.height + 'px',
@@ -27,11 +27,12 @@ export default function Product(props) {
         Second inner div (productInfo) is the product information  */
         <>
             <div className='productContainer'>
-                <Link to={`/apparel/browse-products/${categoryName}/${slugifyProductName}/${productId}`}>
+                <Link to={`/apparel/browse-products/${categoryName.toLowerCase()}/${slugifyProductName}/${productId}`}>
                     <img src={imageURL} style={productImageStyle} alt="product" />
                 </Link>
                 <div className='productInfo'>
                     <p className='productName'>{productName}</p>
+                    <p className='categoryName'>{categoryName}</p>
                     <p className='productPrice'>${price} CAD</p>
                 </div>
             </div>

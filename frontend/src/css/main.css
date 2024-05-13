@@ -4,16 +4,13 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .roboto-thin {
@@ -28,35 +25,65 @@ code {
   font-style: normal;
 }
 
-.roboto-regular,
-.navbar .nav .dropDownLink,
-.navbar .nav .dropDownLink a,
-.navbar .nav .dropDownLink a a,
-.navbar .nav .dropDownHeader,
-.navbar .nav .link,
-.navbar .nav .topNavbar #signOut,
-.topNavbar .navbar .nav #signOut,
-.navbar .nav .topNavbar #welcomeMsg,
-.topNavbar .navbar .nav #welcomeMsg,
-.navbar .nav .link:visited,
-.homePage .heroSubTitle {
+.roboto-regular, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownHeader, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .filter p {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.roboto-medium,
-.topNavbar .link,
-.topNavbar #signOut,
-.topNavbar #welcomeMsg,
-.topNavbar .link:visited,
-.navbar .nav #brand {
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #cartCount, .navbar .nav #brand {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.roboto-bold {
+.roboto-bold, .homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownHeader, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .filter p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #cartCount, .navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold, .homePage .heroSubTitle {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -75,105 +102,203 @@ code {
     font-style: normal;
 } */
 .browseProducts {
-  margin: 3em 5.3em;
+  margin: 0.8em 0 0 3em;
 }
-
-.browseProducts .wallBreadCrumbs {
-  padding: 0%;
-  margin: 0%;
+.browseProducts .topLayer {
+  padding-right: 3.5em;
 }
-
 .browseProducts .wallHeader {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.browseProducts .wallBreadCrumbs {
+  font-weight: 600;
+  padding: 0 0 1em 0;
+}
+.browseProducts .wallHeaderContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 2em;
+}
+.browseProducts .heading {
   padding: 0;
   margin: 0;
-  margin-bottom: 2em;
-  font-size: 1.6rem;
-  font-weight: 500;
+  vertical-align: top;
 }
-
+.browseProducts .toggleHideFilter {
+  font-size: 1rem;
+  margin-left: auto;
+}
+.browseProducts .toggleHideFilter span {
+  font-weight: 600;
+  vertical-align: bottom;
+}
+.browseProducts #filterIcon {
+  vertical-align: bottom;
+  margin-left: 1em;
+  height: 20px;
+  width: 20px;
+}
 .browseProducts .products {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: right;
-  gap: 1.5em;
+  justify-content: center;
+  column-gap: 1em;
 }
-
 .browseProducts .products:last-child {
   justify-self: start;
 }
-
 .browseProducts .mainView {
   display: flex;
   flex-direction: row;
+  column-gap: 3em;
 }
-
 .browseProducts .filters {
-  flex-basis: 30em;
   flex-shrink: 1;
+  margin-left: 0.5em;
 }
 
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownHeader, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .filter p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #cartCount, .navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold, .homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.filter {
+  width: 12em;
+}
+.filter .subcategoryFilter {
+  padding: 0 0 1.3em 0;
+}
 .filter .subcategoryFilter p:hover {
   cursor: pointer;
 }
-
-.filter h4 {
-  margin: 0 0 1em 0;
-  padding: 0;
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
 .filter p {
   margin: 0;
-  padding: 0 0 0.25em 0;
-  font-size: 1.15rem;
-  font-weight: 400;
+  padding: 0 0 0.45em 0;
+  font-size: 1.05rem;
   color: black;
 }
-
 .filter .filterBorder {
   padding: 0;
-  margin: 1.3em 0 1.3em 0;
   border-color: gray;
   opacity: 0.1;
 }
 
-.filter .priceCheckbox {
-  cursor: pointer;
-  height: 20px;
-  width: 20px;
-  background-color: black;
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 
-.filter .priceCheckboxLabel {
-  font-size: 1.15rem;
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownHeader, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .filter p {
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
+  font-style: normal;
 }
 
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #cartCount, .navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold, .homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
 .productContainer {
   display: flex;
   flex-direction: column;
   padding-bottom: 4em;
 }
-
 .productContainer .productInfo {
   margin-top: 0.5em;
   font-size: 1.4em;
 }
-
 .productContainer .productInfo p {
-  margin: 0;
   margin-bottom: 0.3em;
 }
-
-.productContainer .productName {
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.productContainer .productPrice {
+.productContainer .productName, .productContainer .categoryName {
+  font-size: 1.1rem;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
+  font-style: normal;
+}
+.productContainer .categoryName {
+  color: grey;
+  padding-bottom: 0.4em;
+}
+.productContainer .productPrice {
   font-size: 1rem;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .createAccount {
@@ -182,19 +307,16 @@ code {
   align-items: center;
   justify-content: center;
 }
-
 .createAccount .createAccount-form {
   width: min-content;
   text-align: center;
   padding-bottom: 3em;
 }
-
 .createAccount h4 {
   font-size: 2rem;
   font-weight: 500;
   margin-bottom: 1.5em;
 }
-
 .createAccount label {
   display: block;
   text-align: start;
@@ -202,9 +324,7 @@ code {
   font-weight: 500;
   margin-bottom: 1em;
 }
-
-.createAccount input,
-.createAccount .inputError {
+.createAccount input, .createAccount .inputError {
   outline: none;
   text-decoration: none;
   padding: 0.6em 0em;
@@ -214,20 +334,15 @@ code {
   font-size: 1.1rem;
   font-weight: 500;
 }
-
-.createAccount input:focus,
-.createAccount .inputError:focus {
+.createAccount input:focus, .createAccount .inputError:focus {
   border-bottom: 3px solid black;
 }
-
 .createAccount .inputError {
   border: 1px solid rgb(219, 0, 0);
 }
-
 .createAccount .inputError:focus {
   border-bottom: 3px solid rgb(219, 0, 0);
 }
-
 .createAccount .createAccountBtn {
   margin-top: 3em;
   background-color: black;
@@ -239,16 +354,13 @@ code {
   justify-content: center;
   cursor: pointer;
 }
-
 .createAccount .createAccountBtn:hover {
   background-color: rgb(51, 51, 51);
 }
-
 .createAccount p {
   margin: 0;
   padding: 0%;
 }
-
 .createAccount .errorMsg {
   font-size: 0.9rem;
   font-weight: 400;
@@ -270,35 +382,21 @@ code {
   font-style: normal;
 }
 
-.roboto-regular,
-.navbar .nav .dropDownLink,
-.navbar .nav .dropDownLink a,
-.navbar .nav .dropDownLink a a,
-.navbar .nav .dropDownHeader,
-.navbar .nav .link,
-.navbar .nav .topNavbar #signOut,
-.topNavbar .navbar .nav #signOut,
-.navbar .nav .topNavbar #welcomeMsg,
-.topNavbar .navbar .nav #welcomeMsg,
-.navbar .nav .link:visited,
-.homePage .heroSubTitle {
+.roboto-regular, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownHeader, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .filter p {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.roboto-medium,
-.topNavbar .link,
-.topNavbar #signOut,
-.topNavbar #welcomeMsg,
-.topNavbar .link:visited,
-.navbar .nav #brand {
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #cartCount, .navbar .nav #brand {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.roboto-bold {
+.roboto-bold, .homePage .heroSubTitle {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -322,19 +420,16 @@ footer {
   padding: 0em 5.3em;
   margin: 3em 0 0 0;
 }
-
 footer img {
   width: 30px;
   height: 25px;
 }
-
 footer .footerBorder {
   padding: 0;
   margin: 0;
   border-color: gray;
   opacity: 0.1;
 }
-
 footer .footerContainer {
   width: 100%;
   display: flex;
@@ -342,7 +437,6 @@ footer .footerContainer {
   padding: 3.3em 0;
   margin-top: -0.5em;
 }
-
 footer .footerContainer .brandName {
   color: white;
   font-size: 1.5em;
@@ -351,7 +445,6 @@ footer .footerContainer .brandName {
   font-weight: 500;
   font-style: normal;
 }
-
 footer .footerContainer .footerLinks {
   width: 100%;
   display: inline-flex;
@@ -359,20 +452,16 @@ footer .footerContainer .footerLinks {
   flex-wrap: wrap;
   text-align: center;
   justify-content: center;
+  padding: 2em 0;
   column-gap: 5em;
 }
-
-footer .footerContainer .footerLinks ul,
-footer .footerContainer .footerLinks .socialMedia li,
-footer .footerContainer .socialMedia .footerLinks li {
+footer .footerContainer .footerLinks ul, footer .footerContainer .footerLinks .socialMedia li, footer .footerContainer .socialMedia .footerLinks li {
   list-style: none;
 }
-
 footer .footerContainer .footerLinks li {
   margin-bottom: 1em;
   font-weight: 600;
 }
-
 footer .footerContainer .footerLinks h4 {
   color: white;
   font-family: "Montserrat", sans-serif;
@@ -380,7 +469,6 @@ footer .footerContainer .footerLinks h4 {
   font-weight: 500;
   font-style: normal;
 }
-
 footer .footerContainer .footerLinks a,
 footer .footerContainer .footerLinks a:visited {
   text-decoration: none;
@@ -390,15 +478,12 @@ footer .footerContainer .footerLinks a:visited {
   font-weight: 400;
   font-style: normal;
 }
-
-footer .footerContainer .socialMedia ul,
-footer .footerContainer .socialMedia li {
+footer .footerContainer .socialMedia ul, footer .footerContainer .socialMedia li {
   display: inline;
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
 footer .footerContainer .socialMedia a {
   margin-right: 1em;
 }
@@ -415,35 +500,21 @@ footer .footerContainer .socialMedia a {
   font-style: normal;
 }
 
-.roboto-regular,
-.navbar .nav .dropDownLink,
-.navbar .nav .dropDownLink a,
-.navbar .nav .dropDownLink a a,
-.navbar .nav .dropDownHeader,
-.navbar .nav .link,
-.navbar .nav .topNavbar #signOut,
-.topNavbar .navbar .nav #signOut,
-.navbar .nav .topNavbar #welcomeMsg,
-.topNavbar .navbar .nav #welcomeMsg,
-.navbar .nav .link:visited,
-.homePage .heroSubTitle {
+.roboto-regular, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownHeader, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .filter p {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.roboto-medium,
-.topNavbar .link,
-.topNavbar #signOut,
-.topNavbar #welcomeMsg,
-.topNavbar .link:visited,
-.navbar .nav #brand {
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #cartCount, .navbar .nav #brand {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.roboto-bold {
+.roboto-bold, .homePage .heroSubTitle {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -464,44 +535,45 @@ footer .footerContainer .socialMedia a {
 .homePage {
   overflow: hidden;
 }
-
 .homePage .heroImage {
   position: relative;
   display: flex;
   flex-direction: column;
+  /*      justify-content: flex-end;
+  align-items: flex-start; */
   justify-content: center;
   align-items: center;
-  height: 745px;
+  height: 575px;
   overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.389)), url("http://localhost:8080/housoku-images/hero/home/graffiti-1.jpg") no-repeat;
   background-size: cover;
-  background-position-y: top;
+  background-position-y: bottom;
+  background-position-x: center;
   margin-bottom: 5em;
 }
-
 .homePage .heroContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   color: white;
   font-size: 2em;
   text-align: center;
-  margin-top: -1.3em;
+  row-gap: 0.5em;
+  padding: 1em 0 1em 0;
 }
-
 .homePage .heroTitle {
-  font-size: 2.5rem;
-  color: white;
-  position: relative;
+  font-size: 3rem;
 }
-
 .homePage .heroSubTitle {
   font-size: 1.65rem;
+  margin-bottom: 1em;
   color: white;
-  position: relative;
 }
-
 .homePage .heroBtn {
-  color: white;
-  position: relative;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   padding: 1.5em;
   padding-left: 3.5em;
   padding-right: 3.5em;
@@ -510,79 +582,9 @@ footer .footerContainer .socialMedia a {
   border-style: none;
   cursor: pointer;
 }
-
 .homePage .heroBtn:hover {
-  background-color: rgb(48, 48, 48);
+  background-color: rgb(226, 226, 226);
   filter: brightness(100%);
-}
-
-.homePage .featured {
-  margin: 0em 3.3em;
-  margin-bottom: 4em;
-}
-
-.homePage .headerLayer {
-  padding: 0;
-  margin: 0 0 2em 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-.homePage .title h4 {
-  padding: 0;
-  margin: 0;
-  font-size: 1.6rem;
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.homePage .title p {
-  padding: 0;
-  margin: 0;
-  font-size: 1rem;
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.homePage .scrollProducts {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  margin-left: auto;
-}
-
-.homePage .leftScrollButton,
-.homePage .rightScrollButton {
-  background-color: rgb(231, 231, 231);
-  margin-left: 2em;
-  border: none;
-  border-radius: 50%;
-  height: 48px;
-  width: 48px;
-  text-align: center;
-}
-
-.homePage .leftScrollButton:hover,
-.homePage .rightScrollButton:hover {
-  cursor: pointer;
-  background-color: rgb(207, 207, 207);
-}
-
-.homePage .productContainerRow,
-.homePage .productContainerCol {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  column-gap: 1em;
-  overflow: scroll;
-  overflow-y: hidden;
 }
 
 .roboto-thin {
@@ -597,35 +599,21 @@ footer .footerContainer .socialMedia a {
   font-style: normal;
 }
 
-.roboto-regular,
-.navbar .nav .dropDownLink,
-.navbar .nav .dropDownLink a,
-.navbar .nav .dropDownLink a a,
-.navbar .nav .dropDownHeader,
-.navbar .nav .link,
-.navbar .nav .topNavbar #signOut,
-.topNavbar .navbar .nav #signOut,
-.navbar .nav .topNavbar #welcomeMsg,
-.topNavbar .navbar .nav #welcomeMsg,
-.navbar .nav .link:visited,
-.homePage .heroSubTitle {
+.roboto-regular, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownHeader, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .filter p {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.roboto-medium,
-.topNavbar .link,
-.topNavbar #signOut,
-.topNavbar #welcomeMsg,
-.topNavbar .link:visited,
-.navbar .nav #brand {
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #cartCount, .navbar .nav #brand {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.roboto-bold {
+.roboto-bold, .homePage .heroSubTitle {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -648,37 +636,32 @@ footer .footerContainer .socialMedia a {
   flex-direction: column;
   padding-bottom: 1.3em;
 }
-
 .homeProduct a {
   color: black;
   text-decoration: none;
 }
-
 .homeProduct .productImage {
+  background: url(http://localhost:8080/housoku-images/products/pants/cargo/housoku-black-cargo.jpg) no-repeat;
   background-size: cover;
   background-position-y: bottom;
   overflow: hidden;
   border-radius: 5px;
 }
-
 .homeProduct .productInfo {
   margin-top: 1.5em;
   font-size: 1.4em;
 }
-
 .homeProduct .productInfo p {
   margin: 0;
   margin-bottom: 0.3em;
 }
-
-.homeProduct .productName {
+.homeProduct .productName, .homeProduct .productContainer .categoryName, .productContainer .homeProduct .categoryName {
   font-size: 1.15rem;
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
-
 .homeProduct .productDesc {
   color: gray;
   font-size: 1.25rem;
@@ -687,7 +670,6 @@ footer .footerContainer .socialMedia a {
   font-weight: 300;
   font-style: normal;
 }
-
 .homeProduct .productPrice {
   font-weight: 400;
   font-size: 1.1rem;
@@ -709,35 +691,143 @@ footer .footerContainer .socialMedia a {
   font-style: normal;
 }
 
-.roboto-regular,
-.navbar .nav .dropDownLink,
-.navbar .nav .dropDownLink a,
-.navbar .nav .dropDownLink a a,
-.navbar .nav .dropDownHeader,
-.navbar .nav .link,
-.navbar .nav .topNavbar #signOut,
-.topNavbar .navbar .nav #signOut,
-.navbar .nav .topNavbar #welcomeMsg,
-.topNavbar .navbar .nav #welcomeMsg,
-.navbar .nav .link:visited,
-.homePage .heroSubTitle {
+.roboto-regular, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownHeader, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .filter p {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.roboto-medium,
-.topNavbar .link,
-.topNavbar #signOut,
-.topNavbar #welcomeMsg,
-.topNavbar .link:visited,
-.navbar .nav #brand {
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #cartCount, .navbar .nav #brand {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.roboto-bold {
+.roboto-bold, .homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
+.homeProductContainer .featured {
+  margin: 0em 3.3em;
+  margin-bottom: 4em;
+}
+.homeProductContainer .headerLayer {
+  padding: 0;
+  margin: 0 0 2em 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.homeProductContainer .title h4 {
+  padding: 0;
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.homeProductContainer .title p {
+  padding: 0;
+  margin: -0.5em 0 0 0;
+  font-size: 0.98rem;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.homeProductContainer .scrollProducts {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-left: auto;
+}
+.homeProductContainer .leftScrollButton, .homeProductContainer .rightScrollButton, .homeProductContainer .scrollButtonDisabled,
+.homeProductContainer .scrollButtonDisabled:hover {
+  border-radius: 50%;
+  background-color: rgb(231, 231, 231);
+  margin-left: 1em;
+  border: none;
+  text-align: center;
+}
+.homeProductContainer .leftScrollButton:hover, .homeProductContainer .rightScrollButton:hover, .homeProductContainer .scrollButtonDisabled:hover {
+  cursor: pointer;
+  background-color: rgb(207, 207, 207);
+}
+.homeProductContainer .icon {
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.homeProductContainer .scrollButtonDisabled,
+.homeProductContainer .scrollButtonDisabled:hover {
+  cursor: auto;
+  background-color: rgb(246, 246, 246);
+}
+.homeProductContainer .productContainerRow {
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 1em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgb(0, 0, 0), rgb(0, 0, 0);
+  scrollbar-width: thin;
+}
+.homeProductContainer .item {
+  scroll-snap-align: center;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownHeader, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .filter p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #cartCount, .navbar .nav #brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold, .homePage .heroSubTitle {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -756,17 +846,18 @@ footer .footerContainer .socialMedia a {
     font-style: normal;
 } */
 .navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   left: 0;
   right: 0;
   z-index: 1000;
 }
-
 .navbar .navTrigger {
-  border: 1px solid rgba(255, 0, 0, 0);
-  left: 0;
-  right: 0;
+  width: 100%;
+  z-index: 2000;
+  margin-bottom: auto;
 }
-
 .navbar .nav {
   z-index: 1000;
   left: 0;
@@ -779,53 +870,44 @@ footer .footerContainer .socialMedia a {
   font-family: Verdana, sans-serif;
   color: black;
   background-color: white;
-  padding: 1em 3em;
+  transition-property: height;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+  transition-delay: 0.5s;
+  padding: 0em 3em;
+  height: 4em;
   overflow: hidden;
 }
-
 .navbar .nav .navbar-brand {
   margin-right: auto;
 }
-
 .navbar .nav #brand {
   color: black;
   text-decoration: "none";
   font-size: 1.3rem;
 }
-
 .navbar .nav #brand:hover {
   color: grey;
 }
-
 .navbar .nav .navbar-list {
   display: flex;
   justify-content: center;
   margin: auto;
 }
-
-.navbar .nav ul,
-.navbar .nav footer .footerContainer .socialMedia li,
-footer .footerContainer .socialMedia .navbar .nav li {
+.navbar .nav ul, .navbar .nav footer .footerContainer .socialMedia li, footer .footerContainer .socialMedia .navbar .nav li {
   margin: 0;
   padding: 0;
   list-style: none;
   text-align: center;
 }
-
 .navbar .nav li {
   display: inline;
 }
-
 .navbar .nav a {
   text-decoration: none;
   color: black;
 }
-
-.navbar .nav .link,
-.navbar .nav .topNavbar #signOut,
-.topNavbar .navbar .nav #signOut,
-.navbar .nav .topNavbar #welcomeMsg,
-.topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
 .navbar .nav .link:visited {
   position: relative;
   display: inline-block;
@@ -835,16 +917,10 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-size: 1rem;
   z-index: 3;
 }
-
-.navbar .nav .link:hover,
-.navbar .nav .topNavbar #signOut:hover,
-.topNavbar .navbar .nav #signOut:hover,
-.navbar .nav .topNavbar #welcomeMsg:hover,
-.topNavbar .navbar .nav #welcomeMsg:hover {
+.navbar .nav .link:hover, .navbar .nav .topNavbar #signOut:hover, .topNavbar .navbar .nav #signOut:hover, .navbar .nav .topNavbar #welcomeMsg:hover, .topNavbar .navbar .nav #welcomeMsg:hover {
   text-decoration: underline;
   text-underline-offset: 0.8em;
 }
-
 .navbar .nav .searchbar {
   text-wrap: nowrap;
   color: rgb(179, 179, 179);
@@ -855,22 +931,19 @@ footer .footerContainer .socialMedia .navbar .nav li {
   margin-right: 2em;
   background-color: rgba(195, 195, 195, 0.1);
   border-radius: 20px;
-  z-index: 3;
+  z-index: 1000;
 }
-
-.navbar .nav #userProfile {
-  margin-right: 2.5em;
-  float: right;
-}
-
 .navbar .nav #cartCount {
-  font-size: 0.9rem;
-  padding: 0;
-  margin: 0;
+  position: absolute;
+  font-size: 0.85rem;
+  top: 1.5em;
+  margin-left: 0.1em;
+  flex-grow: 0;
 }
-
-.navbar .nav .dropDownMenu,
-.navbar .nav .navbar-list li:hover .dropDownMenu {
+.navbar .nav #shoppingCart {
+  z-index: 1000;
+}
+.navbar .nav .dropDownMenu, .navbar .nav .navbar-list li:hover .dropDownMenu {
   position: fixed;
   display: none;
   flex-direction: row;
@@ -883,56 +956,46 @@ footer .footerContainer .socialMedia .navbar .nav li {
   column-gap: 6em;
   z-index: 2;
 }
-
-.navbar .nav .dropDownMenu li,
-.navbar .nav .navbar-list li:hover .dropDownMenu li {
+.navbar .nav .dropDownMenu li, .navbar .nav .navbar-list li:hover .dropDownMenu li {
   display: block;
   list-style: none;
   text-align: left;
 }
-
 .navbar .nav .dropDownHeader {
   font-size: 1rem;
   margin-bottom: 1em;
 }
-
-.navbar .nav .dropDownLink,
-.navbar .nav .dropDownLink a,
-.navbar .nav .dropDownLink a a {
+.navbar .nav .dropDownLink, .navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a {
   font-size: 1rem;
   text-align: left;
   margin-bottom: 0.3em;
 }
-
-.navbar .nav .dropDownLink a,
-.navbar .nav .dropDownLink a a,
-.navbar .nav .dropDownLink a a a {
+.navbar .nav .dropDownLink a, .navbar .nav .dropDownLink a a, .navbar .nav .dropDownLink a a a {
   font-size: 1rem;
   color: grey;
 }
-
-.navbar .nav .dropDownLink a:hover,
-.navbar .nav .dropDownLink a a:hover,
-.navbar .nav .dropDownLink a a a:hover {
+.navbar .nav .dropDownLink a:hover, .navbar .nav .dropDownLink a a:hover, .navbar .nav .dropDownLink a a a:hover {
   color: black;
 }
-
-.navbar .nav .navbar-list li:hover .dropDownMenu,
-.navbar .nav .navbar-list li:hover .dropDownMenu {
+.navbar .nav .navbar-list li:hover .dropDownMenu, .navbar .nav .navbar-list li:hover .dropDownMenu {
   display: flex;
 }
-
+.navbar .nav * {
+  flex: 0 0 auto;
+}
 .navbar .prespacer {
   background-color: white;
   left: 0;
   right: 0;
-  height: 74.4px;
+  height: 4em;
 }
 
 .productPage {
-  margin: 4em;
-  padding-left: 4em;
-  padding-bottom: 5em;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin: 3em 0em 0em 5em;
+  overflow: hidden;
 }
 
 .roboto-thin {
@@ -947,34 +1010,21 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-style: normal;
 }
 
-.roboto-regular,
-.homePage .heroSubTitle,
-.navbar .nav .link,
-.navbar .nav .topNavbar #signOut,
-.topNavbar .navbar .nav #signOut,
-.navbar .nav .topNavbar #welcomeMsg,
-.topNavbar .navbar .nav #welcomeMsg,
-.navbar .nav .link:visited,
-.navbar .nav .dropDownHeader,
-.navbar .nav .dropDownLink,
-.navbar .nav .dropDownLink a {
+.roboto-regular, .filter p, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .navbar .nav .dropDownHeader, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.roboto-medium,
-.topNavbar .link,
-.topNavbar #signOut,
-.topNavbar #welcomeMsg,
-.topNavbar .link:visited,
-.navbar .nav #brand {
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #brand, .navbar .nav #cartCount {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.roboto-bold {
+.roboto-bold, .homePage .heroSubTitle {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -997,7 +1047,7 @@ footer .footerContainer .socialMedia .navbar .nav li {
   flex-direction: row;
   justify-content: center;
   padding-bottom: 1.8em;
-  gap: 6em;
+  margin-right: 4em;
   /* 
          input[type="radio"] {
              display: none;
@@ -1045,31 +1095,25 @@ footer .footerContainer .socialMedia .navbar .nav li {
       padding: 2em;
   } */
 }
-
 .productDetails .productImage {
-
-  background-size: cover;
-  background-position-y: bottom;
-  overflow: hidden;
-  border-radius: 5px;
-  margin-bottom: 1.5em;
+  margin-bottom: 0.5em;
 }
-
+.productDetails .productImage:hover {
+  cursor: pointer;
+}
 .productDetails .productInfo {
   display: flex;
   flex-direction: column;
   text-align: left;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 5em;
   font-size: 1.4em;
   width: 19em;
 }
-
 .productDetails .productInfo p {
   margin: 0;
 }
-
-.productDetails .productName {
+.productDetails .productName, .productDetails .productContainer .categoryName, .productContainer .productDetails .categoryName {
   font-size: 1.5rem;
   font-weight: 500;
   font-family: "Outfit", sans-serif;
@@ -1077,16 +1121,14 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-weight: 400;
   font-style: normal;
 }
-
 .productDetails .productCategory {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   padding-bottom: 0.8em;
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
-
 .productDetails .productDesc {
   font-size: 1.1rem;
   color: gray;
@@ -1096,7 +1138,6 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-weight: 400;
   font-style: normal;
 }
-
 .productDetails .productPrice {
   font-weight: 400;
   font-size: 1.2rem;
@@ -1106,9 +1147,9 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-weight: 400;
   font-style: normal;
 }
-
 .productDetails .productColour {
-  color: gray;
+  color: black;
+  font-weight: 400;
   font-size: 1.2rem;
   padding-bottom: 1em;
   font-family: "Outfit", sans-serif;
@@ -1116,7 +1157,6 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-weight: 400;
   font-style: normal;
 }
-
 .productDetails .colourBtn {
   background-color: black;
   border-radius: 100px;
@@ -1126,12 +1166,11 @@ footer .footerContainer .socialMedia .navbar .nav li {
   margin: 0 0.5em;
   cursor: pointer;
 }
-
 .productDetails .colourBtn:focus {
   outline: 2px solid gray;
 }
-
 .productDetails .productSize {
+  margin: auto;
   padding-bottom: 1em;
   font-size: 1.1rem;
   font-family: "Outfit", sans-serif;
@@ -1139,9 +1178,7 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-weight: 400;
   font-style: normal;
 }
-
-.productDetails .sizeBtn,
-.productDetails .sizeBtnSelected {
+.productDetails .sizeBtn, .productDetails .sizeBtnSelected {
   display: inline;
   background-color: white;
   border: 2px solid rgba(128, 128, 128, 0);
@@ -1158,16 +1195,12 @@ footer .footerContainer .socialMedia .navbar .nav li {
   margin: 0 0.3em 0.3em 0;
   cursor: pointer;
 }
-
-.productDetails .sizeBtn:hover,
-.productDetails .sizeBtnSelected:hover {
+.productDetails .sizeBtn:hover, .productDetails .sizeBtnSelected:hover {
   border: 2px solid black;
 }
-
 .productDetails .sizeBtnSelected {
   border: 2px solid black;
 }
-
 .productDetails .errorMsg {
   font-size: 0.93rem;
   font-weight: 400;
@@ -1176,9 +1209,7 @@ footer .footerContainer .socialMedia .navbar .nav li {
   text-align: start;
   color: rgb(219, 0, 0);
 }
-
-.productDetails .checkoutBtn,
-.productDetails .checkoutBtnDisabled {
+.productDetails .checkoutBtn, .productDetails .checkoutBtnDisabled {
   margin-top: 1em;
   background-color: black;
   color: white;
@@ -1190,17 +1221,58 @@ footer .footerContainer .socialMedia .navbar .nav li {
   align-self: center;
   cursor: pointer;
 }
-
 .productDetails .checkoutBtnDisabled {
   cursor: auto;
   background-color: rgb(51, 51, 51);
 }
-
-.productDetails .checkoutBtn:hover,
-.productDetails .checkoutBtnDisabled:hover {
+.productDetails .checkoutBtn:hover, .productDetails .checkoutBtnDisabled:hover {
   background-color: rgb(51, 51, 51);
 }
 
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular, .filter p, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .navbar .nav .dropDownHeader, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #brand, .navbar .nav #cartCount {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold, .homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
 .shoppingCart {
   margin: 3em 5.3em;
   display: flex;
@@ -1208,49 +1280,43 @@ footer .footerContainer .socialMedia .navbar .nav li {
   justify-content: center;
   align-items: center;
 }
-
 .shoppingCart .shoppingCartDetails {
   width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 5em;
+  gap: 2em;
 }
-
 .shoppingCart .shoppingCartDetails .title {
   padding: 0;
   margin: 0;
-  margin-bottom: 2em;
-  font-size: 1.6rem;
+  margin-bottom: 1.2em;
+  font-size: 1.5rem;
   font-weight: 500;
 }
-
 .shoppingCart .shoppingCartDetails .bagContainer {
   flex-grow: 1;
 }
-
 .shoppingCart .shoppingCartDetails .summaryContainer {
   flex-grow: 0.7;
   display: flex;
   flex-direction: column;
 }
-
 .shoppingCart .shoppingCartDetails .summaryContainer p {
   font-size: 1rem;
   font-weight: 500;
   padding-bottom: 1em;
 }
-
+.shoppingCart .shoppingCartDetails .summaryContainer * {
+  flex: 0 0 auto;
+}
 .shoppingCart .shoppingCartDetails .summaryDivider {
   margin-bottom: 1em;
   border-color: gray;
   width: 100%;
   opacity: 0.1;
 }
-
-.shoppingCart .shoppingCartDetails .checkoutBtn,
-.shoppingCart .shoppingCartDetails .productDetails .checkoutBtnDisabled,
-.productDetails .shoppingCart .shoppingCartDetails .checkoutBtnDisabled {
+.shoppingCart .shoppingCartDetails .checkoutBtn, .shoppingCart .shoppingCartDetails .productDetails .checkoutBtnDisabled, .productDetails .shoppingCart .shoppingCartDetails .checkoutBtnDisabled {
   margin-top: 1em;
   background-color: black;
   color: white;
@@ -1262,21 +1328,63 @@ footer .footerContainer .socialMedia .navbar .nav li {
   align-self: center;
   cursor: pointer;
 }
-
-.shoppingCart .shoppingCartDetails .checkoutBtn:hover,
-.shoppingCart .shoppingCartDetails .productDetails .checkoutBtnDisabled:hover,
-.productDetails .shoppingCart .shoppingCartDetails .checkoutBtnDisabled:hover {
+.shoppingCart .shoppingCartDetails .checkoutBtn:hover, .shoppingCart .shoppingCartDetails .productDetails .checkoutBtnDisabled:hover, .productDetails .shoppingCart .shoppingCartDetails .checkoutBtnDisabled:hover {
   background-color: rgb(51, 51, 51);
 }
 
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular, .filter p, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .navbar .nav .dropDownHeader, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #brand, .navbar .nav #cartCount {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold, .homePage .heroSubTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* @mixin ProductHeading($fontWeight: 500) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $fontWeight;
+    font-style: normal;
+} */
 .shoppingCartProduct {
   display: flex;
   flex-direction: row;
   gap: 1em;
-  height: min-content;
+  height: max-content;
+  min-width: max-content;
   padding: 0;
+  flex-grow: 1;
 }
-
 .shoppingCartProduct .productDetails {
   margin: 0;
   padding: 0;
@@ -1284,53 +1392,68 @@ footer .footerContainer .socialMedia .navbar .nav li {
   flex-direction: column;
   flex-grow: 1;
   gap: 0;
-  height: 20%;
+  height: auto;
 }
-
 .shoppingCartProduct .productDetails p {
   margin: 0;
   padding: 0;
 }
-
-.shoppingCartProduct .productDetails .productName {
+.shoppingCartProduct .productDetails .productName, .shoppingCartProduct .productDetails .productContainer .categoryName, .productContainer .shoppingCartProduct .productDetails .categoryName {
   font-size: 1.1rem;
   font-weight: 500;
 }
-
 .shoppingCartProduct .productDetails .productCategory {
   color: gray;
   font-size: 1rem;
   padding: 0%;
 }
-
+.shoppingCartProduct .productDetails .productOptions p {
+  display: inline-block;
+}
 .shoppingCartProduct .productDetails .productSize {
+  color: gray;
   font-weight: 400;
   font-size: 1rem;
   padding: 0;
 }
-
 .shoppingCartProduct .productDetails .productQuantity {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   font-weight: 400;
   font-size: 1rem;
+  margin-left: 0.5em;
   margin-bottom: 2.3em;
   color: gray;
 }
-
+.shoppingCartProduct .productDetails .quantitySelectList, .shoppingCartProduct .productDetails .sizeSelectList {
+  border: none;
+  width: 5em;
+  margin-left: 0.5em;
+  color: grey;
+  font-size: 0.93rem;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.shoppingCartProduct .productDetails .quantitySelectList:focus, .shoppingCartProduct .productDetails .sizeSelectList:focus {
+  border: 1.6px solid black;
+}
 .shoppingCartProduct .productDetails a {
   text-decoration: none;
   color: black;
 }
-
 .shoppingCartProduct .productDetails a:hover {
   text-decoration: underline;
   color: black;
 }
-
 .shoppingCartProduct .productPrice {
   font-weight: 500;
 }
-
 .shoppingCartProduct #bin {
+  margin-top: auto;
   height: 30px;
   width: 30px;
   cursor: pointer;
@@ -1354,34 +1477,21 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-style: normal;
 }
 
-.roboto-regular,
-.homePage .heroSubTitle,
-.navbar .nav .link,
-.navbar .nav .topNavbar #signOut,
-.topNavbar .navbar .nav #signOut,
-.navbar .nav .topNavbar #welcomeMsg,
-.topNavbar .navbar .nav #welcomeMsg,
-.navbar .nav .link:visited,
-.navbar .nav .dropDownHeader,
-.navbar .nav .dropDownLink,
-.navbar .nav .dropDownLink a {
+.roboto-regular, .filter p, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .navbar .nav .dropDownHeader, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.roboto-medium,
-.topNavbar .link,
-.topNavbar #signOut,
-.topNavbar #welcomeMsg,
-.topNavbar .link:visited,
-.navbar .nav #brand {
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #brand, .navbar .nav #cartCount {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.roboto-bold {
+.roboto-bold, .homePage .heroSubTitle {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -1405,18 +1515,15 @@ footer .footerContainer .socialMedia .navbar .nav li {
   align-items: center;
   justify-content: center;
 }
-
 .signIn .signIn-form {
   width: min-content;
   text-align: center;
   padding-bottom: 3em;
 }
-
 .signIn h4 {
   font-size: 2rem;
   margin-bottom: 1.5em;
 }
-
 .signIn label {
   display: block;
   text-align: start;
@@ -1424,9 +1531,7 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-weight: 500;
   margin-bottom: 1em;
 }
-
-.signIn input,
-.signIn .inputError {
+.signIn input, .signIn .inputError {
   outline: none;
   text-decoration: none;
   padding: 0.6em 0em;
@@ -1436,20 +1541,15 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-size: 1.1rem;
   font-weight: 500;
 }
-
-.signIn input:focus,
-.signIn .inputError:focus {
+.signIn input:focus, .signIn .inputError:focus {
   border-bottom: 3px solid black;
 }
-
 .signIn .inputError {
   border: 1px solid rgb(219, 0, 0);
 }
-
 .signIn .inputError:focus {
   border-bottom: 3px solid rgb(219, 0, 0);
 }
-
 .signIn .signInBtn {
   margin-top: 2em;
   background-color: black;
@@ -1461,16 +1561,13 @@ footer .footerContainer .socialMedia .navbar .nav li {
   justify-content: center;
   cursor: pointer;
 }
-
 .signIn .signInBtn:hover {
   background-color: rgb(51, 51, 51);
 }
-
 .signIn p {
   margin: 0;
   padding: 0%;
 }
-
 .signIn .errorMsg {
   font-size: 0.93rem;
   font-weight: 400;
@@ -1492,34 +1589,21 @@ footer .footerContainer .socialMedia .navbar .nav li {
   font-style: normal;
 }
 
-.roboto-regular,
-.homePage .heroSubTitle,
-.navbar .nav .link,
-.navbar .nav .topNavbar #signOut,
-.topNavbar .navbar .nav #signOut,
-.navbar .nav .topNavbar #welcomeMsg,
-.topNavbar .navbar .nav #welcomeMsg,
-.navbar .nav .link:visited,
-.navbar .nav .dropDownHeader,
-.navbar .nav .dropDownLink,
-.navbar .nav .dropDownLink a {
+.roboto-regular, .filter p, .navbar .nav .link, .navbar .nav .topNavbar #signOut, .topNavbar .navbar .nav #signOut, .navbar .nav .topNavbar #welcomeMsg, .topNavbar .navbar .nav #welcomeMsg,
+.navbar .nav .link:visited, .navbar .nav .dropDownHeader, .navbar .nav .dropDownLink, .navbar .nav .dropDownLink a {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.roboto-medium,
-.topNavbar .link,
-.topNavbar #signOut,
-.topNavbar #welcomeMsg,
-.topNavbar .link:visited,
-.navbar .nav #brand {
+.roboto-medium, .topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
+.topNavbar .link:visited, .navbar .nav #brand, .navbar .nav #cartCount {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.roboto-bold {
+.roboto-bold, .homePage .heroSubTitle {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -1554,49 +1638,38 @@ footer .footerContainer .socialMedia .navbar .nav li {
   padding: 0.25em;
   overflow: hidden;
 }
-
 .topNavbar .navbar-list {
   flex-shrink: 0;
   padding: 0%;
   margin: 0;
 }
-
-.topNavbar ul,
-.topNavbar footer .footerContainer .socialMedia li,
-footer .footerContainer .socialMedia .topNavbar li {
+.topNavbar ul, .topNavbar footer .footerContainer .socialMedia li, footer .footerContainer .socialMedia .topNavbar li {
   padding: 0%;
   margin: 0 3.2em;
   list-style: none;
 }
-
 .topNavbar li {
   padding: 0%;
   margin: 0;
   display: inline-block;
 }
-
 .topNavbar a {
   padding: 0%;
   margin: 0;
   text-decoration: none;
   color: black;
 }
-
 .topNavbar a:hover {
   text-decoration: underline;
   text-underline-offset: 0.8em;
 }
-
-.topNavbar .link,
-.topNavbar #signOut,
-.topNavbar #welcomeMsg,
+.topNavbar .link, .topNavbar #signOut, .topNavbar #welcomeMsg,
 .topNavbar .link:visited {
   margin: 0 1em;
   text-decoration: none;
   color: black;
   font-size: 0.85rem;
 }
-
 .topNavbar #userProfile {
   justify-self: start;
   align-self: center;
@@ -1604,11 +1677,13 @@ footer .footerContainer .socialMedia .topNavbar li {
   padding: 0%;
   margin: 0;
 }
-
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+.blurScreen {
+  position: fixed;
+  min-height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.151);
+  backdrop-filter: blur(4px);
+  z-index: 1;
 }
 
 /*# sourceMappingURL=main.css.map */

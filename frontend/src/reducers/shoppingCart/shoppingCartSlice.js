@@ -6,6 +6,7 @@ import axios from 'axios'
 // Get shopping cart from database session
 
 export const dbGetShoppingCart = () => async (dispatch) => {
+
     try {
 
         const shoppingCart = await axios.get('http://localhost:8080/api/getShoppingCart', { withCredentials: true })
@@ -42,11 +43,15 @@ export const dbAddProduct = (product) => async (dispatch) => {
                 withCredentials: true
             })
 
+        // 201 = Product was added (Resource created)
+
         if (addedProduct.status === 201) {
 
             const productDetails = addedProduct.data
             dispatch(addProduct(productDetails))
         }
+
+        // 200 = Request OK, but Product has already been added. The quantity of the product was increased by 1 instead
 
         if (addedProduct.status === 200) {
             const productInd = addedProduct.data.productIndex
@@ -57,11 +62,10 @@ export const dbAddProduct = (product) => async (dispatch) => {
         return error
     }
 }
-
-export const dbUpdateProductQuantity = (prodIndex, qty) => async (dispatch) => {
+export const dbUpdateProductQuantity = (prodIndex, newQuantity) => async (dispatch) => {
     try {
 
-        const updateProductQty = await axios.put(`http://localhost:8080/api/removeProductFromShoppingCart/${prodIndex}/${qty}`, { withCredentials: true })
+        const updateProductQty = await axios.post(`http://localhost:8080/api/updateProductQuantityInShoppingCart`, { productIndex: prodIndex, quantity: newQuantity }, { withCredentials: true })
 
         if (updateProductQty.status === 200) {
             dispatch(updateProductQuantity(updateProductQty.data))
@@ -74,12 +78,26 @@ export const dbUpdateProductQuantity = (prodIndex, qty) => async (dispatch) => {
     }
 }
 
-
-
-export const dbRemoveProduct = (prodIndex) => async (dispatch) => {
+export const dbUpdateProductSize = (prodIndex, prodId, newSize) => async (dispatch) => {
     try {
 
-        const removedProduct = await axios.delete(`http://localhost:8080/api/removeProductFromShoppingCart/${prodIndex}`, { withCredentials: true })
+        const updateProductSize = await axios.post(`http://localhost:8080/api/updateProductSizeInShoppingCart`, { productIndex: prodIndex, productId: prodId, size: newSize }, { withCredentials: true })
+
+        if (updateProductSize.status === 200) {
+            dispatch(updateProductSize(updateProductSize.data))
+        }
+
+
+    }
+    catch (error) {
+        return error
+    }
+}
+
+
+export const dbRemoveProduct = (productIndex) => async (dispatch) => {
+    try {
+        const removedProduct = await axios.delete(`http://localhost:8080/api/removeProductFromShoppingCart/${productIndex}`, { withCredentials: true })
 
         if (removedProduct.status === 200) {
             dispatch(removeProduct(removedProduct.data.productIndex))
@@ -119,22 +137,32 @@ const shoppingCartSlice = createSlice({
         removeProduct: (state, action) => {
             const productInd = action.payload
             state.items.splice(productInd, 1)
+            state.shoppingCartCount -= 1
         },
 
         increaseQuantity: (state, action) => {
             const productInd = action.payload
-            state.items[productInd].quantity += 1
+            if (state.items[productInd].quantity < 10)
+                state.items[productInd].quantity += 1
         },
 
         decreaseQuantity: (state, action) => {
             const productInd = action.payload
-            state.items[productInd].quantity -= 1
+            if (state.items[productInd].quantity > 0)
+                state.items[productInd].quantity -= 1
         },
 
         updateProductQuantity: (state, action) => {
             const productInd = action.payload.productIndex
             const productQty = action.payload.quantity
-            state.items[productInd].quantity = productQty
+            if (productQty <= 10)
+                state.items[productInd].quantity = productQty
+        },
+
+        updateProductSize: (state, action) => {
+            const productInd = action.payload.productIndex
+            const productSize = action.payload.size
+            state.items[productInd].size = productSize
         }
     }
 })

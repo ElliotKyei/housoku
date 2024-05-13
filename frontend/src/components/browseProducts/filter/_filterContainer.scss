@@ -1,0 +1,86 @@
+@use '../../../../scss/fonts' as f;
+
+.filterContainer {
+
+    $headingFontSize: 1.2rem;
+    $headingFontWeight: 500;
+    $filterFontSize: 1.05rem;
+    $filterFontWeight: 500;
+
+
+
+    .toggleFilter {
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding: 1.5em 0 1.5em 0;
+    }
+
+    .toggleFilter:hover {
+        cursor: pointer;
+    }
+
+    .filterHeading h4 {
+        @extend .roboto-regular;
+    }
+
+    .toggleFilterImg {
+        margin-left: auto;
+    }
+
+    .filterOptionsContainer {
+        padding: 0 0 2em 0;
+    }
+
+    .filterOptions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 100%;
+        column-gap: .5em;
+        padding: 0 0 0.5em 0;
+        background: none;
+        border: none;
+    }
+
+    .filterOptions:hover {
+        cursor: pointer;
+    }
+
+    .filterCheckbox {
+        cursor: pointer;
+        width: 27px;
+        height: 25px;
+        border: 1px solid grey;
+        border-radius: 3px;
+    }
+
+    .isChecked {
+        background-color: black;
+        background: url('http://localhost:8080/housoku-images/icons/checkbox.png'), no-repeat;
+        width: 27px;
+        height: 25px;
+        background-size: cover;
+        background-position: center;
+    }
+
+
+    .filterCheckboxLabel {
+        @extend .roboto-regular;
+        font-size: $filterFontSize;
+        text-align: left;
+        width: 100%;
+    }
+
+    .filterCheckboxLabel:hover {
+        cursor: pointer;
+    }
+
+    .filterCheckboxLabel[onclick]~.filterCheckbox {
+        @extend .isChecked
+    }
+
+}

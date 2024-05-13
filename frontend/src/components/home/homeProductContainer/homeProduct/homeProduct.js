@@ -43,7 +43,7 @@ export default function HomeProduct(props) {
 }
 
 HomeProduct.defaultProps = {
-    height: 400,
+    height: 460,
     width: 460,
     product: {
         product_id: "0",

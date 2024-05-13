@@ -43,11 +43,13 @@ export default function Navbar() {
                 else if (navTriggerRef.current.getBoundingClientRect().top < 0) {
                     navbarRef.current.style.position = 'fixed'
                     navbarRef.current.style.top = 0
+                    //navbarRef.current.style.transform = 'translateY(60px)'
 
                     // Make navbar disappear only if: 1. User has scrolled below the navbar Trigger. 2. There is no drop down menu active. 3. User is scrolling down  
 
                     if (!isDropDownActive && prevScrollPosition < currentScrollPos) {
                         navbarRef.current.style.display = 'none'
+                        //navbarRef.current.style.transform = 'translateY(-60px)'
                     }
 
                 }
@@ -83,7 +85,7 @@ export default function Navbar() {
 
 
                         <div className='navbar' ref={navbarContainerRef}>
-                            <div className='navTriggerRef' ref={navTriggerRef}></div>
+                            <div className='navTrigger' ref={navTriggerRef}></div>
 
                             <nav className='nav' ref={navbarRef}>
 
@@ -244,9 +246,10 @@ export default function Navbar() {
                                 {/* 5th element in flexbox row: shopping cart  */}
 
                                 <div id='shoppingCart'>
-                                    <a href='/cart'><img src={shoppingCart} alt='Flaticon' height='28px' /></a>
+                                    <a href='/cart'><img src={shoppingCart} alt='Flaticon' height='28px' />
+                                        {cartCount > 0 ? <span id='cartCount'>{cartCount}</span> : <span id='cartCount' style={{ color: 'white' }}>99</span>}
+                                    </a>
                                 </div>
-                                {cartCount > 0 ? <span id='cartCount'>{cartCount}</span> : <span id='cartCount' style={{ color: 'white' }}>99</span>}
 
                             </nav>
 

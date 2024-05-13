@@ -5,7 +5,6 @@ const session = require('express-session')
 const pgSession = require('connect-pg-simple')(session)
 const pgPool = require('pg-pool')
 const { sendWelcomeEmail, sendOrderReceipt } = require('../../mailJet.js')
-const { sanitizedProductId } = require('./productController.js');
 const ShoppingCartProduct = require('../models/shoppingCartProduct.js')
 const User = require('../models/user.js')
 
@@ -314,6 +313,10 @@ const addProductToShoppingCart = async (req, res) => {
         return res.status(401).send('Unauthorized');
     }
 
+    if (!req.session.hasOwnProperty('cart')) {
+        return res.status(401).send('Unauthorized');
+    }
+
     // get request data and check if product can be found within cart already
 
     const { product_id, size } = req.body
@@ -323,8 +326,13 @@ const addProductToShoppingCart = async (req, res) => {
     // If  found, just increment quantity. If not found, add a new product
 
     if (productInd !== -1) {
-        req.session.cart[productInd].quantity += 1
-        return res.status(200).send({ productIndex: productInd })
+        if (req.session.cart[productInd].quantity < 10) {
+            req.session.cart[productInd].quantity += 1
+            return res.status(200).send({ productIndex: productInd })
+        }
+        else {
+            return res.status(409).send("Maximum quantity")
+        }
     }
 
     // query to ensure requested data is valid (correct product / size)
@@ -354,6 +362,8 @@ const addProductToShoppingCart = async (req, res) => {
 }
 
 const removeProductFromShoppingCart = async (req, res) => {
+    // session validity checks
+
     if (!req.session) {
         return res.status(401).send('Unauthorized');
     }
@@ -362,17 +372,22 @@ const removeProductFromShoppingCart = async (req, res) => {
         return res.status(401).send('Unauthorized');
     }
 
+    if (!req.session.hasOwnProperty('cart')) {
+        return res.status(401).send('Unauthorized');
+    }
 
-    const productInd = req.params.index
+    // Ensure the quantity is a number and is within range of allowed quantities. If so, delete (splice) cart array at index provided
+
+    const productInd = Number(req.params.productIndex)
     const cartLength = req.session.cart.length - 1
+
     try {
         if (Number.isInteger(productInd)) {
             if (productInd >= 0 && productInd <= cartLength) {
                 req.session.cart.splice(productInd, 1)
-                return res.status(200).send({ productIndex: productInd })
+                return res.status(200).json({ productIndex: productInd })
             }
         }
-
         return res.status(401).send("Invalid index")
     }
     catch (error) {
@@ -381,7 +396,11 @@ const removeProductFromShoppingCart = async (req, res) => {
 }
 
 const updateProductQuantityInShoppingCart = async (req, res) => {
+
+    // session validity checks
+
     if (!req.session) {
+
         return res.status(401).send('Unauthorized');
     }
 
@@ -389,9 +408,14 @@ const updateProductQuantityInShoppingCart = async (req, res) => {
         return res.status(401).send('Unauthorized');
     }
 
+    if (!req.session.hasOwnProperty('cart')) {
+        return res.status(401).send('Unauthorized');
+    }
 
-    const productInd = req.params.index
-    const quantity = req.params.quantity
+
+
+    const productInd = Number(req.body.productIndex)
+    const quantity = Number(req.body.quantity)
     const cartLength = req.session.cart.length - 1
     try {
         if (Number.isInteger(productInd) && Number.isInteger(quantity)) {
@@ -408,6 +432,59 @@ const updateProductQuantityInShoppingCart = async (req, res) => {
     }
 }
 
+const updateProductSizeInShoppingCart = async (req, res) => {
+
+    // session validity checks
+
+    if (!req.session) {
+
+        return res.status(401).send('Unauthorized');
+    }
+
+    if (req.session.hasOwnProperty('user') && !req.session.user.isSignedIn) {
+        return res.status(401).send('Unauthorized');
+    }
+
+    if (!req.session.hasOwnProperty('cart')) {
+        return res.status(401).send('Unauthorized');
+    }
+
+    const productInd = Number(req.body.productIndex)
+    const productId = req.sanitizedProductId.trim()
+    const size = req.body.size.trim()
+    const cartLength = req.session.cart.length - 1
+
+    // validate type and boundaries of the product index and size
+
+    try {
+        if (Number.isInteger(productInd) && typeof size === "string") {
+            if (productInd >= 0 && productInd <= cartLength) {
+
+                // Find product based on product id and size given
+
+                const validProduct = await db.query("SELECT p.*, c.category_name FROM Products p JOIN productcategories c ON p.category_id = c.category_id WHERE p.product_id = $1 AND $2 = ANY(p.size);", [productId, size])
+
+
+                // If product is found (rowCount 1), update the product size in the user's cart
+
+                if (validProduct.rowCount === 1) {
+                    req.session.cart[productInd].size = size
+                    return res.status(200).json({ productIndex: productInd, productId: validProduct.rows[0].product_id, size: validProduct.rows[0].size })
+                }
+
+                else {
+                    return res.status(404).send("Product not found")
+                }
+            }
+        }
+
+        return res.status(401).send("Invalid index/size")
+    }
+    catch (error) {
+        return res.sendStatus(500)
+    }
+}
+
 const validateOrder = async (req, res, next) => {
     next()
 }
@@ -415,6 +492,17 @@ const validateOrder = async (req, res, next) => {
 const checkout = async (req, res) => {
     if (!req.session)
         return res.status(401).send('UnAuthorized')
+
+
+    if (req.session.hasOwnProperty('user') && !req.session.user.isSignedIn) {
+        return res.status(401).send('Unauthorized');
+    }
+
+    if (!req.session.hasOwnProperty('cart')) {
+        return res.status(401).send('Unauthorized');
+    }
+
+
     else {
         let receipt = req.session.cart.map((item, ind) => delete item.product_id)
         req.session.cart = []
@@ -437,6 +525,7 @@ module.exports = {
     addProductToShoppingCart,
     removeProductFromShoppingCart,
     updateProductQuantityInShoppingCart,
+    updateProductSizeInShoppingCart,
     validateOrder,
     checkout
 }

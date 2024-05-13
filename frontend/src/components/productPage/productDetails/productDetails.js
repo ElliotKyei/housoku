@@ -25,14 +25,27 @@ export default function ProductDetails(props) {
     const imageURL = props.product.image_url
     const categoryName = props.product.category_name
 
-    const productImageStyle = {
+    const mainProductImageStyle = {
         height: props.height + 'px',
         width: props.width + 'px',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPositionY: 'center',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        borderRadius: '5px'
     }
+
+    const productImageStyle = {
+        height: '75px',
+        width: '75px',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPositionY: 'center',
+        overflow: 'hidden',
+        borderRadius: '5px',
+        marginRight: '1em'
+    }
+
 
     // handler function whenever a size is selected
 
@@ -96,21 +109,31 @@ export default function ProductDetails(props) {
        e product information  */
 
         <div className='productDetails'>
-            <img src={imageURL} style={productImageStyle} alt="product" />
+            <div className='productImages'>
+                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
+                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
+                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
+                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
+                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
+                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
+            </div>
+
+
+
+
+            <div className='mainProductImage'> <img src={imageURL} style={mainProductImageStyle} alt="product" /></div>
             <div className='productInfo'>
                 <p className='productName'>{productName}</p>
                 <p className='productCategory'>{categoryName}</p>
                 <p className='productDesc'>{productDescription}</p>
                 <p className='productPrice'>${price} CAD</p>
 
-                {/*    <p className='productColour'>Colour </p>
+                {/*  <p className='productColour'>Colour </p>
                 <div className='btnSelect'><button className='colourBtn'></button></div><br /> */}
 
                 <p className='productSize'>Select size </p>
                 <div>
                     {
-
-
                         size.map(s => {
 
                             sizeClassNameTmp[`${s}Class`] = "sizeBtn"
@@ -119,7 +142,7 @@ export default function ProductDetails(props) {
                                 name={s}
                                 onFocus={selectSize}
                                 value={sizeSelected}>
-                                {s}
+                                {s.toUpperCase()}
                             </button>
                         })
                     }

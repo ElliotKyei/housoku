@@ -1,0 +1,93 @@
+@import '../../../../scss/fonts.scss';
+
+.homeProductContainer {
+    .featured {
+        margin: 0em 3.3em;
+        margin-bottom: 4em;
+    }
+
+    .headerLayer {
+        padding: 0;
+        margin: 0 0 2em 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+
+    .title h4 {
+        padding: 0;
+        margin: 0;
+        font-size: 1.6rem;
+        @include Heading(500)
+    }
+
+    .title p {
+        padding: 0;
+        margin: -.5em 0 0 0;
+        font-size: 0.98rem;
+        @include Heading(500)
+    }
+
+    .scrollProducts {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        margin-left: auto;
+
+    }
+
+    .leftScrollButton {
+        border-radius: 50%;
+        background-color: rgb(231, 231, 231);
+        margin-left: 1em;
+        border: none;
+        text-align: center;
+    }
+
+    .leftScrollButton:hover {
+        cursor: pointer;
+        background-color: rgb(207, 207, 207);
+    }
+
+    .icon {
+        height: 48px;
+        width: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .scrollButtonDisabled,
+    .scrollButtonDisabled:hover {
+        @extend .leftScrollButton;
+        cursor: auto;
+        background-color: rgb(246, 246, 246);
+    }
+
+    .rightScrollButton {
+        @extend .leftScrollButton
+    }
+
+    .productContainerRow {
+        list-style: none;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        column-gap: 1em;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        scroll-snap-type: x mandatory;
+        scrollbar-color: rgb(0, 0, 0), rgb(0, 0, 0);
+        scrollbar-width: thin;
+
+    }
+
+    .item {
+        scroll-snap-align: center;
+    }
+
+}

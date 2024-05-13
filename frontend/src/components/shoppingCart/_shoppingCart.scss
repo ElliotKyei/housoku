@@ -1,3 +1,5 @@
+@import '../../../scss/fonts';
+
 .shoppingCart {
     margin: 3em 5.3em;
     display: flex;
@@ -10,17 +12,17 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-
-        gap: 5em;
+        gap: 2em;
 
 
         .title {
             padding: 0;
             margin: 0;
-            margin-bottom: 2em;
-            font-size: 1.6rem;
+            margin-bottom: 1.2em;
+            font-size: 1.5rem;
             font-weight: 500;
         }
+
 
 
         .bagContainer {
@@ -39,6 +41,10 @@
                 padding-bottom: 1em;
             }
 
+        }
+
+        .summaryContainer * {
+            flex: 0 0 auto;
         }
 
 

@@ -1,6 +1,7 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import TopNavbar from './components/topNavBar/topNavbar.js';
+import TopNavbar from './components/topNavbar/topNavbar.js';
+import BottomNavbar from './components/bottomNavbar/bottomNavbar.js';
 import Navbar from './components/navbar/navbar.js'
 import Home from './components/home/home.js'
 import CreateAccount from './components/createAccount/createAccount.js';
@@ -27,13 +28,14 @@ function App() {
         <ScrollToTop />
         <TopNavbar />
         <Navbar />
+        <BottomNavbar />
         <Blur />
         <Routes>
           <Route exact path='/' Component={Home} />
           <Route path='/apparel/browse-products/:category/:name/:id' Component={ProductPage} />
           <Route path='/sign-in' Component={SignIn} />
           <Route path='/create-account' Component={CreateAccount} />
-          <Route path='/apparel/browse-products/:category' Component={BrowseProducts} />
+          <Route path='/apparel/browse-products/:category?/:subcategory?' Component={BrowseProducts} />
           <Route path='/cart' Component={ShoppingCart} />
         </Routes>
       </BrowserRouter>

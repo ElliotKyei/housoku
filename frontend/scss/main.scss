@@ -16,6 +16,8 @@ code {
         monospace;
 }
 
+
+
 // Fonts
 @import './fonts';
 
@@ -32,7 +34,8 @@ code {
 
 // Home
 @import '../src/components/home/home';
-@import '../src/components/home/homeProduct/homeProduct';
+@import '../src/components/home/homeProductContainer/homeProduct/homeProduct';
+@import '../src/components/home/homeProductContainer/homeProductContainer';
 
 // Navbar
 @import '../src/components/navbar/navbar';
@@ -50,3 +53,6 @@ code {
 
 // topNavBar
 @import '../src/components/topNavBar/topNavbar';
+
+// blurCss
+@import '../src/components/blur/blur';

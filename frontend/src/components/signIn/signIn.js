@@ -217,8 +217,6 @@ export default function SignIn() {
                     other: errorMsg
                 }));
             }
-
-
         }
     }
 

@@ -1,6 +1,11 @@
 @import '../../../scss/fonts';
 
+
+
 .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     $font-stack: Verdana, sans-serif;
     $color: black;
     $background: white;
@@ -10,12 +15,14 @@
     right: 0;
     z-index: 1000;
 
-
     .navTrigger {
-        border: 1px solid rgba(255, 0, 0, 0);
-        left: 0;
-        right: 0;
+
+        // border: 1px solid rgba(255, 0, 0, 0);
+        width: 100%;
+        z-index: 2000;
+        margin-bottom: auto;
     }
+
 
     .nav {
         z-index: 1000;
@@ -29,14 +36,14 @@
         font-family: $font-stack;
         color: $color;
         background-color: $background;
+        transition-property: height;
+        transition-duration: 2s;
+        transition-timing-function: linear;
+        transition-delay: .5s;
 
-
-        padding: 1em 3em;
+        padding: 0em 3em;
+        height: 4em;
         overflow: hidden;
-
-        #tops {
-            //  border: 2px solid blue
-        }
 
         .navbar-brand {
             margin-right: auto;
@@ -107,21 +114,21 @@
             //border: 1px solid rgba(0, 0%, 0, 0.05);
             background-color: rgba(195, 195, 195, 0.1);
             border-radius: 20px;
-            z-index: 3;
+            z-index: 1000;
         }
-
-        #userProfile {
-            margin-right: 2.5em;
-            float: right;
-        }
-
-
-        #shoppingCart {}
 
         #cartCount {
-            font-size: 0.9rem;
-            padding: 0;
-            margin: 0;
+            position: absolute;
+            @extend .roboto-medium;
+            font-size: 0.85rem;
+            top: 1.5em;
+            margin-left: .1em;
+            flex-grow: 0;
+
+        }
+
+        #shoppingCart {
+            z-index: 1000;
         }
 
 
@@ -182,11 +189,15 @@
         }
     }
 
+    .nav * {
+        flex: 0 0 auto;
+    }
+
     .prespacer {
         background-color: white;
         left: 0;
         right: 0;
-        height: 74.4px;
+        height: 4em;
     }
 
 }

@@ -1,4 +1,7 @@
+@use '../../../../scss/fonts' as f;
+
 .productContainer {
+
     display: flex;
     flex-direction: column;
     padding-bottom: 4em; //changed from 1.8 to balance heading images on home page
@@ -13,19 +16,24 @@
         font-size: 1.4em;
 
         p {
-            margin: 0;
             margin-bottom: .3em;
         }
     }
 
     .productName {
-        font-size: 1.2rem;
-        font-weight: 500;
+        font-size: 1.1rem;
+        @include f.ProductFont(400);
+    }
+
+    .categoryName {
+        @extend .productName;
+        color: grey;
+        padding-bottom: 0.4em;
     }
 
     .productPrice {
-        font-weight: 400;
         font-size: 1rem;
+        @include f.ProductFont(400);
     }
 
 }
