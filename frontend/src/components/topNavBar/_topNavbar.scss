@@ -23,7 +23,7 @@
     color: $color;
     background-color: $background;
     height: 100%;
-    padding: .25em;
+    padding: 0.25em 3em;
     overflow: hidden;
 
     .navbar-list {
@@ -35,14 +35,12 @@
 
     ul {
         padding: 0%;
-        margin: 0 3.2em;
+        margin: 0 0;
         list-style: none;
 
     }
 
     li {
-        padding: 0%;
-        margin: 0;
         display: inline-block;
 
     }
@@ -65,14 +63,15 @@
 
     .link,
     .link:visited {
-        margin: 0 1em;
+        padding: 0 0 0 1em;
         text-decoration: none;
         color: $color;
         font-size: $navFontSize;
         @extend .roboto-medium
     }
 
-    #userProfile {
+    #logo {
+        visibility: hidden;
         justify-self: start;
         align-self: center;
         width: 100%;

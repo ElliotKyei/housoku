@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Filter from './filter/filter.js';
 import sanitizeSearchParams from '../../customHooks/sanitizeSearchParams/sanitizeSearchParams.js';
+import { set } from 'lodash';
 
 export default function BrowseProducts() {
     const location = useLocation();
@@ -44,15 +45,14 @@ export default function BrowseProducts() {
         let getProducts = null
         let getSubcategories = null
 
-
-
         const getFilteredProducts = async () => {
             try {
                 const filteredProducts = await axios.get(`http://localhost:8080/api/applyFilters/${JSON.stringify(queryParams)}`, { headers: { "Content-Type": 'application/json' } })
                 if (filteredProducts.status === 200) {
+
                     getProducts = filteredProducts.data.allFilteredProducts
                     getSubcategories = filteredProducts.data.allSubcategories.map((s) => s.subcategory[0].toUpperCase() + s.subcategory.slice(1))
-                    console.log("getProducts / length", getProducts, getProducts.length)
+
 
                     if (getProducts.length === 0)
                         setProducts(prev => null)
@@ -61,8 +61,10 @@ export default function BrowseProducts() {
 
                     if (getSubcategories.length === 0)
                         setSubCategoryOptions(prev => null)
-                    else
+                    else {
+
                         setSubCategoryOptions(prev => getSubcategories)
+                    }
 
 
                     setLoading(false)
@@ -79,8 +81,13 @@ export default function BrowseProducts() {
     }, [queryParams])
 
 
+    const toggleFilter = (e) => {
+        setFilterComponentEnabled(!filterComponentEnabled)
+    }
+
+
     const imageHeight = 400;
-    const imageWidth = 360;
+    const imageWidth = 375;
     let productResults = <></>
 
     // placeholder for products until fetch is completed
@@ -100,28 +107,28 @@ export default function BrowseProducts() {
     // if products are available, render
 
     if (products) {
-        console.log(products)
         let imagePos = 0
         productResults = products.map(prod => {
             imagePos++;
             prod.price = parseFloat(prod.price)
-            return <Product height={imageHeight} width={imageWidth} product={prod} key={prod.product_id} imagePosition={imagePos} />
+
+            return <Product height={imageHeight} width={imageWidth} product={prod} key={prod.product_id} imagePosition={imagePos} isFilterEnabled={filterComponentEnabled} />
         })
     }
     else {
-        productResults = <><p>No results found</p></>
+        productResults = <><p className='mainViewMsg'>No results found</p></>
     }
 
     return (
         <>
             <div className='browseProducts'>
                 <div className='topLayer'>
-                    <div className='subheading'><span className='wallBreadCrumbs'>Men's Apparel</span></div>
+                    {/*                     <div className='subheading'><span className='wallBreadCrumbs'>Men's Apparel</span></div> */}
                     <div className='wallHeaderContent'>
                         <div className='heading'><h4 className='wallHeader'>Browse Products</h4></div>
                         <div className='toggleHideFilter'>
-                            <button className='toggleHideFilterBtn'>
-                                <span>Hide Filters</span>
+                            <button className='toggleHideFilterBtn' onClick={toggleFilter}>
+                                <span>{filterComponentEnabled ? 'Hide Filters' : 'Show Filters'}</span>
                                 <img id='filterIcon' src='http://localhost:8080/housoku-images/icons/filter.png' alt='filter image by Rahul Kaklotar (falticon)' />
                             </button>
                         </div>
@@ -129,14 +136,22 @@ export default function BrowseProducts() {
                 </div>
 
                 <div className='mainView'>
-                    <div className='filters'>
-                        {!loading && filterComponentEnabled ? <Filter filterCategory={category} filterSubcategories={subcategoryOptions} /> : <></>}
-                    </div>
+                    {!loading && filterComponentEnabled ?
+                        (<div className='filters'>
+                            <Filter filterCategory={category} filterSubcategories={subcategoryOptions} />
+                        </div>)
+
+                        :
+
+                        <></>}
+
                     <div className='products'>
 
                         {loading ? productPlaceholders : productResults}
+                        {/* {!loading && productResults} */}
 
                     </div>
+
                 </div>
             </div >
         </>

@@ -20,6 +20,7 @@ export default function ShoppingCartProduct(props) {
     // Get the product price from the server, and store it in productPrice useState  
 
     useEffect(() => {
+
         if (sanitizedProductId(productId)) {
             const getProduct = async () => {
                 try {
@@ -46,7 +47,7 @@ export default function ShoppingCartProduct(props) {
             navigate('/')
         }
 
-    }, [])
+    }, [props])
 
 
 
@@ -117,6 +118,7 @@ export default function ShoppingCartProduct(props) {
 
 
                 <div className='productDetails'>
+                    {productPrice > 0 ? <p className='productPriceTop'>${productPrice} CAD</p> : <p className='productPrice'>-</p>}
                     <a href={`/apparel/browse-products/${categoryName.toLowerCase()}/${slugifyProductName}/${productId}`}><p className='productName'>{productName}</p></a>
                     <p className='productCategory'>{categoryName}</p>
                     {/*<span className='productColour'>Colour Black</span> */}
@@ -126,9 +128,9 @@ export default function ShoppingCartProduct(props) {
                                 {availableProductSizes &&
                                     availableProductSizes.map(s => {
                                         if (size === s)
-                                            return <option value={s} selected>{s}</option>
+                                            return <option value={s} selected>{s.toUpperCase()}</option>
                                         else
-                                            return <option value={s}>{s}</option>
+                                            return <option value={s}>{s.toUpperCase()}</option>
 
                                     })}
                             </select>

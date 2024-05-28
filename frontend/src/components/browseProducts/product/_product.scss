@@ -4,14 +4,31 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     padding-bottom: 4em; //changed from 1.8 to balance heading images on home page
+    padding: 0 0.5em 0 0.5em;
+    height: fit-content;
 
 
     @mixin productInfoSpacing ($spacing: 0) {
         margin-top: $spacing;
     }
 
+
+    .productImg {
+        height: 100%;
+        max-height: 100%;
+    }
+
+    .productImgContainer {
+        background-color: rgb(246, 246, 246);
+        aspect-ratio: 1;
+        min-height: 100%;
+    }
+
     .productInfo {
+        margin: auto 0;
+        justify-self: flex-end;
         margin-top: 0.5em;
         font-size: 1.4em;
 
@@ -29,6 +46,7 @@
         @extend .productName;
         color: grey;
         padding-bottom: 0.4em;
+
     }
 
     .productPrice {
@@ -36,4 +54,8 @@
         @include f.ProductFont(400);
     }
 
+}
+
+.maxWidth {
+    @extend .productContainer;
 }

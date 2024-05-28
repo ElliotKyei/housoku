@@ -104,27 +104,27 @@ export default function Home() {
                             <p>Men's Apparel</p>
                         </div>
                         <div className="heroLink">
-                            <a href='/apparel/browse-products/tops'><button className="heroBtn">Shop</button></a>
+                            <a href='/apparel/browse-products/tops' style={{ textDecoration: 'none' }}><button className="heroBtn">Shop</button></a>
                         </div>
                     </div>
                 </div>
 
                 {/*Featured Section*/}
                 <div id='6ebfefb9-88eb-437d-963f-2196806aed58'>
-                    {<HomeProductContainer products={featuredProducts} title="Latest & Greatest" />}
+                    {<HomeProductContainer products={featuredProducts} title="Latest & Greatest" key='6ebfefb9-88eb-437d-963f-2196806aed58' />}
                 </div>
 
 
                 {/*Trending Section*/}
                 <div id='0cc5404d-8a84-4478-968a-8b5f90ea6ea6'>
-                    {<HomeProductContainer products={trendingProducts} title="Trending This Week" />}
+                    {<HomeProductContainer products={trendingProducts} title="Trending This Week" key='0cc5404d-8a84-4478-968a-8b5f90ea6ea6' />}
                 </div>
 
 
                 {/*Heading Section*/}
 
                 <div id='2259605a-551f-4d56-a56d-c967661b379e'>
-                    {<HomeProductContainer products={headingProducts} title="Heading" />}
+                    {<HomeProductContainer products={headingProducts} title="Heading" key='2259605a-551f-4d56-a56d-c967661b379e' />}
                 </div>
 
 

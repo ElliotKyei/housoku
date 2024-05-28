@@ -204,7 +204,6 @@ const applyFilters = async (req, res) => {
 
         let allFilteredProducts = []
         let allSubcategories = []
-        console.log(query)
 
         try {
             const filteredProducts = await db.query(query, params)

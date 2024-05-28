@@ -63,7 +63,7 @@
         .navbar-list {
             display: flex;
             justify-content: center;
-            margin: auto;
+            margin: 0 auto;
         }
 
 
@@ -89,7 +89,7 @@
         .link,
         .link:visited {
             position: relative;
-            display: inline-block;
+            display: none;
             padding: 0 1.75em;
             text-decoration: none;
             color: $color;
@@ -107,11 +107,11 @@
             text-wrap: nowrap;
             color: rgb(179, 179, 179);
             position: relative;
+            display: none;
             text-align: center;
             background-color: white;
-            padding: .7em 5em;
+            padding: .7em 4em;
             margin-right: 2em;
-            //border: 1px solid rgba(0, 0%, 0, 0.05);
             background-color: rgba(195, 195, 195, 0.1);
             border-radius: 20px;
             z-index: 1000;
@@ -128,6 +128,7 @@
         }
 
         #shoppingCart {
+            margin-right: 0.65em;
             z-index: 1000;
         }
 
@@ -146,7 +147,6 @@
             padding: 4em 0em 5em 0em;
             column-gap: 6em;
             z-index: 2;
-
         }
 
         .dropDownMenu li {
@@ -200,4 +200,26 @@
         height: 4em;
     }
 
+}
+
+@media (min-width: 475px) {
+    .navbar .nav {
+
+        .searchbar {
+            display: block;
+            visibility: hidden;
+        }
+
+    }
+}
+
+@media (min-width: 960px) {
+    .navbar .nav {
+
+        .link,
+        .link:visited {
+            display: inline-block;
+        }
+
+    }
 }

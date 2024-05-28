@@ -27,6 +27,7 @@
 
     .announcement {
         @include f.Heading(500);
+        text-align: center;
     }
 
 }

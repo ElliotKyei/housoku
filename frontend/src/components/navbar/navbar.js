@@ -2,7 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './_navbar.scss'
 import { setBlur } from '../../reducers/blur/blurSlice';
+import { dbGetShoppingCart } from '../../reducers/shoppingCart/shoppingCartSlice';
 const shoppingCart = '/housoku-images/shopping-bag.png'
+
 
 export default function Navbar() {
     const navbarContainerRef = useRef(null)
@@ -15,7 +17,16 @@ export default function Navbar() {
     const cartCount = useSelector(state => state.shoppingCart.shoppingCartCount);
 
     useEffect(() => {
-        setLoading(prev => false)
+        const getShoppingCart = async () => {
+            try {
+                await dispatch(dbGetShoppingCart())
+                setLoading(prev => false)
+            }
+            catch (error) {
+                console.log(error.message)
+            }
+        }
+        getShoppingCart()
     }, [])
 
     useEffect(() => {
@@ -43,13 +54,12 @@ export default function Navbar() {
                 else if (navTriggerRef.current.getBoundingClientRect().top < 0) {
                     navbarRef.current.style.position = 'fixed'
                     navbarRef.current.style.top = 0
-                    //navbarRef.current.style.transform = 'translateY(60px)'
 
                     // Make navbar disappear only if: 1. User has scrolled below the navbar Trigger. 2. There is no drop down menu active. 3. User is scrolling down  
 
                     if (!isDropDownActive && prevScrollPosition < currentScrollPos) {
                         navbarRef.current.style.display = 'none'
-                        //navbarRef.current.style.transform = 'translateY(-60px)'
+
                     }
 
                 }
@@ -106,27 +116,27 @@ export default function Navbar() {
                                             <div className='dropDownMenu' id='topsDropDownMenu'>
                                                 <div className='dropDownColumn'>
                                                     <ul>
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Tops</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>T-Shirts</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Sweaters</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Dress Shirts</a></li>
+                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>All Tops</a></li>
+                                                        <li className='dropDownLink'><a href='/apparel/browse-products/tops/t-shirt'>T-Shirts</a></li>
+                                                        <li className='dropDownLink'><a href='/apparel/browse-products/tops/sweater'>Sweaters</a></li>
+                                                        <li className='dropDownLink'><a href='/apparel/browse-products/tops/t-shirt'>Dress Shirts</a></li>
                                                     </ul>
                                                 </div>
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Tops</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>T-Shirts</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Sweaters</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Dress Shirts</a></li>
+                                                        <li className='dropDownHeader'>Placeholder Title</li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
                                                     </ul>
                                                 </div>
 
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Tops</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>T-Shirts</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Sweaters</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Dress Shirts</a></li>
+                                                        <li className='dropDownHeader'>Placeholder Title</li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -139,27 +149,27 @@ export default function Navbar() {
                                             <div className='dropDownMenu' id='pantsDropDownMenu'>
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Pants</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>Sweats</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Jeans</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Cargo</a></li>
+                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/pants'>Pants</a></li>
+                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants/sweats'>Sweats</a></li>
+                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants/jean'>Jeans</a></li>
+                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants/cargo'>Cargo</a></li>
                                                     </ul>
                                                 </div>
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Pants</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>Sweats</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Jeans</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Cargo</a></li>
+                                                        <li className='dropDownHeader'>Placeholder Title</li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
                                                     </ul>
                                                 </div>
 
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Pants</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>Sweats</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Jeans</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Cargo</a></li>
+                                                        <li className='dropDownHeader'>Placeholder Title</li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -172,24 +182,26 @@ export default function Navbar() {
                                             <div className='dropDownMenu' id='shoesDropDownMenu'>
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Shoes</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>Sneakers</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Combat Boots</a></li>
+                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/shoes'>Shoes</a></li>
+                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes/sneaker'>Sneakers</a></li>
+                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes/combat-boots'>Combat Boots</a></li>
                                                     </ul>
                                                 </div>
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Shoes</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>Sneakers</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Combat Boots</a></li>
+                                                        <li className='dropDownHeader'>Placeholder Title</li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
                                                     </ul>
                                                 </div>
 
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Shoes</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>Sneakers</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Combat Boots</a></li>
+                                                        <li className='dropDownHeader'>Placeholder Title</li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -203,24 +215,26 @@ export default function Navbar() {
                                             <div className='dropDownMenu' id='accessoriesDropDownMenu' >
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Accessories</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>Sneakers</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Combat Boots</a></li>
+                                                        <li className='dropDownHeader'><a>Accessories</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
                                                     </ul>
                                                 </div>
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Accessories</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>Sneakers</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Combat Boots</a></li>
+                                                        <li className='dropDownHeader'>Placeholder Title</li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
                                                     </ul>
                                                 </div>
 
                                                 <div className='dropDownColumn'>
                                                     <ul >
-                                                        <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Accessories</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/pants'>Sneakers</a></li>
-                                                        <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Combat Boots</a></li>
+                                                        <li className='dropDownHeader'>Placeholder Title</li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
+                                                        <li className='dropDownLink'><a>Placeholder</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -236,18 +250,11 @@ export default function Navbar() {
                                     </div>
                                 </div>
 
-                                {/* 4th element in flexbox row: searchbar  */}
-
-                                {/*    {isAuthenticated && <p>Hello, User!</p>}
-                <div id='userProfile'>
-                    <a href='/sign-in'><img src={userProfile} alt='' height='25px' /></a>
-                </div> */}
-
                                 {/* 5th element in flexbox row: shopping cart  */}
 
                                 <div id='shoppingCart'>
-                                    <a href='/cart'><img src={shoppingCart} alt='Flaticon' height='28px' />
-                                        {cartCount > 0 ? <span id='cartCount'>{cartCount}</span> : <span id='cartCount' style={{ color: 'white' }}>99</span>}
+                                    <a href='/cart'><img src={shoppingCart} alt='Flaticon' height='26px' />
+                                        {cartCount > 0 && !loading ? <span id='cartCount'>{cartCount}</span> : <span id='cartCount' style={{ color: 'white' }}>99</span>}
                                     </a>
                                 </div>
 
@@ -255,36 +262,6 @@ export default function Navbar() {
 
 
                             <div className='prespacer'></div>
-
-                            {/* <div className='dropDownMenu' id='topsDropDownMenu'>
-                            <div className='dropDownColumn'>
-                                <ul >
-                                    <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Tops</a></li>
-                                    <li className='dropDownLink'><a href='/apparel/browse-products/pants'>T-Shirts</a></li>
-                                    <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Sweaters</a></li>
-                                    <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Dress Shirts</a></li>
-                                </ul>
-                            </div>
-                            <div className='dropDownColumn'>
-                                <ul >
-                                    <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Tops</a></li>
-                                    <li className='dropDownLink'><a href='/apparel/browse-products/pants'>T-Shirts</a></li>
-                                    <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Sweaters</a></li>
-                                    <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Dress Shirts</a></li>
-                                </ul>
-                            </div>
-
-                            <div className='dropDownColumn'>
-                                <ul >
-                                    <li className='dropDownHeader'><a href='/apparel/browse-products/tops'>Tops</a></li>
-                                    <li className='dropDownLink'><a href='/apparel/browse-products/pants'>T-Shirts</a></li>
-                                    <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Sweaters</a></li>
-                                    <li className='dropDownLink'><a href='/apparel/browse-products/shoes'>Dress Shirts</a></li>
-                                </ul>
-                            </div>
-                        </div> */}
-
-
 
                         </div>
                     </>

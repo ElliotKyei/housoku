@@ -15,12 +15,15 @@ export const dbGetShoppingCart = () => async (dispatch) => {
         // calculate current subtotal
 
         let subTotal = 0;
+        let count = 0;
         productDetails.forEach((item, ind) => {
             subTotal += (Number(item.price) * item.quantity)
+            count += 1
         })
 
         // update state
         dispatch(setSubTotal(subTotal))
+        dispatch(setShoppingCartCount(count))
         dispatch(getShoppingCart(productDetails))
 
     }
@@ -124,6 +127,10 @@ const shoppingCartSlice = createSlice({
             state.shoppingCartCount = action.payload.length
         },
 
+        setShoppingCartCount: (state, action) => {
+            state.shoppingCartCount = action.payload
+        },
+
         setSubTotal: (state, action) => {
             state.subTotal = (action.payload).toFixed(2)
         },
@@ -167,6 +174,6 @@ const shoppingCartSlice = createSlice({
     }
 })
 
-export const { getShoppingCart, setSubTotal, addProduct, removeProduct, increaseQuantity, decreaseQuantity, updateProductQuantity } = shoppingCartSlice.actions
+export const { getShoppingCart, setShoppingCartCount, setSubTotal, addProduct, removeProduct, increaseQuantity, decreaseQuantity, updateProductQuantity } = shoppingCartSlice.actions
 export default shoppingCartSlice.reducer
 

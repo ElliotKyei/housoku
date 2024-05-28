@@ -5,6 +5,7 @@
     flex-direction: column;
     padding-bottom: 1.3em; //changed from 1.8 to balance heading images on home page
 
+
     a {
         color: black;
         text-decoration: none;
@@ -22,6 +23,16 @@
 
     @mixin productInfoSpacing ($spacing: 0) {
         margin-top: $spacing;
+    }
+
+    .productImgContainer {
+        background-color: rgb(246, 246, 246);
+    }
+
+    .productImg {
+        max-width: 460px;
+        max-height: 460px;
+        flex: 1 1 0;
     }
 
     .productInfo {

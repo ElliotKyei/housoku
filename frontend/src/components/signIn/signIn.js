@@ -223,10 +223,10 @@ export default function SignIn() {
     return (
         <>
             <div className='signIn'>
-                <div className='heading'>
+                <div className='item heading'>
                     <h4>Sign In</h4>
                 </div>
-                <div className='signIn-form'>
+                <div className='item signIn-form'>
                     <form method='POST' target='' onSubmit={handleSubmit} noValidate>
 
                         <label>Email</label>

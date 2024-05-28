@@ -230,10 +230,10 @@ export default function CreateAccount() {
     return (
         <>
             <div className='createAccount'>
-                <div className='heading'>
+                <div className='item heading'>
                     <h4>Create Account</h4>
                 </div>
-                <div className='createAccount-form'>
+                <div className='item createAccount-form'>
                     <form method='POST' target='' noValidate onSubmit={handleSubmit}>
 
                         <label>Email</label>

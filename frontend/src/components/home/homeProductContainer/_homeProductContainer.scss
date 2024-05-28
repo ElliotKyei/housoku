@@ -3,7 +3,7 @@
 .homeProductContainer {
     .featured {
         margin: 0em 3.3em;
-        margin-bottom: 4em;
+        margin-bottom: 2em;
     }
 
     .headerLayer {
@@ -19,7 +19,7 @@
     .title h4 {
         padding: 0;
         margin: 0;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         @include Heading(500)
     }
 
@@ -27,6 +27,7 @@
         padding: 0;
         margin: -.5em 0 0 0;
         font-size: 0.98rem;
+        text-align: center;
         @include Heading(500)
     }
 
@@ -39,6 +40,7 @@
     }
 
     .leftScrollButton {
+        visibility: hidden;
         border-radius: 50%;
         background-color: rgb(231, 231, 231);
         margin-left: 1em;
@@ -62,6 +64,7 @@
     .scrollButtonDisabled,
     .scrollButtonDisabled:hover {
         @extend .leftScrollButton;
+        visibility: hidden;
         cursor: auto;
         background-color: rgb(246, 246, 246);
     }
@@ -90,4 +93,20 @@
         scroll-snap-align: center;
     }
 
+    .sliderEnd {
+
+        margin-left: -1em;
+    }
+
+}
+
+@media (min-width: 600px) {
+    .homeProductContainer {
+
+        .leftScrollButton,
+        .rightScrollButton,
+        .scrollButtonDisabled {
+            visibility: visible;
+        }
+    }
 }

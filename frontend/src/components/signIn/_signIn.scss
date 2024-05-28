@@ -26,10 +26,15 @@
     justify-content: center;
     margin-top: 3em;
 
+    .heading {
+        flex: 1 1 0;
+    }
+
     .signIn-form {
-        width: min-content;
+        width: 441px;
         text-align: center;
         padding-bottom: 3em;
+        flex: 1 1 0;
     }
 
     h4 {
@@ -49,12 +54,13 @@
         outline: none;
         text-decoration: none;
         padding: .6em 0em;
+        width: auto;
         border: 1px solid $borderColour;
         border-radius: 1px;
         margin-bottom: $inputSpaceUnder;
         font-size: $inputFontSize;
         font-weight: $inputFontWeight;
-
+        width: 100%;
     }
 
     input:focus {
@@ -102,5 +108,17 @@
         margin-top: -1em;
         text-align: start;
         color: $errorTextColour;
+    }
+}
+
+@media (max-width: 470px) {
+    .signIn {
+        .heading {
+            text-align: center;
+        }
+
+        .item {
+            width: 90%;
+        }
     }
 }

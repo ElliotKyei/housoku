@@ -18,21 +18,31 @@ export default function Filter(props) {
     const [subcategoryFilter, setSubCategoryFilter] = useState([])
     const [priceFilter, setPriceFilter] = useState({
         allFilters: [[0, 30], [30, 50], [50, 70]],
-        price: [],
-        queryString: ""
+        price: []
     })
     const [colorFilter, setColorFilter] = useState({
         allFilters: ["black", "blue", "red", "grey", "white"],
-        color: [],
-        queryString: ""
+        color: []
     })
     const [sizeFilter, setSizeFilter] = useState({
         allFilters: ["s", "m", "l"],
-        size: [],
-        queryString: ""
+        size: []
     })
 
     let currentCategory = props.filterCategory.toLowerCase()
+    const ignoreSubcategoryHyphen = [
+        "t-shirt"
+    ]
+    let subcategoryList = props.filterSubcategories.map(sc => {
+        if (ignoreSubcategoryHyphen.includes(sc.toLowerCase())) {
+            return sc
+        }
+        else {
+            return sc.replace('-', ' ')
+        }
+
+    })
+
 
     useEffect(() => {
         let searchParams = new URLSearchParams(location.search)
@@ -48,69 +58,55 @@ export default function Filter(props) {
 
     useEffect(() => {
 
-        let searchParams = new URLSearchParams(location.search)
+        let searchParams = new URLSearchParams()
         let activeFiltersCount = 0;
-        for (const activeFilter of activeFilters) {
 
+        for (const activeFilter of activeFilters) {
             if (activeFilter === "price") {
-                searchParams.delete('pmin')
-                searchParams.delete('pmax')
+
                 if (priceFilter.price.length !== 0) {
                     const pmin = Math.min(...priceFilter.price.flat())
                     const pmax = Math.max(...priceFilter.price.flat())
                     searchParams.append('pmin', pmin)
                     searchParams.append('pmax', pmax)
+                    activeFiltersCount++
                 }
                 else {
-                    setPriceFilter(prev => ({ ...prev, queryString: "" }))
-                    let activeFilterInd = activeFilters.findIndex((f) => JSON.stringify(f) === "price")
-                    let activeFilterTmp = [...activeFilters]
-                    activeFilterTmp.splice(activeFilterInd, 1)
-                    setActiveFilters(prev => [...activeFilterTmp])
+                    let activeFilterTmp = activeFilters.filter(f => f !== "price")
+                    setActiveFilters(prev => activeFilterTmp)
                 }
             }
 
             if (activeFilter === "color") {
-
-                searchParams.delete("filterByColor")
                 if (colorFilter.color.length !== 0) {
                     for (const c of colorFilter.color) {
                         searchParams.append('filterByColor', c)
                     }
+                    activeFiltersCount++
                 }
 
                 else {
-                    setColorFilter(prev => ({ ...prev, queryString: "" }))
-                    let activeFilterInd = activeFilters.findIndex((f) => JSON.stringify(f) === "color")
-                    let activeFilterTmp = [...activeFilters]
-                    activeFilterTmp.splice(activeFilterInd, 1)
-                    setActiveFilters(prev => [...activeFilterTmp])
+                    let activeFilterTmp = activeFilters.filter(f => f !== "color")
+                    setActiveFilters(prev => activeFilterTmp)
                 }
             }
 
             if (activeFilter === "size") {
 
-                searchParams.delete("filterBySize")
                 if (sizeFilter.size.length !== 0) {
                     for (const s of sizeFilter.size) {
                         searchParams.append('filterBySize', s)
                     }
+                    activeFiltersCount++
                 }
-
                 else {
-                    setSizeFilter(prev => ({ ...prev, queryString: "" }))
-                    let activeFilterInd = activeFilters.findIndex((f) => JSON.stringify(f) === "size")
-                    let activeFilterTmp = [...activeFilters]
-                    activeFilterTmp.splice(activeFilterInd, 1)
-                    setActiveFilters(prev => [...activeFilterTmp])
+                    let activeFilterTmp = activeFilters.filter(f => f !== "size")
+                    setActiveFilters(prev => activeFilterTmp)
                 }
             }
-
-            activeFiltersCount++
         }
 
         setActiveFiltersCount(activeFiltersCount)
-
         navigate({
             search: searchParams.toString()
         })
@@ -122,28 +118,27 @@ export default function Filter(props) {
             <div className='filter'>
                 <div className='subcategoryFilter'>
                     {
-                        props.filterSubcategories.map((s, ind) => (<p onClick={() => { setSubCategoryFilter(prev => s); navigate({ pathname: `/apparel/browse-products/${currentCategory}/${s.toLowerCase()}`, search: location.search }) }} key={ind}>{s}</p >))
+                        props.filterSubcategories.map((s, ind) => (<p onClick={() => { setSubCategoryFilter(prev => s); navigate({ pathname: `/apparel/browse-products/${currentCategory}/${s.toLowerCase()}`, search: location.search }) }} key={ind}>
+
+                            {ignoreSubcategoryHyphen.includes(s.toLowerCase()) ? s : s.replaceAll('-', ' ')}
+
+                        </p >))
                     }
                 </div>
 
                 <hr className='filterBorder' />
 
-                <FilterContainer heading='Shop By Price' filterType='price' filterOptions={priceFilter.allFilters}
+                <FilterContainer heading='Price' filterType='price' filterOptions={priceFilter.allFilters}
                     addFilter={(filter) => {
                         setPriceFilter(prev => ({ ...prev, price: [...(new Set([...prev.price, filter]))] }))
 
                         if (!activeFilters.includes("price"))
-                            setActiveFilters(prev => [...activeFilters, "price"])
-                    }
-                    }
+                            setActiveFilters(prev => [...(new Set([...prev, "price"]))])
+                    }}
 
                     removeFilter={(filter) => {
-                        let filterInd = priceFilter.price.findIndex((f) => JSON.stringify(f) === JSON.stringify(filter))
 
-                        if (filterInd === -1) return
-
-                        let priceFilterTmp = [...priceFilter.price]
-                        priceFilterTmp.splice(filterInd, 1)
+                        let priceFilterTmp = priceFilter.price.filter(f => JSON.stringify(f) !== JSON.stringify(filter))
                         setPriceFilter(prev => ({ ...prev, price: priceFilterTmp }))
                     }}
                 />
@@ -157,18 +152,12 @@ export default function Filter(props) {
                         setColorFilter(prev => ({ ...prev, color: [...(new Set([...prev.color, filter.toLowerCase()]))] }))
 
                         if (!activeFilters.includes("color"))
-                            setActiveFilters(prev => [...activeFilters, "color"])
+                            setActiveFilters(prev => [...(new Set([...prev, "color"]))])
                     }
                     }
 
                     removeFilter={(filter) => {
-
-                        let filterInd = colorFilter.color.findIndex((f) => { console.log("filer /type is ", filter, typeof filter, " f is ", f, typeof f); return f === filter })
-
-                        if (filterInd === -1) return
-
-                        let colorFilterTmp = [...colorFilter.color]
-                        colorFilterTmp.splice(filterInd, 1)
+                        let colorFilterTmp = colorFilter.color.filter(f => JSON.stringify(f) !== JSON.stringify(filter))
                         setColorFilter(prev => ({ ...prev, color: colorFilterTmp }))
                     }}
                 />
@@ -182,17 +171,13 @@ export default function Filter(props) {
                         setSizeFilter(prev => ({ ...prev, size: [...(new Set([...prev.size, filter.toLowerCase()]))] }))
 
                         if (!activeFilters.includes("size"))
-                            setActiveFilters(prev => [...activeFilters, "size"])
+                            setActiveFilters(prev => [...(new Set([...prev, "size"]))])
                     }
                     }
 
                     removeFilter={(filter) => {
-                        let filterInd = sizeFilter.size.findIndex((f) => JSON.stringify(f) === JSON.stringify(filter))
 
-                        if (filterInd === -1) return
-
-                        let sizeFilterTmp = [...sizeFilter.size]
-                        sizeFilterTmp.splice(filterInd, 1)
+                        let sizeFilterTmp = sizeFilter.size.filter(f => JSON.stringify(f) !== JSON.stringify(filter))
                         setSizeFilter(prev => ({ ...prev, size: sizeFilterTmp }))
                     }}
                 />

@@ -1,11 +1,12 @@
 @import '../../../scss/fonts';
 
 footer {
+    width: auto;
     background-color: black;
     overflow: hidden;
-    padding: 0em 5.3em;
-
+    padding: 0em 3.5em;
     margin: 3em 0 0 0;
+
 
     img {
         width: 30px;
@@ -27,6 +28,8 @@ footer {
         flex-wrap: wrap;
         padding: 3.3em 0;
         margin-top: -.5em;
+        flex: 1 1 0;
+        width: auto;
 
         .brandName {
             color: white;
@@ -38,8 +41,8 @@ footer {
             width: 100%;
             display: inline-flex;
             flex-direction: row;
-            flex-wrap: wrap;
-            text-align: center;
+            flex-wrap: nowrap;
+            text-align: left;
             justify-content: center;
             padding: 2em 0;
             column-gap: 5em;
@@ -58,11 +61,13 @@ footer {
 
             h4 {
                 color: white;
-                @include Heading(500);
+                @include Heading(400);
+                margin-bottom: 2.5em;
             }
 
             a,
             a:visited {
+                font-size: 0.9rem;
                 text-decoration: none;
                 color: gray;
                 @include Heading(400);
@@ -72,6 +77,7 @@ footer {
 
 
         .socialMedia {
+            white-space: nowrap;
 
 
             ul {
@@ -93,4 +99,24 @@ footer {
         }
     }
 
+}
+
+@media (max-width: 464px) {
+    footer {
+        .footerContainer {
+
+            .brandName {
+                margin: 0 auto;
+
+            }
+
+            .footerLinks {
+                transform: scale(0.9);
+            }
+
+            .socialMedia {
+                margin: 0 auto;
+            }
+        }
+    }
 }

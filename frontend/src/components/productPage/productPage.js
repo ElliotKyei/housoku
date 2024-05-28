@@ -48,7 +48,7 @@ export default function ProductPage() {
     return (
         <>
             <div className='productPage'>
-                <div>
+                <div className='productDetailsContainer'>
                     {renderProduct}
                 </div>
             </div>

@@ -29,24 +29,24 @@ export default function Footer() {
                     <div className='footerLinks'>
                         <div className="column">
                             <ul>
-                                <li><a href='/'><h4>Tops</h4></a></li>
-                                <li><a href='/'>T-Shirts</a></li>
-                                <li><a href='/'>Sweaters</a></li>
+                                <li><a href='/apparel/browse-products/tops'><h4>Tops</h4></a></li>
+                                <li><a href='/apparel/browse-products/tops/t-shirt'>T-Shirts</a></li>
+                                <li><a href='/apparel/browse-products/tops/sweater'>Sweaters</a></li>
                             </ul>
                         </div>
                         <div className="column">
                             <ul>
-                                <li><a href='/'><h4>Pants</h4></a></li>
-                                <li><a href='/'>Sweats</a></li>
-                                <li><a href='/'>Jeans</a></li>
-                                <li><a href='/'>Cargo</a></li>
+                                <li><a href='/apparel/browse-products/pants'><h4>Pants</h4></a></li>
+                                <li><a href='/apparel/browse-products/pants/sweats'>Sweats</a></li>
+                                <li><a href='/apparel/browse-products/pants/jean'>Jeans</a></li>
+                                <li><a href='/apparel/browse-products/pants/cargo'>Cargo</a></li>
                             </ul>
                         </div>
                         <div className="column">
                             <ul>
-                                <li><a href='/'><h4>Shoes</h4></a></li>
-                                <li><a href='/'>Sneakers</a></li>
-                                <li><a href='/'>Combat Boots</a></li>
+                                <li><a href='/apparel/browse-products/shoes'><h4>Shoes</h4></a></li>
+                                <li><a href='/apparel/browse-products/shoes/sneaker'>Sneakers</a></li>
+                                <li><a href='/apparel/browse-products/shoes/combat-boots'>Combat Boots</a></li>
                             </ul>
                         </div>
                     </div>

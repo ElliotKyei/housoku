@@ -23,7 +23,7 @@ export default function TopNavbar() {
             <div className='navbar-list' >
                 <ul>
                     <span id="welcomeMsg">Welcome</span>
-                    <li>|</li>
+                    <li style={{ marginLeft: '1em' }}>|</li>
                     <a className='link' href='/sign-in'>Sign Out</a>
                 </ul>
             </div>
@@ -37,7 +37,7 @@ export default function TopNavbar() {
                     <ul >
                         {/* {isAuthenticated && <li> <span>Hello, User!</span></li>} */}
                         <li><a className='link' href='/create-account'>Create Account</a></li>
-                        <li>|</li>
+                        <li style={{ marginLeft: '1em' }}>|</li>
                         <li><a className='link' href='/sign-in'>Sign in</a></li>
                     </ul>
                 </div>
@@ -50,8 +50,8 @@ export default function TopNavbar() {
         <>
             <nav className='topNavbar'>
 
-                <div id='userProfile'>
-                    <a href='/sign-in'><img src={userProfile} alt='' height='25px' /></a>
+                <div id='logo'>
+                    <a href='/'><img src={userProfile} alt='brandLogo' height='25px' /></a>
                 </div>
                 {loading ? (<></>) : (
                     <>

@@ -7,32 +7,85 @@
     $errorTextColour: rgb(219, 0, 0);
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     padding-bottom: 1.8em;
-    margin-right: 4em;
+    margin: 0 0;
+    flex: 0 0 0;
 
-    .productImage {
-        margin-bottom: .5em;
+
+    .productImages {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        column-gap: 5px;
+        order: 3;
+        margin-top: 0.25em;
     }
 
-    .productImage:hover {
-        cursor: pointer;
+    .productImage img {
+        width: 125px;
+        height: 125px;
+    }
+
+
+    .imageEffects {
+        //box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    #image-2 {
+        filter: hue-rotate(150deg)
+    }
+
+    #image-3 {
+        filter: hue-rotate(250deg)
+    }
+
+    #image-4 {
+        filter: hue-rotate(40deg)
+    }
+
+    #image-5 {
+        filter: hue-rotate(450deg)
+    }
+
+    #image-6 {
+        filter: hue-rotate(550deg)
+    }
+
+    .selectedImage {
+        border: 2px solid black;
     }
 
     @mixin productInfoSpacing ($spacing: 0) {
         margin-top: $spacing;
     }
 
+    .productImgContainer {
+        order: 2
+    }
+
+    .mainProductImage {
+        height: 550px;
+        width: 100%;
+    }
+
     .productInfo {
+        display: none;
+    }
+
+    .productInfoTop {
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
         text-align: left;
         margin: 0;
-        padding: 0 0 0 5em;
-
+        padding: 1em 1em;
         font-size: 1.4em;
-        width: 19em;
+        order: 1;
 
         p {
             margin: 0;
@@ -40,10 +93,16 @@
         }
     }
 
+    .productInfoBottom {
+        flex: 1;
+        @extend .productInfoTop;
+        order: 4;
+    }
+
     .productName {
         font-size: 1.5rem;
         font-weight: 500;
-        @include ProductFont(400)
+        @include ProductFont(400);
     }
 
     .productCategory {
@@ -53,10 +112,12 @@
     }
 
     .productDesc {
+        text-align: left;
         font-size: 1.1rem;
         color: gray;
         padding-bottom: 1em;
-        @include ProductFont(400)
+        @include ProductFont(400);
+        padding: 0 0 0.5em 0;
     }
 
 
@@ -91,10 +152,17 @@
 
 
     .productSize {
-        margin: auto;
-        padding-bottom: 1em;
+        padding: 0.5em 0 1em 0;
         font-size: 1.1rem;
         @include ProductFont(400)
+    }
+
+    .sizeBtnContainer {
+        margin-bottom: 1em;
+        display: grid;
+        grid-template-rows: auto auto auto auto auto auto;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
     }
 
     .sizeBtn {
@@ -107,7 +175,7 @@
         text-align: center;
         font-size: 1rem;
         @include Heading(400);
-        width: 6em;
+        width: auto;
         height: 3.5em;
         margin: 0 0.3em 0.3em 0;
         cursor: pointer;
@@ -128,59 +196,12 @@
         font-size: $errorMsgFontSize;
         font-weight: $errorFontWeight;
         padding-top: 2em;
-        margin-top: -1em;
+        margin: -2em 0 1em 0;
         text-align: start;
         color: $errorTextColour;
     }
 
-    /* 
-        input[type="radio"] {
-            display: none;
-        }
-
-        .customSizeRadio::before {
-            content: "";
-            position: absolute;
-            border: 1px solid red;
-            display: inline;
-            border-radius: 3px;
-            border-color: rgba($color: Gray, $alpha: 0.3);
-            text-align: center;
-            font-weight: 500;
-            width: 4.5em;
-            height: 3em;
-            margin: -.75em -1.4em;
-            cursor: pointer;
-        }
-
-        .customSizeRadio {
-            display: inline;
-            background-color: white;
-            // border: 2px solid gray;
-            border-radius: 3px;
-            border-color: rgba($color: Gray, $alpha: 0.3);
-            font-weight: 500;
-            margin: 0em 2em;
-
-            cursor: pointer;
-
-        }
-
-
-
-        input[type="radio"]:checked+.customSizeRadio {
-            // border: 2px solid black;
-     
-        }
- */
-
-
-
-
-
     .checkoutBtn {
-
-        margin-top: 1em;
         background-color: black;
         color: white;
         padding: 2em 0em;
@@ -202,11 +223,115 @@
     .checkoutBtn:hover {
         background-color: rgb(51, 51, 51)
     }
+}
 
-    /* .quantityBtn {
-        @extend .checkoutBtn;
-        border-radius: 0;
-        margin: 0 1em 0 0;
-        padding: 2em;
-    } */
+@media (min-width: 960px) {
+    .productDetails {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        padding-bottom: 1.8em;
+        margin: 0 0;
+        flex-shrink: 0;
+
+        .productImage {
+            display: none;
+        }
+
+
+
+        .productImgContainer {
+            order: 0
+        }
+
+        .mainProductImage {
+            height: 620px;
+            width: 550px;
+        }
+
+        .productInfoTop {
+            display: none;
+        }
+
+        .productInfoBottom {
+            display: none;
+        }
+
+        .productInfo {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            text-align: left;
+            margin: 0;
+            padding: 0 0 0 4em;
+            font-size: 1.4em;
+            width: 368px;
+
+
+            .productSize {
+                padding: 1em 0;
+            }
+
+            .productDesc {
+                display: block;
+                text-align: left;
+                padding: 0;
+            }
+        }
+    }
+}
+
+@media (min-width: 1150px) {
+    .productDetails {
+
+        .productImages {
+            display: block;
+            margin: 0 1em 0 0;
+            order: 0;
+        }
+
+        .productImage {
+            display: block;
+            margin: 0 0 .25em 0;
+        }
+
+        .productImage img {
+            height: 75px;
+            width: 75px;
+        }
+
+
+    }
+}
+
+@media (max-width: 1100px) {
+    .productDetails {
+        .item {
+            width: 80%
+        }
+    }
+}
+
+@media (max-width: 960px) {
+    .productDetails {
+        .item {
+            width: auto;
+        }
+    }
+}
+
+@media (max-width: 780px) {
+    .productDetails {
+
+        .productInfoBottom,
+        .productInfoTop {
+            width: 93.5%;
+        }
+
+        .productImgContainer {
+            width: 100%;
+        }
+    }
 }

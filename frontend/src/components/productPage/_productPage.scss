@@ -1,7 +1,12 @@
 .productPage {
-    display: flex;
+    display: block;
     position: relative;
-    justify-content: center;
-    margin: 3em 0em 0em 5em;
+    margin: 0;
     overflow: hidden;
+}
+
+@media (min-width: 960px) {
+    .productPage {
+        margin: 3em 0em 0em 0em;
+    }
 }

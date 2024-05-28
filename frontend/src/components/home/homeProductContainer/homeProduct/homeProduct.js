@@ -31,11 +31,12 @@ export default function HomeProduct(props) {
 
         <div className='homeProduct'>
             <a href={`/apparel/browse-products/${categoryName.toLowerCase()}/${slugifyProductName}/${productId}`}>
-                <img src={imageURL} style={productImageStyle} alt="product" />
+
+                <div className='productImgContainer'> <img className='productImg' src={imageURL} style={productImageStyle} alt="product" /></div>
                 <div className='productInfo'>
                     <p className='productName'>{productName}</p>
                     <p className='productDesc'>{categoryName}</p>
-                    <p className='productPrice'>CA${price}</p>
+                    <p className='productPrice'>{price ? `CA$${price}` : ''}</p>
                 </div>
             </a>
         </div>
@@ -47,10 +48,10 @@ HomeProduct.defaultProps = {
     width: 460,
     product: {
         product_id: "0",
-        product_name: 'Product',
-        price: 15.99,
-        image_url: '/housoku-images/productTest.jpg',
-        category_name: "tops"
+        product_name: '',
+        price: null,
+        image_url: '',
+        category_name: ""
     },
     imagePosition: 1
 

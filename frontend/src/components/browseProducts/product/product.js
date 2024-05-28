@@ -12,8 +12,9 @@ export default function Product(props) {
     const categoryName = props.product.category_name
 
     const productImageStyle = {
-        height: props.height + 'px',
-        width: props.width + 'px',
+        height: '100%',
+        width: '100%',
+        maxWidth: '100%',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPositionY: 'center',
@@ -26,14 +27,18 @@ export default function Product(props) {
         First inner div (productImage) is the product image
         Second inner div (productInfo) is the product information  */
         <>
-            <div className='productContainer'>
-                <Link to={`/apparel/browse-products/${categoryName.toLowerCase()}/${slugifyProductName}/${productId}`}>
-                    <img src={imageURL} style={productImageStyle} alt="product" />
-                </Link>
+            <div className={props.isFilterEnabled ? 'productContainer' : 'productContainer maxWidth'}>
+                <div className='productImgContainer'>
+                    {imageURL.trim().length !== 0 && (
+                        <Link to={`/apparel/browse-products/${categoryName.toLowerCase()}/${slugifyProductName}/${productId}`}>
+                            <img className='productImg' src={imageURL} style={productImageStyle} alt="product" />
+                        </Link>
+                    )}
+                </div>
                 <div className='productInfo'>
                     <p className='productName'>{productName}</p>
                     <p className='categoryName'>{categoryName}</p>
-                    <p className='productPrice'>${price} CAD</p>
+                    <p className='productPrice'>{price ? `$${price} CAD` : ''}</p>
                 </div>
             </div>
         </>
@@ -45,18 +50,18 @@ Product.defaultProps = {
     width: 430,
     product: {
         product_id: "0",
-        product_name: 'Product',
-        price: 15.99,
-        image_url: '/housoku-images/productTest.jpg',
-        category_name: "tops"
+        product_name: '',
+        image_url: '',
+        price: null,
+        category_name: ""
     },
-    imagePosition: 1
-
+    imagePosition: 1,
+    isFilterEnabled: true
 }
 
 Product.propTypes = {
-    height: PropTypes.number,
-    width: PropTypes.number,
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
     product: PropTypes.shape({
         product_id: PropTypes.string,
         product_name: PropTypes.string,
@@ -64,5 +69,6 @@ Product.propTypes = {
         image_url: PropTypes.string,
         category_name: PropTypes.string
     }),
-    imagePosition: PropTypes.number
+    imagePosition: PropTypes.number,
+    isFilterEnabled: PropTypes.bool
 };

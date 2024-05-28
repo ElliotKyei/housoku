@@ -10,9 +10,24 @@ export default function HomeProductContainer(props) {
     const [isScrollAtStart, setIsScrollAtStart] = useState(true);
     const [isScrollAtEnd, setIsScrollAtEnd] = useState(false);
     const sliderRef = useRef(null);
+    const sliderEndRef = useRef(null);
     const rightScrollButtonRef = useRef(null);
     const leftScrollButtonRef = useRef(null);
     let productCount = 0;
+
+    useEffect(() => {
+        if (sliderEndRef) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.target === sliderEndRef.current)
+                        setIsScrollAtEnd(entry.isIntersecting)
+                })
+            })
+
+            observer.observe(sliderEndRef.current)
+        }
+
+    }, [sliderEndRef])
 
     useEffect(() => {
 
@@ -36,13 +51,12 @@ export default function HomeProductContainer(props) {
                 setIsScrollAtStart(prev => false)
             }
 
-            if (sliderRef.current.scrollLeft >= (sliderRef.current.scrollWidth - sliderRef.current.clientWidth)) {
+            if (isScrollAtEnd) {
                 rightScrollButtonRef.current.className = "scrollButtonDisabled"
-                setIsScrollAtEnd(prev => true)
             }
             else {
                 rightScrollButtonRef.current.className = "rightScrollButton"
-                setIsScrollAtEnd(prev => false)
+
             }
         }
         handleScrollDisable()
@@ -55,7 +69,7 @@ export default function HomeProductContainer(props) {
             window.removeEventListener('resize', watchWindowInnerWidth)
         };
 
-    }, [sliderRef.current, leftScrollButtonRef.current, rightScrollButtonRef.current, isScrollAtStart, isScrollAtEnd, products])
+    }, [sliderRef.current, leftScrollButtonRef.current, rightScrollButtonRef.current, isScrollAtStart, isScrollAtEnd, products, userInnerWidth])
 
     const scrollLeft = () => {
         if (!sliderRef.current)
@@ -63,7 +77,7 @@ export default function HomeProductContainer(props) {
 
         if (!isScrollAtStart) {
             rightScrollButtonRef.current.className = "leftScrollButton"
-            sliderRef.current.scrollLeft -= 500
+            sliderRef.current.scrollLeft -= 300
         }
     }
 
@@ -73,7 +87,7 @@ export default function HomeProductContainer(props) {
 
         if (!isScrollAtEnd) {
             rightScrollButtonRef.current.className = "rightScrollButton"
-            sliderRef.current.scrollLeft += 500
+            sliderRef.current.scrollLeft += 300
         }
     }
 
@@ -93,9 +107,9 @@ export default function HomeProductContainer(props) {
                         </div>
 
                         <div className='scrollProducts'>
-                            <div className='title'>
+                            {/*     <div className='title'>
                                 <p>Discover All</p>
-                            </div>
+                            </div> */}
 
                             <button className='scrollButtonDisabled' ref={leftScrollButtonRef} onClick={scrollLeft} disabled={isScrollAtStart}>
                                 <div className='icon'>
@@ -125,9 +139,9 @@ export default function HomeProductContainer(props) {
 
                                 (
                                     <>
-                                        <li className='item'><Product width={460} height={460} /></li>
-                                        <li className='item'><Product width={460} height={460} /></li>
-                                        <li className='item'><Product width={460} height={460} /></li>
+                                        <li className='item'><Product width={460} height={460} key={0} /></li>
+                                        <li className='item'><Product width={460} height={460} key={1} /></li>
+                                        <li className='item'><Product width={460} height={460} key={2} /></li>
 
                                     </>
                                 )
@@ -139,10 +153,11 @@ export default function HomeProductContainer(props) {
                                         productCount++
                                         return <li className='item'><Product product={p} width={460} height={460} key={p.product_id} /></li>
                                     })
-
                                 )
 
                             }
+                            <div className='sliderEnd' ref={sliderEndRef}></div>
+
                         </ul>
                     </section>
 

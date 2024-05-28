@@ -15,6 +15,7 @@ export default function ShoppingCart() {
 
     let taxes = Number((subTotal * 0.13).toFixed(2));
     let total = Number((subTotal + taxes).toFixed(2));
+    let itemCount = 0;
 
     useEffect(() => {
         setLoading(prev => false)
@@ -58,17 +59,20 @@ export default function ShoppingCart() {
     let renderProducts = <></>
 
     if (shoppingCartCount !== 0) {
-        console.log("product index recalculating")
         renderProducts =
             <>
-                {items.map((prod, ind) => <ShoppingCartProduct product={prod} productIndex={ind} key={ind} refreshCart={refreshCart} />)}
+                {items.map((prod, ind) => {
+                    itemCount++
+                    return <ShoppingCartProduct product={prod} productIndex={ind} key={ind} refreshCart={refreshCart} />
+                })
+                }
             </>
     }
 
     else {
         renderProducts =
             <>
-                <p>There are no items in your bag.</p>
+                <p className='emptyCartMsg'>There are no items in your bag.</p>
             </>
     }
 
@@ -79,11 +83,17 @@ export default function ShoppingCart() {
 
                     <div className='shoppingCartDetails'>
                         <div className='bagContainer'>
+
                             <div className='bagHeading'>
                                 <h4 className='title'>Shopping Bag</h4>
                             </div>
+                            <div className='bagSubheading'>
+                                <p className='subTitle'>{itemCount} {itemCount.length === 1 ? 'item' : 'items'} | {total > 0 ? `$${total}` : '-'}</p>
+                            </div>
 
-                            <div>
+                            <div ><hr className='topDivider' /></div>
+
+                            <div className='cartProductContainer'>
                                 {renderProducts}
                             </div>
 
@@ -93,6 +103,9 @@ export default function ShoppingCart() {
                             <div className='summaryHeading'>
                                 <h4 className='title'>Summary</h4>
                             </div>
+
+
+
                             <div className='subtotalContainer'>
                                 {subTotal > 0 ? <p>Subtotal <span style={{ float: 'right' }}>${subTotal} CAD</span></p> : <p>Subtotal <span style={{ float: 'right' }}>-</span></p>}
                             </div>

@@ -27,9 +27,13 @@
     margin-top: 3em;
 
     .createAccount-form {
-        width: min-content;
+        width: 441px;
         text-align: center;
         padding-bottom: 3em;
+    }
+
+    .item {
+        flex: 1 1 0;
     }
 
     h4 {
@@ -55,7 +59,7 @@
         border-radius: 1px;
         font-size: $inputFontSize;
         font-weight: $inputFontWeight;
-
+        width: 100%;
     }
 
     input:focus {
@@ -102,5 +106,17 @@
         margin-top: -1em;
         text-align: start;
         color: $errorTextColour;
+    }
+}
+
+@media (max-width: 470px) {
+    .createAccount {
+        .heading {
+            text-align: center;
+        }
+
+        .item {
+            width: 90%;
+        }
     }
 }

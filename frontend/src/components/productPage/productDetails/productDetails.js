@@ -7,13 +7,15 @@ import { dbAddProduct } from '../../../reducers/shoppingCart/shoppingCartSlice';
 
 export default function ProductDetails(props) {
     const dispatch = useDispatch();
-    const submitBtn = useRef(null);
 
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated)
     const [disableSubmit, setDisabledSubmit] = useState(false)
     const [sizeSelected, setSizeSelected] = useState("")
     const [sizeSelectedError, setSizeSelectedError] = useState(false)
     const [sizeClassName, setSizeClassName] = useState(null)
+    const [currentMainImageSRC, setCurrentMainImageSRC] = useState(props.product.image_url);
+    const [currentMainImageEffect, setCurrentMainImageEffect] = useState('image-1');
+    const currentImageRef = useRef(null)
 
 
     let sizeClassNameTmp = {}
@@ -26,8 +28,8 @@ export default function ProductDetails(props) {
     const categoryName = props.product.category_name
 
     const mainProductImageStyle = {
-        height: props.height + 'px',
-        width: props.width + 'px',
+        width: '100%',
+        height: '100%',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPositionY: 'center',
@@ -36,14 +38,30 @@ export default function ProductDetails(props) {
     }
 
     const productImageStyle = {
-        height: '75px',
-        width: '75px',
+
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPositionY: 'center',
+        backgroundPositionX: 'center',
         overflow: 'hidden',
         borderRadius: '5px',
-        marginRight: '1em'
+    }
+
+    // handler function to change main image on hover
+
+    const selectMainImage = (e) => {
+        if (e.target === currentImageRef.current)
+            return
+
+        if (e.target !== currentImageRef.current) {
+            currentImageRef.current.classList.remove('selectedImage')
+
+
+            e.target.classList.add('selectedImage')
+            setCurrentMainImageSRC(e.target.src)
+            setCurrentMainImageEffect(e.target.id)
+            currentImageRef.current = e.target
+        }
     }
 
 
@@ -61,16 +79,16 @@ export default function ProductDetails(props) {
 
     // handler function whenever a size is selected
 
-    const addToBag = () => {
+    const addToBag = (e) => {
 
-        if (isAuthenticated && submitBtn.current) {
+        if (isAuthenticated && e.target) {
 
-            submitBtn.current.disabled = true
+            e.target.disabled = true
             setDisabledSubmit(prev => true)
 
             if (sizeSelected.trim().length === 0) {
                 setSizeSelectedError(prev => true)
-                submitBtn.current.disabled = false
+                e.target.disabled = false
                 setDisabledSubmit(prev => false)
                 return
             }
@@ -84,16 +102,17 @@ export default function ProductDetails(props) {
                     category_name: categoryName,
                     quantity: 1
                 }
-                submitBtn.current.textContent = "Adding..."
-                submitBtn.current.className = "checkoutBtnDisabled"
+                console.log(e.target.textContent)
+                e.target.textContent = "Adding..."
+                e.target.className = "checkoutBtnDisabled"
 
                 if (!disableSubmit) {
                     setTimeout(() => {
                         dispatch(dbAddProduct(product))
-                        submitBtn.current.disabled = false
+                        e.target.disabled = false
                         setDisabledSubmit(prev => false)
-                        submitBtn.current.textContent = "Add to Bag"
-                        submitBtn.current.className = "checkoutBtn"
+                        e.target.textContent = "Add to Bag"
+                        e.target.className = "checkoutBtn"
                     }, 300)
                 }
             }
@@ -110,29 +129,37 @@ export default function ProductDetails(props) {
 
         <div className='productDetails'>
             <div className='productImages'>
-                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
-                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
-                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
-                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
-                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
-                <div className='productImage'><img src={imageURL} style={productImageStyle} alt="product" /></div>
+                <div className='productImage' ><img id='image-1' className='selectedImage imageEffects' src={imageURL} style={productImageStyle} alt="product" onMouseOver={selectMainImage} ref={currentImageRef} /></div>
+                <div className='productImage' ><img id='image-2' className='imageEffects' src={imageURL} style={productImageStyle} alt="product" onMouseOver={selectMainImage} /></div>
+                <div className='productImage' ><img id='image-3' className='imageEffects' src={imageURL} style={productImageStyle} alt="product" onMouseOver={selectMainImage} /></div>
+                <div className='productImage' ><img id='image-4' className='imageEffects' src={imageURL} style={productImageStyle} alt="product" onMouseOver={selectMainImage} /></div>
+                <div className='productImage' ><img id='image-5' className='imageEffects' src={imageURL} style={productImageStyle} alt="product" onMouseOver={selectMainImage} /></div>
+                <div className='productImage' ><img id='image-6' className='imageEffects' src={imageURL} style={productImageStyle} alt="product" onMouseOver={selectMainImage} /></div>
             </div>
 
 
 
+            <div className='item productImgContainer'>
+                <div className='mainProductImage'> <img src={currentMainImageSRC} id={currentMainImageEffect} style={mainProductImageStyle} alt="product" /></div>
+            </div>
 
-            <div className='mainProductImage'> <img src={imageURL} style={mainProductImageStyle} alt="product" /></div>
-            <div className='productInfo'>
+            <div className='item productInfoTop'>
                 <p className='productName'>{productName}</p>
                 <p className='productCategory'>{categoryName}</p>
-                <p className='productDesc'>{productDescription}</p>
                 <p className='productPrice'>${price} CAD</p>
+            </div>
+
+            <div className='item productInfo'>
+                <p className='productName'>{productName}</p>
+                <p className='productCategory'>{categoryName}</p>
+                <p className='productPrice'>${price} CAD</p>
+                <p className='productDesc'>{productDescription}</p>
 
                 {/*  <p className='productColour'>Colour </p>
                 <div className='btnSelect'><button className='colourBtn'></button></div><br /> */}
 
                 <p className='productSize'>Select size </p>
-                <div>
+                <div className='sizeBtnContainer'>
                     {
                         size.map(s => {
 
@@ -154,8 +181,37 @@ export default function ProductDetails(props) {
                 <input type='hidden' value='/' />
                 {/*   <button className="quantityBtn">Quantity</button> */}
                 {sizeSelectedError && <div className='errorMsg' id='otherErrors'>Please select a size.</div>}
-                <button className="checkoutBtn" onClick={addToBag} ref={submitBtn}>Add to Bag</button>
+                <button className="checkoutBtn" onClick={addToBag}>Add to Bag</button>
 
+            </div>
+
+
+            <div className='item productInfoBottom'>
+                <p className='productDesc'>{productDescription}</p>
+                <p className='productSize'>Select size </p>
+                <div className='sizeBtnContainer'>
+                    {
+                        size.map(s => {
+
+                            sizeClassNameTmp[`${s}Class`] = "sizeBtn"
+                            return <button
+                                className={sizeClassName ? sizeClassName[`${s}Class`] : 'sizeBtn'}
+                                name={s}
+                                onFocus={selectSize}
+                                value={sizeSelected}>
+                                {s.toUpperCase()}
+                            </button>
+                        })
+                    }
+
+                    {/*   <input type='radio' className='sizeRadio' id='size' name='size' value={sizeSelected} />
+                    <label className='customSizeRadio'>test</label> */}
+
+                </div>
+                <input type='hidden' value='/' />
+                {/*   <button className="quantityBtn">Quantity</button> */}
+                {sizeSelectedError && <div className='errorMsg' id='otherErrors'>Please select a size.</div>}
+                <button className="checkoutBtn" onClick={addToBag}>Add to Bag</button>
             </div>
         </div>
     )
