@@ -6,5 +6,8 @@
     "node-mailjet": "^6.0.5",
     "react-redux": "^9.1.0",
     "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
   }
 }
