@@ -194,7 +194,10 @@ export default function SignIn() {
                         'Content-Type': 'application/json',
                         'Cache-Control': 'no-cache'
                     },
-                    withCredentials: true
+                    withCredentials: true,
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: 'None'
                 })
 
                 // Successful sign in.
