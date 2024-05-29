@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-//import TopNavbar from './components/topNavbar/topNavbar.js';
+import TopNavbar from './components/topNavbar/topNavbar.js';
 import BottomNavbar from './components/bottomNavbar/bottomNavbar.js';
 import Navbar from './components/navbar/navbar.js'
 import Home from './components/home/home.js'
@@ -26,7 +26,7 @@ function App() {
       <BrowserRouter>
         <Auth />
         <ScrollToTop />
-        {/*    <TopNavbar /> */}
+        <TopNavbar />
         <Navbar />
         <BottomNavbar />
         <Blur />
