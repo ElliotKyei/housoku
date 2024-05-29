@@ -255,7 +255,7 @@ const getAuth = async (req, res, next) => {
     }
 
     if (req.session.hasOwnProperty('user') && !req.session.user.isSignedIn) {
-        return res.status(401).send('Unauthorized');
+        return res.status(401).send('Unauthorized. Not signed in');
     }
 
     try {
