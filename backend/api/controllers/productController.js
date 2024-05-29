@@ -87,6 +87,7 @@ const getAllFeaturedProducts = async (req, res) => {
         return res.status(200).send(allFeaturedProducts)
     }
     catch (error) {
+        console.log("Nah, nah, nah...", error.message)
         return res.status(500).send(error)
     }
 
