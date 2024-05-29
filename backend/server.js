@@ -14,7 +14,7 @@ const HTTP_PORT = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Configuring express session middleware
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: ['http://localhost:3000', 'https://housoku.netlify.app/'], credentials: true }));
 app.use(bodyParser.json());
 
 app.use('/api', userRoutes.routes, productRoutes.routes)

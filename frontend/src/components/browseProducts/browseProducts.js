@@ -47,7 +47,7 @@ export default function BrowseProducts() {
 
         const getFilteredProducts = async () => {
             try {
-                const filteredProducts = await axios.get(`http://localhost:8080/api/applyFilters/${JSON.stringify(queryParams)}`, { headers: { "Content-Type": 'application/json' } })
+                const filteredProducts = await axios.get(`https://housoku-server-8d1399a4e220.herokuapp.com/api/applyFilters/${JSON.stringify(queryParams)}`, { headers: { "Content-Type": 'application/json' } })
                 if (filteredProducts.status === 200) {
 
                     getProducts = filteredProducts.data.allFilteredProducts
@@ -129,7 +129,7 @@ export default function BrowseProducts() {
                         <div className='toggleHideFilter'>
                             <button className='toggleHideFilterBtn' onClick={toggleFilter}>
                                 <span>{filterComponentEnabled ? 'Hide Filters' : 'Show Filters'}</span>
-                                <img id='filterIcon' src='http://localhost:8080/housoku-images/icons/filter.png' alt='filter image by Rahul Kaklotar (falticon)' />
+                                <img id='filterIcon' src='https://housoku-server-8d1399a4e220.herokuapp.com/housoku-images/icons/filter.png' alt='filter image by Rahul Kaklotar (falticon)' />
                             </button>
                         </div>
                     </div>
