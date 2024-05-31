@@ -320,8 +320,15 @@ const signOut = (req, res) => {
         return res.status(401).send('Unauthorized');
     }
 
-    req.session.user = { ...req.session.user, isSignedIn: false }
-    res.status(200).send("User successfully logged out")
+    req.session.destroy(err => {
+        if (err) {
+            req.session = null
+            return res.status(500).send("Error destroying user session")
+        }
+
+        else
+            return res.status(200).send("User successfully logged out")
+    })
 }
 
 
