@@ -3,16 +3,10 @@ const Pool = require('pg-pool')
 // Configurations for database connection (Postgres)
 
 const db = new Pool({
-    /*     connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        } */
-
-    user: 'ElliotKyei',
-    password: process.env.PG_PASSWORD,
-    host: 'localhost',
-    port: 5432,
-    database: 'Housoku'
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
 })
 
 // Connect to database

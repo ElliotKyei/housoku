@@ -1,11 +1,13 @@
 import './_topNavbar.scss'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { signOut } from '../../reducers/user/userSlice';
 const userProfile = '/housoku-images/user-profile.png'
 
 export default function TopNavbar() {
     const [loading, setLoading] = useState(true)
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+    const dispatch = useDispatch()
 
     useEffect(() => {
         setTimeout(() => {
@@ -24,7 +26,7 @@ export default function TopNavbar() {
                 <ul>
                     <span id="welcomeMsg">Welcome</span>
                     <li style={{ marginLeft: '1em' }}>|</li>
-                    <a className='link' href='/sign-in'>Sign Out</a>
+                    <a className='link' href='/sign-in' onClick={dispatch(signOut())}>Sign Out</a>
                 </ul>
             </div>
         </>

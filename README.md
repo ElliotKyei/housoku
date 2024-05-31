@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Visit the web application
 
-Visit the web application: https://housoku.netlify.app/
+https://housoku.netlify.app/
 
 
 # Getting Started with Create React App
