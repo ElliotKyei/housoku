@@ -3,6 +3,11 @@ const Pool = require('pg-pool')
 // Configurations for database connection (Postgres)
 
 const db = new Pool({
+    /*     connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        } */
+
     user: 'ElliotKyei',
     password: process.env.PG_PASSWORD,
     host: 'localhost',
@@ -15,6 +20,7 @@ const db = new Pool({
 db.connect((err) => {
     if (err) {
         console.log("Error connecting to the database")
+        return
     }
 
     console.log("Database connection established")

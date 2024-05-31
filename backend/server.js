@@ -9,10 +9,11 @@ const productRoutes = require('./api/routes/productRoutes.js')
 
 
 const HTTP_PORT = process.env.PORT || 8080;
+//app.set("trust proxy", 1)
 
 // Set up static folder for express to use
 app.use(express.static(path.join(__dirname, '/public')));
-
+// https://housoku.netlify.app
 // Configuring express session middleware
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(bodyParser.json());

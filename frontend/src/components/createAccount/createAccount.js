@@ -201,7 +201,10 @@ export default function CreateAccount() {
                         "Content-Type": "application/json",
                         'Cache-Control': 'no-cache',
                     },
-                    withCredentials: true
+                    withCredentials: true,
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: 'None'
                 })
                 navigate('/')
 

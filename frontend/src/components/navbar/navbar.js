@@ -27,7 +27,7 @@ export default function Navbar() {
             }
         }
         getShoppingCart()
-    }, [])
+    }, [cartCount])
 
     useEffect(() => {
 

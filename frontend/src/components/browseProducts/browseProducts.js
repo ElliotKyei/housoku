@@ -129,7 +129,7 @@ export default function BrowseProducts() {
                         <div className='toggleHideFilter'>
                             <button className='toggleHideFilterBtn' onClick={toggleFilter}>
                                 <span>{filterComponentEnabled ? 'Hide Filters' : 'Show Filters'}</span>
-                                <img id='filterIcon' src='http://localhost:8080/housoku-images/icons/filter.png' alt='filter image by Rahul Kaklotar (falticon)' />
+                                <img id='filterIcon' src={`http://localhost:8080/housoku-images/icons/filter.png`} alt='filter image by Rahul Kaklotar (falticon)' />
                             </button>
                         </div>
                     </div>
