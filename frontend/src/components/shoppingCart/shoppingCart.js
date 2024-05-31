@@ -33,7 +33,7 @@ export default function ShoppingCart() {
                 total: total
             }
 
-            const checkout = await axios.post('https://housoku-server-8d1399a4e220.herokuapp.com/api/check-out', finalOrder,
+            const checkout = await axios.post('http://localhost:8080/api/check-out', finalOrder,
                 {
                     headers: {
                         'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ export default function ProductPage() {
         if (sanitizedProductId(id)) {
             const getProduct = async () => {
                 try {
-                    const getProduct = await axios.get(`https://housoku-server-8d1399a4e220.herokuapp.com/api/getProductById/${id}`)
+                    const getProduct = await axios.get(`http://localhost:8080/api/getProductById/${id}`)
 
                     if (category !== getProduct.data.category_name.trim().toLowerCase()) {
                         navigate('/')

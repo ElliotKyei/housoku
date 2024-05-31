@@ -24,7 +24,7 @@ export default function ShoppingCartProduct(props) {
         if (sanitizedProductId(productId)) {
             const getProduct = async () => {
                 try {
-                    const getProduct = await axios.get(`https://housoku-server-8d1399a4e220.herokuapp.com/api/getProductById/${productId}`)
+                    const getProduct = await axios.get(`http://localhost:8080/api/getProductById/${productId}`)
                     setProductPrice(prev => getProduct.data.price)
                     setProductSizes(prev => getProduct.data.size)
 

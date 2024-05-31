@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const { v4: uuidv4 } = require('uuid');
+const argon2 = require('argon2')
 
 const {
     createAccount,
@@ -21,21 +23,25 @@ const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session)
 const pgPool = require('../../db/db.js')
 
+function generateSessionID() {
+    return uuidv4();
+}
+
 router.use(session({
     secret: process.env.HOUSOKU_SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: (1000 * 60 * 60 * 24),
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none'
+        /*   secure: true,
+          sameSite: 'none', */
+        maxAge: (1000 * 60 * 60 * 24)
     },
     store: new pgSession({
         pool: pgPool,
         tableName: 'session',
         createTableIfMissing: true
-    })
+    }),
+    genid: generateSessionID
 }))
 
 

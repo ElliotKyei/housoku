@@ -9,7 +9,7 @@ export const dbGetShoppingCart = () => async (dispatch) => {
 
     try {
 
-        const shoppingCart = await axios.get('https://housoku-server-8d1399a4e220.herokuapp.com/api/getShoppingCart', { withCredentials: true })
+        const shoppingCart = await axios.get('http://localhost:8080/api/getShoppingCart', { withCredentials: true })
         const productDetails = shoppingCart.data
 
         // calculate current subtotal
@@ -37,7 +37,7 @@ export const dbGetShoppingCart = () => async (dispatch) => {
 
 export const dbAddProduct = (product) => async (dispatch) => {
     try {
-        const addedProduct = await axios.post('https://housoku-server-8d1399a4e220.herokuapp.com/api/addProductToShoppingCart', product,
+        const addedProduct = await axios.post('http://localhost:8080/api/addProductToShoppingCart', product,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const dbAddProduct = (product) => async (dispatch) => {
 export const dbUpdateProductQuantity = (prodIndex, newQuantity) => async (dispatch) => {
     try {
 
-        const updateProductQty = await axios.post(`https://housoku-server-8d1399a4e220.herokuapp.com/api/updateProductQuantityInShoppingCart`, { productIndex: prodIndex, quantity: newQuantity }, { withCredentials: true })
+        const updateProductQty = await axios.post(`http://localhost:8080/api/updateProductQuantityInShoppingCart`, { productIndex: prodIndex, quantity: newQuantity }, { withCredentials: true })
 
         if (updateProductQty.status === 200) {
             dispatch(updateProductQuantity(updateProductQty.data))
@@ -84,7 +84,7 @@ export const dbUpdateProductQuantity = (prodIndex, newQuantity) => async (dispat
 export const dbUpdateProductSize = (prodIndex, prodId, newSize) => async (dispatch) => {
     try {
 
-        const updateProductSize = await axios.post(`https://housoku-server-8d1399a4e220.herokuapp.com/api/updateProductSizeInShoppingCart`, { productIndex: prodIndex, productId: prodId, size: newSize }, { withCredentials: true })
+        const updateProductSize = await axios.post(`http://localhost:8080/api/updateProductSizeInShoppingCart`, { productIndex: prodIndex, productId: prodId, size: newSize }, { withCredentials: true })
 
         if (updateProductSize.status === 200) {
             dispatch(updateProductSize(updateProductSize.data))
@@ -100,7 +100,7 @@ export const dbUpdateProductSize = (prodIndex, prodId, newSize) => async (dispat
 
 export const dbRemoveProduct = (productIndex) => async (dispatch) => {
     try {
-        const removedProduct = await axios.delete(`https://housoku-server-8d1399a4e220.herokuapp.com/api/removeProductFromShoppingCart/${productIndex}`, { withCredentials: true })
+        const removedProduct = await axios.delete(`http://localhost:8080/api/removeProductFromShoppingCart/${productIndex}`, { withCredentials: true })
 
         if (removedProduct.status === 200) {
             dispatch(removeProduct(removedProduct.data.productIndex))

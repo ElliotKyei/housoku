@@ -15,7 +15,7 @@ if (!db) {
 
 // Hash user password
 
-const hashPassword = async (password) => {
+const hashFunction = async (password) => {
     try {
         const hashedPassword = await argon2.hash(password, { type: argon2.argon2id })
         return hashedPassword;
@@ -117,6 +117,33 @@ const validatePassword = async (email, passwordInput) => {
 
 }
 
+const getUserID = async (email) => {
+
+    if (email.length !== 0) {
+
+        try {
+            const result = await db.query("SELECT (user_id) FROM users WHERE email = $1", [email])
+
+            // Did not find any user with given email
+
+            if (result.rowCount === 0) {
+                return false
+            }
+            else {
+
+                // Return the user_id
+
+                return { user_id } = result.rows[0]
+
+            }
+        }
+        catch (error) {
+            throw new Error("Error occured")
+        }
+    }
+
+}
+
 // Add a user to the database (userController)
 
 const createAccount = async (req, res, next) => {
@@ -145,7 +172,7 @@ const createAccount = async (req, res, next) => {
 
                 const userId = uuidv4();
                 let hashedPassword = ""
-                hashedPassword = await hashPassword(password);
+                hashedPassword = await hashFunction(password);
 
                 if (hashedPassword instanceof Error) {
                     res.status(500).send("Internal Server Error")
@@ -163,7 +190,7 @@ const createAccount = async (req, res, next) => {
             }
         }
         catch (error) {
-            console.log(error)
+            console.log(error.message)
             res.status(500).send("Internal Server Error")
         }
     }
@@ -172,6 +199,36 @@ const createAccount = async (req, res, next) => {
         res.status(401).send("No information found")
     }
 }
+
+// Restore shopping cart (from sign in)
+
+const restoreShoppingCart = async (userId) => {
+
+    try {
+        const getCart = await db.query("SELECT cart FROM USERS WHERE user_id = $1", [userId])
+
+        if (getCart.rowCount === 1) {
+            if (getCart.rows[0].cart === null) {
+                return []
+            }
+            else {
+                return getCart.rows[0].cart
+            }
+
+        }
+
+        else {
+            return []
+        }
+    }
+
+    catch (error) {
+        console.log("error in while restoring cart:", error.message)
+        return error
+    }
+}
+
+
 
 // Verify login details (verify email is within system & given password matches with corresponding password hash within account)
 
@@ -218,13 +275,38 @@ const signIn = async (req, res) => {
             }
 
             if (validPassword) {
+                let userId = null
 
-                req.session.user = { isSignedIn: true, email: email }
-                req.session.cart = req.session.cart || []
-                res.status(200).send("User has successfully signed in")
+                req.session.regenerate(async (err) => {
+                    if (err) {
+                        req.session.destroy((destroyErr) => {
+                            if (destroyErr) {
+                                return res.status(500).send("Error signing in and failed to destroy session");
+                            }
+                            return res.status(500).send("Error signing in");
+                        })
+
+                    } else {
+                        try {
+                            const { user_id } = await getUserID(email);
+                            const userId = user_id;
+
+                            req.session.user = { userId: userId, isSignedIn: true, email: email };
+
+                            try {
+                                req.session.cart = await restoreShoppingCart(userId);
+                            } catch (error) {
+                                console.log("Error while restoring shopping cart:", error);
+                                req.session.cart = [];
+                            }
+
+                            res.status(200).send("User has successfully signed in");
+                        } catch (error) {
+                            return res.status(500).json({ error: "Internal Server Error" });
+                        }
+                    }
+                });
             }
-
-
         }
     }
     else {
@@ -276,7 +358,7 @@ const getAuth = async (req, res, next) => {
 
 // Get shopping cart from store
 
-const getShoppingCart = (req, res) => {
+const getShoppingCart = async (req, res) => {
 
 
     // session validity checks
@@ -292,12 +374,34 @@ const getShoppingCart = (req, res) => {
     if (!req.session.hasOwnProperty('cart')) {
         return res.status(401).send('Unauthorized');
     }
-
     let shoppingCartProducts = []
+
     req.session.cart.forEach(prod => shoppingCartProducts.push(new ShoppingCartProduct(prod)))
 
     res.status(200).json(shoppingCartProducts)
 }
+
+// Save shopping cart to user
+
+const saveCart = async (cart, userId) => {
+
+    if (Object.keys(cart).length === 0)
+        cart = null
+
+    try {
+        const savingCart = await db.query("UPDATE USERS SET cart = $1 WHERE user_id = $2", [cart, userId])
+
+        if (savingCart.rowCount === 1) return
+
+        else
+            throw new Error("Failed to save cart to user")
+    }
+    catch (error) {
+        return error
+    }
+}
+
+
 
 // Adding a product to the shopping cart within session store
 
@@ -328,6 +432,16 @@ const addProductToShoppingCart = async (req, res) => {
     if (productInd !== -1) {
         if (req.session.cart[productInd].quantity < 10) {
             req.session.cart[productInd].quantity += 1
+
+
+            try {
+                await saveCart(req.session.cart, req.session.user.userId)
+            }
+            catch (error) {
+                console.log(error.message)
+                return res.sendStatus(500)
+            }
+
             return res.status(200).send({ productIndex: productInd })
         }
         else {
@@ -345,6 +459,17 @@ const addProductToShoppingCart = async (req, res) => {
                 productById.rows[0].size = size
                 const addedProduct = new ShoppingCartProduct(productById.rows[0])
                 req.session.cart.push(addedProduct)
+
+                try {
+
+                    await saveCart(req.session.cart, req.session.user.userId)
+                }
+                catch (error) {
+                    console.log(error.message)
+                    return res.sendStatus(500)
+                }
+
+
                 return res.status(201).json(addedProduct)
 
             }
@@ -354,7 +479,7 @@ const addProductToShoppingCart = async (req, res) => {
 
         }
         catch (error) {
-            console.log(error)
+            console.log(error.message)
             return res.status(401).send("Invalid product");
         }
 
@@ -385,6 +510,15 @@ const removeProductFromShoppingCart = async (req, res) => {
         if (Number.isInteger(productInd)) {
             if (productInd >= 0 && productInd <= cartLength) {
                 req.session.cart.splice(productInd, 1)
+
+                try {
+                    await saveCart(req.session.cart, req.session.user.userId)
+                }
+                catch (error) {
+                    console.log(error.message)
+                    return res.sendStatus(500)
+                }
+
                 return res.status(200).json({ productIndex: productInd })
             }
         }
@@ -421,6 +555,15 @@ const updateProductQuantityInShoppingCart = async (req, res) => {
         if (Number.isInteger(productInd) && Number.isInteger(quantity)) {
             if ((productInd >= 0 && productInd <= cartLength) && (quantity >= 0 && quantity <= 10)) {
                 req.session.cart[productInd].quantity = quantity
+
+                try {
+                    await saveCart(req.session.cart, req.session.user.userId)
+                }
+                catch (error) {
+                    console.log(error.message)
+                    return res.sendStatus(500)
+                }
+
                 return res.status(200).send({ productIndex: productInd, quantity: quantity })
             }
         }
@@ -432,7 +575,7 @@ const updateProductQuantityInShoppingCart = async (req, res) => {
     }
 }
 
-const updateProductSizeInShoppingCart = async (req, res) => {
+const updateProductSizeInShoppingCart = async (req, res, next) => {
 
     // session validity checks
 
@@ -469,6 +612,15 @@ const updateProductSizeInShoppingCart = async (req, res) => {
 
                 if (validProduct.rowCount === 1) {
                     req.session.cart[productInd].size = size
+
+                    try {
+                        await saveCart(req.session.cart, req.session.user.userId)
+                    }
+                    catch (error) {
+                        console.log(error.message)
+                        return res.sendStatus(500)
+                    }
+
                     return res.status(200).json({ productIndex: productInd, productId: validProduct.rows[0].product_id, size: validProduct.rows[0].size })
                 }
 
@@ -485,13 +637,15 @@ const updateProductSizeInShoppingCart = async (req, res) => {
     }
 }
 
+
+
 const validateOrder = async (req, res, next) => {
     next()
 }
 
 const checkout = async (req, res) => {
     if (!req.session)
-        return res.status(401).send('UnAuthorized')
+        return res.status(401).send('Unauthorized')
 
 
     if (req.session.hasOwnProperty('user') && !req.session.user.isSignedIn) {

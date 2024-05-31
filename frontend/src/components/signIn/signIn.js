@@ -39,7 +39,7 @@ export default function SignIn() {
     useEffect(() => {
         const endServerSession = async () => {
             try {
-                await axios.get("https://housoku-server-8d1399a4e220.herokuapp.com/api/sign-out", { withCredentials: true, headers: { 'Cache-Control': 'no-cache' } })
+                await axios.get("http://localhost:8080/api/sign-out", { withCredentials: true, headers: { 'Cache-Control': 'no-cache' } })
                 dispatch(signOut());
 
 
@@ -189,7 +189,7 @@ export default function SignIn() {
 
             // Will implement HTTPS at a later date. HTTP for now ;(
             try {
-                const response = await axios.post('https://housoku-server-8d1399a4e220.herokuapp.com/api/sign-in', values, {
+                const response = await axios.post('http://localhost:8080/api/sign-in', values, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Cache-Control': 'no-cache'

@@ -196,7 +196,7 @@ export default function CreateAccount() {
             // Will implement HTTPS at a later date. HTTP for now ;(
 
             try {
-                await axios.post('https://housoku-server-8d1399a4e220.herokuapp.com/api/create-account', values, {
+                await axios.post('http://localhost:8080/api/create-account', values, {
                     headers: {
                         "Content-Type": "application/json",
                         'Cache-Control': 'no-cache',

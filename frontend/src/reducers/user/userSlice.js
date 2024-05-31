@@ -7,7 +7,7 @@ import axios from 'axios'
 
 export const getAuthStatus = () => async (dispatch) => {
     try {
-        const isAuth = await axios.get('https://housoku-server-8d1399a4e220.herokuapp.com/api/getAuth', { withCredentials: true })
+        const isAuth = await axios.get('http://localhost:8080/api/getAuth', { withCredentials: true })
 
         if (isAuth.data.isSignedIn) {
             dispatch(getUserAuth(true))

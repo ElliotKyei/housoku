@@ -794,7 +794,8 @@ footer .footerContainer .socialMedia a {
   align-items: center;
   height: 525px;
   overflow: hidden;
-  background: linear-gradient(rgba(255, 255, 255, 0.067), rgba(0, 0, 0, 0.6)), url("https://housoku-server-8d1399a4e220.herokuapp.com/housoku-images/hero/home/streetwear-dancing-filter.jpg") no-repeat;
+  background: linear-gradient(rgba(255, 255, 255, 0.067), rgba(0, 0, 0, 0.6)),
+    url("http://localhost:8080/housoku-images/hero/home/streetwear-dancing-filter.jpg") no-repeat;
   background-size: cover;
   background-position-y: 40%;
   background-position-x: center;
@@ -947,7 +948,7 @@ footer .footerContainer .socialMedia a {
 }
 
 .homeProduct .productImage {
-  background: url(https://housoku-server-8d1399a4e220.herokuapp.com/housoku-images/products/pants/cargo/housoku-black-cargo.jpg) no-repeat;
+  background: url(http://localhost:8080/housoku-images/products/pants/cargo/housoku-black-cargo.jpg) no-repeat;
   background-size: cover;
   background-position-y: bottom;
   overflow: hidden;
