@@ -26,7 +26,7 @@ export default function TopNavbar() {
                 <ul>
                     <span id="welcomeMsg">Welcome</span>
                     <li style={{ marginLeft: '1em' }}>|</li>
-                    <a className='link' href='/sign-in' onClick={dispatch(signOut())}>Sign Out</a>
+                    <a className='link' href='/sign-in' onClick={() => { dispatch(signOut()) }}>Sign Out</a>
                 </ul>
             </div>
         </>
