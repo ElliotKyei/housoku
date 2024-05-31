@@ -104,8 +104,8 @@ export default function FilterContainer(props) {
             <div className='toggleFilter' onClick={() => toggleFilter ? setToggleFilter(prev => false) : setToggleFilter(prev => true)}>
                 <div className='filterHeading'><h4>{props.heading}</h4></div>
                 <div className='toggleFilterImg'>
-                    {toggleFilter ? <img src='http://localhost:8080/housoku-images/icons/up-arrow.png' alt="down arrow by th studio (flaticon)" style={{ height: '20px', width: '20px' }} />
-                        : <img src='http://localhost:8080/housoku-images/icons/down-arrow.png' alt="down arrow by th studio (flaticon)" style={{ height: '20px', width: '20px' }} />}
+                    {toggleFilter ? <img src='https://housoku-server-8d1399a4e220.herokuapp.com/housoku-images/icons/up-arrow.png' alt="down arrow by th studio (flaticon)" style={{ height: '20px', width: '20px' }} />
+                        : <img src='https://housoku-server-8d1399a4e220.herokuapp.com/housoku-images/icons/down-arrow.png' alt="down arrow by th studio (flaticon)" style={{ height: '20px', width: '20px' }} />}
                 </div>
 
 

@@ -15,7 +15,7 @@ export default function Home() {
     useEffect(() => {
         const getHomeProducts = async () => {
             try {
-                const products = await axios.get('http://localhost:8080/api/getAllFeaturedProducts')
+                const products = await axios.get('https://housoku-server-8d1399a4e220.herokuapp.com/api/getAllFeaturedProducts')
 
                 if (products.status === 200) {
 
