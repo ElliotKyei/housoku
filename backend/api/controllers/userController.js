@@ -276,36 +276,37 @@ const signIn = async (req, res) => {
 
             if (validPassword) {
                 let userId = null
+                /* 
+                                req.session.regenerate(async (err) => {
+                                    console.log("regen session")
+                                    if (err) {
+                                        req.session.destroy((destroyErr) => {
+                                            if (destroyErr) {
+                                                return res.status(500).send("Error signing in and failed to destroy session");
+                                            }
+                                            return res.status(500).send("Error signing in");
+                                        })
+                
+                                    } else { */
+                try {
+                    const { user_id } = await getUserID(email);
+                    const userId = user_id;
 
-                req.session.regenerate(async (err) => {
-                    if (err) {
-                        req.session.destroy((destroyErr) => {
-                            if (destroyErr) {
-                                return res.status(500).send("Error signing in and failed to destroy session");
-                            }
-                            return res.status(500).send("Error signing in");
-                        })
+                    req.session.user = { userId: userId, isSignedIn: true, email: email };
 
-                    } else {
-                        try {
-                            const { user_id } = await getUserID(email);
-                            const userId = user_id;
-
-                            req.session.user = { userId: userId, isSignedIn: true, email: email };
-
-                            try {
-                                req.session.cart = await restoreShoppingCart(userId);
-                            } catch (error) {
-                                console.log("Error while restoring shopping cart:", error);
-                                req.session.cart = [];
-                            }
-
-                            res.status(200).send("User has successfully signed in");
-                        } catch (error) {
-                            return res.status(500).json({ error: "Internal Server Error" });
-                        }
+                    try {
+                        req.session.cart = await restoreShoppingCart(userId);
+                    } catch (error) {
+                        console.log("Error while restoring shopping cart:", error);
+                        req.session.cart = [];
                     }
-                });
+
+                    res.status(200).send("User has successfully signed in");
+                } catch (error) {
+                    return res.status(500).json({ error: "Internal Server Error" });
+                }
+                /*     }
+                }); */
             }
         }
     }
@@ -342,11 +343,6 @@ const getAuth = async (req, res, next) => {
     if (!req.session) {
         console.log("GetAuth: Unable to get session")
         return res.status(401).send('Unauthorized');
-    }
-    else { console.log(req.sessionID) }
-
-    if (req.session.hasOwnProperty('user')) {
-        console.log(req.session.user)
     }
 
     if (req.session.hasOwnProperty('user') && !req.session.user.isSignedIn) {

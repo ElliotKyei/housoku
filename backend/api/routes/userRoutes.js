@@ -30,8 +30,9 @@ function generateSessionID() {
 router.use(session({
     secret: process.env.HOUSOKU_SESSION_SECRET_KEY,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
+        httpOnly: true,
         secure: true,
         sameSite: 'none',
         maxAge: (1000 * 60 * 60 * 24)
