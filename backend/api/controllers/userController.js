@@ -350,7 +350,7 @@ const getAuth = async (req, res, next) => {
     }
 
     try {
-        const auth = await db.query("SELECT * FROM session WHERE sid = $1", [req.session.id])
+        const auth = await db.query("SELECT * FROM session WHERE sid = $1", [req.sessionID])
         if (auth.rowCount === 0) {
             console.log("GetAuth: Unable to get session from provided sid")
             return res.status(401).send('Unauthorized');
