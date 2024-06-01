@@ -40,8 +40,7 @@ router.use(session({
         pool: pgPool,
         tableName: 'session',
         createTableIfMissing: true
-    }),
-    genid: generateSessionID
+    })
 }))
 
 

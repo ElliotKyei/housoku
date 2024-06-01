@@ -349,20 +349,7 @@ const getAuth = async (req, res, next) => {
         return res.status(401).send('Unauthorized. Not signed in');
     }
 
-    try {
-        const auth = await db.query("SELECT * FROM session WHERE sid = $1", [req.sessionID])
-        if (auth.rowCount === 0) {
-            console.log("GetAuth: Unable to get session from provided sid")
-            return res.status(401).send('Unauthorized');
-        }
-        else {
-            res.status(200).json({ isSignedIn: req.session.user.isSignedIn });
-        }
-    }
-    catch (error) {
-        return res.status(500).send(error)
-    }
-
+    res.status(200).json({ isSignedIn: req.session.user.isSignedIn });
 
 }
 
