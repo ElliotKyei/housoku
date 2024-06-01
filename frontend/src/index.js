@@ -5,6 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Store from './store/store.js'
 import { Provider } from 'react-redux';
+import eruda from 'eruda';
+
+eruda.init();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

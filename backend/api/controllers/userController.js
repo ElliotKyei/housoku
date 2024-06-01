@@ -340,16 +340,19 @@ const getAuth = async (req, res, next) => {
     // session validity checks
 
     if (!req.session) {
+        console.log("GetAuth: Unable to get session")
         return res.status(401).send('Unauthorized');
     }
 
     if (req.session.hasOwnProperty('user') && !req.session.user.isSignedIn) {
+        console.log("GetAuth: Unable to get user from session")
         return res.status(401).send('Unauthorized. Not signed in');
     }
 
     try {
         const auth = await db.query("SELECT * FROM session WHERE sid = $1", [req.session.id])
         if (auth.rowCount === 0) {
+            console.log("GetAuth: Unable to get session from provided sid")
             return res.status(401).send('Unauthorized');
         }
         else {
