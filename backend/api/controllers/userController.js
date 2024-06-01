@@ -343,19 +343,23 @@ const getAuth = async (req, res, next) => {
         console.log("GetAuth: Unable to get session")
         return res.status(401).send('Unauthorized');
     }
+    else { console.log(req.sessionID) }
+
+    if (req.session.hasOwnProperty('user')) {
+        console.log(req.session.user)
+    }
 
     if (req.session.hasOwnProperty('user') && !req.session.user.isSignedIn) {
         console.log("GetAuth: Unable to get user from session")
         return res.status(401).send('Unauthorized. Not signed in');
     }
 
-    if (req.session.user.isSignedIn)
-        res.status(200).json({ isSignedIn: true });
-
-    else {
-        console.log("GetAuth: User is not signed in")
-        res.status(401).json({ isSignedIn: false });
+    if (req.session.hasOwnProperty('user') && req.session.user.isSignedIn) {
+        return res.status(200).json({ isSignedIn: true });
     }
+
+    console.log("GetAuth: Error processing request")
+    res.status(401).json({ isSignedIn: false });
 
 
 }
@@ -378,8 +382,8 @@ const getShoppingCart = async (req, res) => {
     if (!req.session.hasOwnProperty('cart')) {
         return res.status(401).send('Unauthorized');
     }
-    let shoppingCartProducts = []
 
+    let shoppingCartProducts = []
     req.session.cart.forEach(prod => shoppingCartProducts.push(new ShoppingCartProduct(prod)))
 
     res.status(200).json(shoppingCartProducts)
