@@ -356,7 +356,7 @@ const getAuth = async (req, res, next) => {
             return res.status(401).send('Unauthorized');
         }
         else {
-            res.json({ isSignedIn: req.session.user.isSignedIn });
+            res.status(200).json({ isSignedIn: req.session.user.isSignedIn });
         }
     }
     catch (error) {
