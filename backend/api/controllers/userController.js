@@ -349,7 +349,14 @@ const getAuth = async (req, res, next) => {
         return res.status(401).send('Unauthorized. Not signed in');
     }
 
-    res.status(200).json({ isSignedIn: req.session.user.isSignedIn });
+    if (req.session.user.isSignedIn)
+        res.status(200).json({ isSignedIn: true });
+
+    else {
+        console.log("GetAuth: User is not signed in")
+        res.status(401).json({ isSignedIn: false });
+    }
+
 
 }
 
