@@ -15,7 +15,7 @@ app.set("trust proxy", 1)
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Configuring express session middleware
-app.use(cors({ origin: 'https://housoku.netlify.app', credentials: true }));
+app.use(cors({ origin: 'https://housoku.netlify.app', credentials: true, optionsSuccessStatus: 200 }));
 app.use(bodyParser.json());
 
 app.use('/api', userRoutes.routes, productRoutes.routes)
