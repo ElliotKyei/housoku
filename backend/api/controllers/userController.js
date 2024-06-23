@@ -337,7 +337,6 @@ const signOut = (req, res) => {
 
 const getAuth = async (req, res, next) => {
 
-
     // session validity checks
 
     if (!req.session) {
@@ -351,6 +350,11 @@ const getAuth = async (req, res, next) => {
     }
 
     if (req.session.hasOwnProperty('user') && req.session.user.isSignedIn) {
+        return res.status(200).json({ isSignedIn: true });
+    }
+
+    if (req.session.hasOwnProperty('user')) {
+        console.log("Session has user property")
         return res.status(200).json({ isSignedIn: true });
     }
 
