@@ -1,7 +1,7 @@
 # Visit the web application
 
 https://housoku.netlify.app/
-
+(Create an account to add items to the shopping cart)
 
 # Getting Started with Create React App
 
