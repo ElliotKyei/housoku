@@ -23,6 +23,6 @@ app.use('/api', userRoutes.routes, productRoutes.routes)
 
 //app.listen(HTTP_PORT, () => console.log(`Server listening on: ${HTTP_PORT}`));
 
-app.listen(port, '::', () =>
-    console.log(`Listening on port ${port}`)
+app.listen(HTTP_PORT, '::', () =>
+    console.log(`Listening on port ${HTTP_PORT}`)
 )
